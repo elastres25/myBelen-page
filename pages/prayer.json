@@ -1,0 +1,16 @@
+{
+  "title": "Prayer Resources",
+  "subtitle": "Daily prayers, reflections, and liturgical resources",
+  "blocks": [
+    {
+      "type": "text",
+      "heading": "Our Daily Prayer",
+      "body": "Add the prayer we open class with, or a reflection for the week."
+    },
+    {
+      "type": "files",
+      "heading": "Prayers & Reflections",
+      "items": []
+    }
+  ]
+}

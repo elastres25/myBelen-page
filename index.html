@@ -4,290 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Theology 6 Home Base</title>
-<style>
-:root{
-  --navy:#062b55;
-  --navy2:#0a3767;
-  --gold:#c9912b;
-  --cream:#fbf7ef;
-  --ink:#132d4f;
-  --muted:#677386;
-  --line:#e4e7ec;
-  --white:#fff;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:#f5f6f8;
-  color:var(--ink);
-}
-.homebase{
-  width:min(1180px, calc(100% - 28px));
-  margin:18px auto;
-}
-.hero{
-  min-height:220px;
-  border-radius:10px;
-  overflow:hidden;
-  position:relative;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:#fff;
-  padding:34px 24px;
-  background:
-    radial-gradient(circle at 12% 50%, rgba(201,145,43,.18), transparent 28%),
-    radial-gradient(circle at 90% 50%, rgba(201,145,43,.16), transparent 25%),
-    linear-gradient(110deg,#061f3d 0%,#0a3767 48%,#061d37 100%);
-  box-shadow:0 2px 10px rgba(17,38,61,.13);
-}
-.hero:before{
-  content:"";
-  position:absolute; inset:0;
-  background:
-    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:42px 42px;
-  opacity:.25;
-}
-.hero-inner{position:relative;z-index:1}
-.hero-mark{
-  width:52px;height:52px;border:1px solid rgba(255,255,255,.35);
-  border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;
-  font-family:Georgia,serif;color:var(--gold);font-size:30px;
-}
-.hero h1{
-  font-family:Georgia, "Times New Roman", serif;
-  font-weight:500;
-  letter-spacing:.2px;
-  color:#e0aa4f;
-  margin:0;
-  font-size:clamp(38px,5vw,64px);
-}
-.hero p{
-  font-family:Georgia, "Times New Roman", serif;
-  font-size:clamp(18px,2.3vw,26px);
-  margin:12px 0 0;
-}
-.hero .rule{width:76px;height:3px;background:var(--gold);margin:18px auto 0;border-radius:4px}
-
-.quicklinks{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin:14px 0;
-}
-.quick{
-  text-decoration:none;
-  color:var(--ink);
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:16px;
-  display:grid;
-  grid-template-columns:52px 1fr 18px;
-  align-items:center;
-  gap:12px;
-  min-height:96px;
-  box-shadow:0 1px 3px rgba(20,42,66,.05);
-  transition:.16s ease;
-}
-.quick:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(20,42,66,.10);border-color:#d5bc8e}
-.icon{
-  width:50px;height:50px;border-radius:50%;background:var(--navy);
-  color:white;display:grid;place-items:center;font-size:23px;
-}
-.quick strong{font-family:Georgia,serif;font-size:18px;display:block;margin-bottom:3px}
-.quick small{color:var(--muted);font-size:12px;line-height:1.35}
-.arrow{font-size:26px;color:#526071}
-
-.grid{
-  display:grid;
-  grid-template-columns:1.08fr 1fr;
-  gap:14px;
-}
-.card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:22px;
-  box-shadow:0 1px 3px rgba(20,42,66,.05);
-}
-.card h2{
-  font-family:Georgia,serif;
-  font-weight:500;
-  font-size:30px;
-  margin:0 0 18px;
-}
-.card h3{
-  font-family:Georgia,serif;
-  font-weight:500;
-  font-size:26px;
-  margin:0 0 14px;
-}
-.titleline{width:150px;height:2px;background:var(--gold);margin-top:-10px;margin-bottom:18px}
-
-.announcement{
-  display:grid;
-  grid-template-columns:48px 1fr;
-  gap:13px;
-  align-items:start;
-  padding:10px 0;
-  border-top:1px solid #eff0f2;
-}
-.announcement:first-of-type{border-top:none}
-.bubble{
-  width:44px;height:44px;border-radius:50%;background:#fbefd6;
-  color:#b67816;display:grid;place-items:center;font-size:21px;
-}
-.announcement b{font-size:17px}
-.announcement p{margin:3px 0 0;line-height:1.45;color:#394a60}
-
-.side{display:grid;gap:14px}
-.week ul{margin:7px 0 0 20px;padding:0}
-.week li{padding:5px 0;line-height:1.35}
-.vision{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  text-align:center;
-}
-.vision > div{padding:4px 10px;border-left:1px solid #eadfc9}
-.vision > div:first-child{border-left:none}
-.vicon{font-size:26px;color:#c38318;margin-bottom:6px}
-.vision strong{font-family:Georgia,serif;font-size:16px}
-.quote{
-  margin-top:14px;
-  background:linear-gradient(90deg,#fff8e8,#fffdf8);
-  border:1px solid #ecd8ad;
-  border-radius:8px;
-  padding:18px 20px;
-  text-align:center;
-  font-family:Georgia,serif;
-  font-style:italic;
-  font-size:18px;
-}
-.edit-note{
-  margin:12px 2px 0;
-  color:#6b7280;
-  font-size:12px;
-}
-@media(max-width:900px){
-  .quicklinks{grid-template-columns:repeat(2,1fr)}
-  .grid{grid-template-columns:1fr}
-}
-@media(max-width:560px){
-  .homebase{width:min(100% - 16px,1180px);margin:8px auto}
-  .hero{min-height:180px;padding:26px 15px}
-  .quicklinks{grid-template-columns:1fr}
-  .quick{min-height:82px}
-  .vision{grid-template-columns:1fr}
-  .vision > div{border-left:none;border-top:1px solid #eadfc9;padding:12px}
-  .vision > div:first-child{border-top:none}
-  .card{padding:18px}
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body data-page="home">
 <main class="homebase">
+  <div id="loaderr"></div>
 
-  <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="hero-inner">
-      <div class="hero-mark">✦</div>
-      <h1>Theology 6</h1>
-      <p>Home Base · Finding God in All Things</p>
+      <div class="hero-mark" id="heroMark"></div>
+      <h1 data-edit data-bind="hero.title"></h1>
+      <p data-edit data-bind="hero.subtitle"></p>
       <div class="rule"></div>
     </div>
   </section>
+  <div id="heroTools"></div>
 
-  <!-- QUICK LINKS: replace # with your real Blackbaud / Google Drive URLs -->
-  <nav class="quicklinks" aria-label="Quick course links">
-    <a class="quick" href="#" target="_top">
-      <span class="icon">▤</span>
-      <span><strong>Syllabus</strong><small>Course overview, expectations, and grading information.</small></span>
-      <span class="arrow">›</span>
-    </a>
-    <a class="quick" href="#" target="_top">
-      <span class="icon">⌑</span>
-      <span><strong>Class Resources</strong><small>Notes, handouts, presentations, and more.</small></span>
-      <span class="arrow">›</span>
-    </a>
-    <a class="quick" href="#" target="_top">
-      <span class="icon">✝</span>
-      <span><strong>Prayer Resources</strong><small>Daily prayers, reflections, and liturgical resources.</small></span>
-      <span class="arrow">›</span>
-    </a>
-    <a class="quick" href="mailto:elastres@belenjesuit.org">
-      <span class="icon">✉</span>
-      <span><strong>Contact / Office Hours</strong><small>How to reach me and when I’m available.</small></span>
-      <span class="arrow">›</span>
-    </a>
-  </nav>
+  <nav class="quicklinks" id="quicklinks" aria-label="Quick course links"></nav>
 
   <section class="grid">
-    <!-- MAIN DAILY AREA -->
     <article class="card">
-      <h2>Today in Theology</h2>
+      <h2 data-edit data-bind="main.heading"></h2>
       <div class="titleline"></div>
-
-      <div class="announcement">
-        <div class="bubble">👋</div>
-        <div>
-          <b>Welcome to Theology 6!</b>
-          <p>We’re excited to learn, grow, and walk together in faith this year.</p>
-        </div>
-      </div>
-
-      <div class="announcement">
-        <div class="bubble">📅</div>
-        <div>
-          <b>This week:</b>
-          <p>Course introduction, classroom routines, and our first big questions.</p>
-        </div>
-      </div>
-
-      <div class="announcement">
-        <div class="bubble">🎒</div>
-        <div>
-          <b>Bring:</b>
-          <p>iPad, notebook, and openness.</p>
-        </div>
-      </div>
-
-      <div class="announcement">
-        <div class="bubble">📄</div>
-        <div>
-          <b>Reminder:</b>
-          <p>Signed syllabus due Friday.</p>
-        </div>
-      </div>
+      <div id="announcements"></div>
     </article>
 
     <aside class="side">
       <section class="card week">
-        <h3>This Week</h3>
+        <h3 data-edit data-bind="week.heading"></h3>
         <div class="titleline"></div>
-        <ul>
-          <li>Getting to know our class community</li>
-          <li>Overview of the course &amp; expectations</li>
-          <li>Big Question: Who is God?</li>
-        </ul>
+        <ul id="weeklist"></ul>
       </section>
 
       <section class="card">
-        <h3>Our Class Vision</h3>
+        <h3 data-edit data-bind="vision.heading"></h3>
         <div class="titleline"></div>
-        <div class="vision">
-          <div><div class="vicon">◎</div><strong>Show Up Fully</strong></div>
-          <div><div class="vicon">♡</div><strong>Grow in Community</strong></div>
-          <div><div class="vicon">▢</div><strong>Engage in Openness</strong></div>
-        </div>
+        <div class="vision" id="vision"></div>
       </section>
     </aside>
   </section>
 
-  <footer class="quote">“Find God in all things.” — St. Ignatius of Loyola</footer>
-  <p class="edit-note">Teacher note: edit the text in the “Today in Theology” section whenever you want to update the daily landing page.</p>
+  <footer class="quote" data-edit data-bind="quote"></footer>
 </main>
+<script src="assets/app.js"></script>
 </body>
 </html>

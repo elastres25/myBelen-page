@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "mark": "✦",
+    "markImage": "",
+    "image": "",
+    "title": "Theology 6",
+    "subtitle": "Home Base · Finding God in All Things"
+  },
+  "quicklinks": [
+    {
+      "icon": "▤",
+      "iconImage": "",
+      "title": "Syllabus",
+      "blurb": "Course overview, expectations, and grading information.",
+      "kind": "page",
+      "page": "syllabus",
+      "url": ""
+    },
+    {
+      "icon": "⌑",
+      "iconImage": "",
+      "title": "Class Resources",
+      "blurb": "Notes, handouts, presentations, and more.",
+      "kind": "page",
+      "page": "resources",
+      "url": ""
+    },
+    {
+      "icon": "✝",
+      "iconImage": "",
+      "title": "Prayer Resources",
+      "blurb": "Daily prayers, reflections, and liturgical resources.",
+      "kind": "page",
+      "page": "prayer",
+      "url": ""
+    },
+    {
+      "icon": "✉",
+      "iconImage": "",
+      "title": "Contact / Office Hours",
+      "blurb": "How to reach me and when I'm available.",
+      "kind": "url",
+      "page": "",
+      "url": "mailto:elastres@belenjesuit.org"
+    }
+  ],
+  "main": {
+    "heading": "Today in Theology",
+    "items": [
+      {
+        "icon": "👋",
+        "label": "Welcome to Theology 6!",
+        "text": "We're excited to learn, grow, and walk together in faith this year."
+      },
+      {
+        "icon": "📅",
+        "label": "This week:",
+        "text": "Course introduction, classroom routines, and our first big questions."
+      },
+      {
+        "icon": "🎒",
+        "label": "Bring:",
+        "text": "iPad, notebook, and openness."
+      },
+      {
+        "icon": "📄",
+        "label": "Reminder:",
+        "text": "Signed syllabus due Friday."
+      }
+    ]
+  },
+  "week": {
+    "heading": "This Week",
+    "items": [
+      "Getting to know our class community",
+      "Overview of the course & expectations",
+      "Big Question: Who is God?"
+    ]
+  },
+  "vision": {
+    "heading": "Our Class Vision",
+    "items": [
+      { "icon": "◎", "label": "Show Up Fully" },
+      { "icon": "♡", "label": "Grow in Community" },
+      { "icon": "▢", "label": "Engage in Openness" }
+    ]
+  },
+  "quote": "\"Find God in all things.\" — St. Ignatius of Loyola"
+}

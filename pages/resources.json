@@ -1,0 +1,21 @@
+{
+  "title": "Class Resources",
+  "subtitle": "Notes, handouts, presentations, and more",
+  "blocks": [
+    {
+      "type": "text",
+      "heading": "How to Use This Page",
+      "body": "Everything we use in class gets posted here. If you were absent, start here."
+    },
+    {
+      "type": "files",
+      "heading": "Handouts & Notes",
+      "items": []
+    },
+    {
+      "type": "files",
+      "heading": "Presentations",
+      "items": []
+    }
+  ]
+}

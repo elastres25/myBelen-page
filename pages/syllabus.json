@@ -1,0 +1,22 @@
+{
+  "title": "Syllabus",
+  "subtitle": "Course overview, expectations, and grading",
+  "blocks": [
+    {
+      "type": "text",
+      "heading": "About This Course",
+      "body": "Replace this with a short description of Theology 6 — what we study, how we work together, and what students can expect this year."
+    },
+    {
+      "type": "files",
+      "heading": "Documents",
+      "items": [
+        {
+          "label": "Course Syllabus",
+          "note": "Upload the PDF here using the button below.",
+          "url": "#"
+        }
+      ]
+    }
+  ]
+}
