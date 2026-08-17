@@ -50,7 +50,19 @@ def get_url(component):
     m = re.search(r'https?://[^\s<>"\']+', description)
     return m.group(0).rstrip(").,") if m else ""
 
-resp = requests.get(FEED, timeout=30)
+headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/151.0.0.0 Safari/537.36",
+    "Accept": "text/calendar,text/plain;q=0.9,*/*;q=0.8",
+    "Referer": "https://belenjesuit.myschoolapp.com/"
+}
+
+resp = requests.get(
+    FEED,
+    headers=headers,
+    timeout=30
+)
 resp.raise_for_status()
 cal = Calendar.from_ical(resp.content)
 
