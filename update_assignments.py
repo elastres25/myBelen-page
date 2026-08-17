@@ -21,22 +21,25 @@ def dt_to_iso(value):
     return str(dt)
 
 def infer_course(event, title, description, categories):
-    # Preserve Blackbaud category labels when available.
-    if categories:
-        if isinstance(categories, (list, tuple)):
-            return ", ".join(clean_text(x) for x in categories if clean_text(x))
-        return clean_text(categories)
-
-    # Common class-name patterns, if Blackbaud puts a section in text.
     hay = f"{title}\n{description}"
+
+    # First, look for the actual course name in the assignment title
     patterns = [
-        r"(Theology\s*[67](?:\s*[-–—:]\s*[^\n]+)?)",
-        r"(Theo(?:logy)?\s*[67](?:\s*[-–—:]\s*[^\n]+)?)",
+        r"(Theology\s*6)",
+        r"(Theology\s*7)",
     ]
+
     for p in patterns:
         m = re.search(p, hay, re.I)
         if m:
-            return m.group(1).strip()
+            return m.group(1).title()
+
+    # Ignore Blackbaud's generic feed categories
+    if categories:
+        cat = clean_text(categories)
+        if cat.lower() not in ["podium, events", "podium", "events"]:
+            return cat
+
     return ""
 
 def get_url(component):
