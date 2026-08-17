@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T02:47:29.051489+00:00",
+  "updated_at": "2026-08-17T02:54:47.820784+00:00",
   "assignments": [
     {
       "id": "eea40584-d9d7-428d-85c6-71fd9900c11e",
@@ -10,7 +10,7 @@
       "url": "",
       "location": "",
       "categories": "podium, events",
-      "course": "Theology 7"
+      "course": "Theology 7 - 5"
     },
     {
       "id": "09b85f15-80f4-4002-9aa4-90e41e218eb8",
@@ -21,7 +21,7 @@
       "url": "",
       "location": "",
       "categories": "podium, events",
-      "course": "Theology 7"
+      "course": "Theology 7 - 6"
     },
     {
       "id": "ced16ef0-ed33-49f7-8daa-6314d6c9b489",
@@ -32,7 +32,7 @@
       "url": "",
       "location": "",
       "categories": "podium, events",
-      "course": "Theology 6"
+      "course": "Theology 6 - 1"
     },
     {
       "id": "ec184996-9057-41e0-84ff-1c1e39cbd1f4",
@@ -43,7 +43,7 @@
       "url": "",
       "location": "",
       "categories": "podium, events",
-      "course": "Theology 6"
+      "course": "Theology 6 - 3"
     }
   ]
 }
