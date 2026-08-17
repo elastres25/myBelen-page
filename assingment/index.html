@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Upcoming Assignments</title>
+<style>
+  :root{
+    --navy:#0d2f5f;
+    --navy2:#183e72;
+    --gold:#c89b3c;
+    --cream:#fbf8f1;
+    --ink:#22324a;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --white:#fff;
+    --shadow:0 8px 24px rgba(13,47,95,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:transparent;font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+  .wrap{max-width:980px;margin:0 auto;padding:10px}
+  .panel{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .head{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:22px 24px;display:flex;justify-content:space-between;gap:16px;align-items:flex-end}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#e8d2a2;font-weight:700;margin-bottom:5px}
+  h1{font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.05;margin:0;font-weight:500}
+  .sub{font-size:13px;color:#dbe5f3;margin-top:7px}
+  .count{font-size:12px;color:#dbe5f3;white-space:nowrap}
+  .goldline{height:4px;background:var(--gold)}
+  .list{padding:8px 18px 18px}
+  .empty,.error{padding:28px;text-align:center;color:var(--muted)}
+  details.item{border-bottom:1px solid var(--line);padding:0}
+  details.item:last-child{border-bottom:none}
+  summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:17px 6px}
+  summary::-webkit-details-marker{display:none}
+  .date{width:58px;height:58px;border-radius:12px;background:var(--cream);border:1px solid #eadfca;display:grid;place-items:center;text-align:center;line-height:1.0;color:var(--navy)}
+  .date .mon{font-size:11px;letter-spacing:.08em;font-weight:700;color:#9a6c17}
+  .date .day{font-family:Georgia,serif;font-size:24px;margin-top:2px}
+  .title{font-family:Georgia,'Times New Roman',serif;font-size:19px;color:var(--navy);margin-bottom:5px}
+  .meta{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .pill{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;background:#eef3f9;color:var(--navy);font-weight:700;font-size:11px}
+  .pill.soon{background:#fff3d9;color:#8b5a00}
+  .chev{font-size:23px;color:#7a8797;transition:.18s ease}
+  details[open] .chev{transform:rotate(90deg)}
+  .body{margin:0 6px 18px 84px;padding:16px 18px;background:#f8fafc;border-radius:12px;border:1px solid #e8edf3}
+  .body h3{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#7b8797;margin:0 0 7px}
+  .desc{white-space:pre-wrap;line-height:1.5;font-size:14px;color:#314157}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{display:inline-block;text-decoration:none;border-radius:9px;padding:10px 13px;font-weight:700;font-size:13px}
+  .btn.primary{background:var(--navy);color:white}
+  .btn.secondary{border:1px solid #cbd5e1;color:var(--navy);background:#fff}
+  .footer{text-align:center;padding:0 18px 18px;color:#8a94a3;font-size:11px}
+  @media(max-width:620px){
+    .head{padding:18px;align-items:flex-start}.count{display:none}
+    .list{padding:6px 12px 14px}
+    summary{grid-template-columns:54px 1fr auto;gap:10px;padding:14px 2px}
+    .date{width:50px;height:50px}.date .day{font-size:21px}
+    .title{font-size:17px}.body{margin-left:64px;padding:14px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="panel">
+    <header class="head">
+      <div>
+        <div class="eyebrow">Class Home Base</div>
+        <h1 id="heading">Upcoming Assignments</h1>
+        <div class="sub" id="subtitle">Tap an assignment to see details.</div>
+      </div>
+      <div class="count" id="count"></div>
+    </header>
+    <div class="goldline"></div>
+    <main class="list" id="list"><div class="empty">Loading assignments…</div></main>
+    <div class="footer">Assignment information is refreshed automatically from Blackbaud.</div>
+  </section>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const course = (params.get('course') || '').trim();
+const limit = Math.max(1, Math.min(12, Number(params.get('limit') || 6)));
+if (course) document.getElementById('heading').textContent = `Upcoming • ${course}`;
+
+function escText(v){ return String(v ?? ''); }
+function parseDate(v){ const d = new Date(v); return isNaN(d) ? null : d; }
+function dayLabel(d){
+  const now = new Date(); now.setHours(0,0,0,0);
+  const x = new Date(d); x.setHours(0,0,0,0);
+  const diff = Math.round((x-now)/86400000);
+  if(diff===0) return 'Due today';
+  if(diff===1) return 'Due tomorrow';
+  if(diff>1 && diff<=7) return `Due ${d.toLocaleDateString(undefined,{weekday:'long'})}`;
+  return `Due ${d.toLocaleDateString(undefined,{month:'short',day:'numeric'})}`;
+}
+function courseMatch(a){
+  if(!course) return true;
+  const hay = [a.course,a.categories,a.title,a.description,a.location].filter(Boolean).join(' ').toLowerCase();
+  const q = course.toLowerCase();
+  if(hay.includes(q)) return true;
+  const num = q.match(/\b(6|7)\b/);
+  return num ? new RegExp(`theology\\s*${num[1]}\\b`,'i').test(hay) : false;
+}
+function makeItem(a){
+  const due = parseDate(a.due || a.start);
+  const details = document.createElement('details'); details.className='item';
+  const summary = document.createElement('summary');
+  const dateBox = document.createElement('div'); dateBox.className='date';
+  const mon = document.createElement('div'); mon.className='mon'; mon.textContent = due ? due.toLocaleDateString(undefined,{month:'short'}).toUpperCase() : 'DUE';
+  const day = document.createElement('div'); day.className='day'; day.textContent = due ? due.getDate() : '—';
+  dateBox.append(mon,day);
+  const info = document.createElement('div');
+  const title = document.createElement('div'); title.className='title'; title.textContent = escText(a.title || 'Assignment');
+  const meta = document.createElement('div'); meta.className='meta';
+  if(a.course){ const p=document.createElement('span');p.className='pill';p.textContent=a.course;meta.appendChild(p); }
+  if(due){ const p=document.createElement('span');p.className='pill'; const txt=dayLabel(due); if(/today|tomorrow/i.test(txt)) p.classList.add('soon'); p.textContent=txt; meta.appendChild(p); }
+  if(a.dueTime){ const s=document.createElement('span');s.textContent=a.dueTime;meta.appendChild(s); }
+  info.append(title,meta);
+  const chev=document.createElement('div');chev.className='chev';chev.textContent='›';
+  summary.append(dateBox,info,chev);
+
+  const body=document.createElement('div');body.className='body';
+  const h=document.createElement('h3');h.textContent='Assignment details';
+  const desc=document.createElement('div');desc.className='desc';desc.textContent=(a.description || 'No additional details were included in the calendar feed.');
+  body.append(h,desc);
+  const actions=document.createElement('div');actions.className='actions';
+  if(a.url){ const link=document.createElement('a');link.className='btn primary';link.href=a.url;link.target='_blank';link.rel='noopener';link.textContent='Open in Blackbaud';actions.appendChild(link); }
+  if(a.location){ const loc=document.createElement('span');loc.className='btn secondary';loc.textContent=a.location;actions.appendChild(loc); }
+  if(actions.children.length) body.appendChild(actions);
+  details.append(summary,body);
+  return details;
+}
+
+fetch('./assignments.json',{cache:'no-store'})
+  .then(r=>{ if(!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+  .then(data=>{
+    const now = new Date(); now.setHours(0,0,0,0);
+    let items = (data.assignments || []).filter(courseMatch).filter(a=>{
+      const d=parseDate(a.due || a.start); return !d || d >= new Date(now.getTime()-86400000);
+    }).sort((a,b)=>(parseDate(a.due||a.start)||0)-(parseDate(b.due||b.start)||0)).slice(0,limit);
+    const list=document.getElementById('list'); list.innerHTML='';
+    document.getElementById('count').textContent = items.length ? `${items.length} upcoming` : '';
+    if(!items.length){ list.innerHTML='<div class="empty">No upcoming assignments right now.</div>'; return; }
+    items.forEach(a=>list.appendChild(makeItem(a)));
+  })
+  .catch(err=>{
+    document.getElementById('list').innerHTML='<div class="error">Assignments are temporarily unavailable. Please use the Assignments tab in Blackbaud.</div>';
+    console.error(err);
+  });
+</script>
+</body>
+</html>
