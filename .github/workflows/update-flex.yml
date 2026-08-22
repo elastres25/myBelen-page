@@ -1,0 +1,59 @@
+name: Update FLEX 7-1 schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "42 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests icalendar
+
+      # The committed flex/schedule.json is already correct, so a missing secret
+      # should leave it alone rather than fail the run.
+      - name: Check for calendar feed secrets
+        id: secrets
+        env:
+          FLEX_ICAL_URL: ${{ secrets.FLEX_ICAL_URL }}
+          SCHOOL_ICAL_URL: ${{ secrets.SCHOOL_ICAL_URL }}
+        run: |
+          if [ -n "$FLEX_ICAL_URL" ] && [ -n "$SCHOOL_ICAL_URL" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Set the FLEX_ICAL_URL and SCHOOL_ICAL_URL repository secrets to enable automatic refresh."
+          fi
+
+      - name: Rebuild the FLEX schedule
+        if: steps.secrets.outputs.ready == 'true'
+        env:
+          FLEX_ICAL_URL: ${{ secrets.FLEX_ICAL_URL }}
+          SCHOOL_ICAL_URL: ${{ secrets.SCHOOL_ICAL_URL }}
+        run: python update_flex.py
+
+      - name: Commit updated schedule
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add flex/schedule.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update FLEX 7-1 schedule"
+            git push
+          fi

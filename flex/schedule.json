@@ -1,0 +1,567 @@
+{
+  "updated_at": "2026-08-22T14:29:37.650840+00:00",
+  "section": "FLEX 7-1",
+  "semester": {
+    "name": "Fall 2026",
+    "start": "2026-08-20",
+    "end": "2026-12-18"
+  },
+  "days": [
+    {
+      "date": "2026-08-20",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "assembly",
+          "title": "7th grade Back to School Assembly",
+          "audience": "",
+          "time": "2:05 PM",
+          "location": "Roca Theater",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-08-24",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Mass of The Holy Spirit",
+          "audience": "6th, 7th & 8th graders",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "Special Dress Uniform",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-08-26",
+      "weekday": "Wednesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "activity",
+          "title": "MS Yearbook Distribution",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "Raul and Nidia Rodriguez Science Pavilion- Lobby",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-08-28",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "activity",
+          "title": "MS Altar Server Training",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "assembly",
+          "title": "7th Grade Service Assembly",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Our Lady of Charity Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "Special Dress Uniform",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "activity",
+          "title": "7th and 8th grade Morning Prayer Protocol",
+          "audience": "",
+          "time": "2:00 PM",
+          "location": "",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "activity",
+          "title": "MS Open House Preparation Meeting",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "Sarria Family Dining Hall",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "Wednesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "assembly",
+          "title": "7th-9th grade Academic Awards Rehearsal",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "Roca Theater",
+          "dress": "",
+          "source": "school-calendar"
+        },
+        {
+          "kind": "activity",
+          "title": "Middle School Academic Awards",
+          "audience": "",
+          "time": "7:30 PM",
+          "location": "Roca Theater",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Our Lady of Mercy Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "Special Dress Uniform",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "Wednesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "activity",
+          "title": "MS Open House Meeting- Leaders",
+          "audience": "",
+          "time": "1:00 PM",
+          "location": "TBD",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": [
+        "Early Release — confirm FLEX still meets"
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "activity",
+          "title": "Field Day FLEX Prep",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "FLEX classrooms",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-10-06",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-10-09",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-10-13",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Feast of Our Lady of Fatima Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "Special Dress Uniform",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-10-15",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-10-20",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "assembly",
+          "title": "7th and 8th Grade Dance Assembly",
+          "audience": "",
+          "time": "1:30 PM",
+          "location": "Sarria Family Dining Hall",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-10-22",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "John Paul II Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "Special Dress Uniform",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-10-26",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-10-28",
+      "weekday": "Wednesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": [
+        "Early Release — confirm FLEX still meets"
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-11-03",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-11-05",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "mass",
+          "title": "Mass",
+          "audience": "6th, 7th & 8th Grade",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "",
+          "source": "school-calendar"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-11-09",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-11-12",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-11-16",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-11-18",
+      "weekday": "Wednesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [
+        {
+          "kind": "reconciliation",
+          "title": "Reconciliation Service",
+          "audience": "7-1 through 7-4",
+          "time": "1:15 PM",
+          "location": "Our Lady of Belen Chapel",
+          "dress": "",
+          "source": "mass-schedule-doc"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-11-20",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-12-01",
+      "weekday": "Tuesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-12-03",
+      "weekday": "Thursday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-12-07",
+      "weekday": "Monday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-12-09",
+      "weekday": "Wednesday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    },
+    {
+      "date": "2026-12-11",
+      "weekday": "Friday",
+      "rotation": "A",
+      "time": "1:15 PM",
+      "events": [],
+      "notes": []
+    }
+  ],
+  "other_events": [
+    {
+      "date": "2026-08-25",
+      "weekday": "Tuesday",
+      "kind": "activity",
+      "title": "Back to School Night",
+      "audience": "Middle School",
+      "time": "7:30 PM",
+      "location": "",
+      "dress": "",
+      "source": "school-calendar"
+    },
+    {
+      "date": "2026-10-07",
+      "weekday": "Wednesday",
+      "kind": "activity",
+      "title": "Middle School Field Day",
+      "audience": "",
+      "time": "",
+      "location": "",
+      "dress": "",
+      "source": "school-calendar"
+    },
+    {
+      "date": "2026-10-21",
+      "weekday": "Wednesday",
+      "kind": "activity",
+      "title": "Junior Thespian One Acts",
+      "audience": "Middle School",
+      "time": "",
+      "location": "Miami Art Studio",
+      "dress": "",
+      "source": "school-calendar"
+    },
+    {
+      "date": "2026-10-24",
+      "weekday": "Saturday",
+      "kind": "activity",
+      "title": "Fall Dance",
+      "audience": "7th & 8th Grade",
+      "time": "",
+      "location": "",
+      "dress": "",
+      "source": "school-calendar"
+    },
+    {
+      "date": "2026-12-08",
+      "weekday": "Tuesday",
+      "kind": "mass",
+      "title": "Feast of The Immaculate Conception & Confirmation Commitment Mass",
+      "audience": "6th, 7th & 8th",
+      "time": "8:00 AM",
+      "location": "Our Lady of Belen Chapel",
+      "dress": "Special Dress Uniform",
+      "source": "school-calendar"
+    }
+  ]
+}

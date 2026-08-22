@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLEX 7-1 Schedule</title>
+<style>
+:root{
+  --bb-blue:#34495e;
+  --bb-link:#2f5f8f;
+  --bb-border:#d9dee3;
+  --bb-soft:#f7f8fa;
+  --bb-muted:#6f7c88;
+  --bb-gold:#b48a3b;
+  --bb-gold-soft:#fdf7ea;
+  --bb-danger:#a23a32;
+  --bb-green:#2f6b4f;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:var(--bb-blue);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+/* ---------- header ---------- */
+.header{
+  padding:0 0 10px 0;
+  border-bottom:1px solid var(--bb-border);
+}
+.header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+}
+.header p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:var(--bb-muted);
+}
+
+
+/* ---------- next up ---------- */
+.next{
+  margin:14px 0 0;
+  border:1px solid var(--bb-border);
+  border-left:4px solid var(--bb-link);
+  background:var(--bb-soft);
+  padding:12px 14px;
+}
+.next.is-mass{
+  border-left-color:var(--bb-gold);
+  background:var(--bb-gold-soft);
+}
+.next .kicker{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.next .when{
+  font-size:18px;
+  font-weight:700;
+  margin-top:2px;
+}
+.next .what{
+  font-size:13px;
+  margin-top:4px;
+  line-height:1.45;
+}
+.next .countdown{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:4px;
+}
+
+/* ---------- section headings ---------- */
+h2{
+  font-size:14px;
+  font-weight:700;
+  margin:22px 0 0;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--bb-border);
+}
+h2 .count{
+  font-weight:400;
+  color:var(--bb-muted);
+  font-size:12px;
+}
+
+/* ---------- mass cards ---------- */
+.masses{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.mass-card{
+  border:1px solid var(--bb-border);
+  border-top:3px solid var(--bb-gold);
+  background:var(--white);
+  padding:10px 12px;
+}
+.mass-card.past{opacity:.45}
+.mass-card .date{
+  font-size:13px;
+  font-weight:700;
+}
+.mass-card .title{
+  font-size:13px;
+  color:var(--bb-link);
+  font-weight:700;
+  margin-top:3px;
+  line-height:1.35;
+}
+.mass-card .sub{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:3px;
+  line-height:1.4;
+}
+
+/* ---------- announcements ---------- */
+.ann-item{
+  border:1px solid #cfdbe6;
+  border-left:4px solid var(--bb-link);
+  background:#f4f8fc;
+  padding:10px 12px;
+  margin-top:8px;
+}
+.ann-item.pinned{border-left-color:var(--bb-danger)}
+.ann-item.expired{opacity:.5}
+.ann-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--bb-blue);
+  margin-bottom:3px;
+}
+.ann-text{
+  font-size:13px;
+  line-height:1.5;
+  color:#42525f;
+  white-space:pre-wrap;
+}
+.ann-meta{
+  font-size:11px;
+  color:var(--bb-muted);
+  margin-top:5px;
+}
+.ann-item .badge.pin{background:var(--bb-danger);color:#fff}
+
+/* announcement editor */
+.ann-edit{margin-top:6px}
+.ann-edit label{
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  margin:6px 0 2px;
+}
+.ann-edit input[type=text],
+.ann-edit input[type=date],
+.ann-edit textarea{
+  font:inherit;
+  font-size:13px;
+  width:100%;
+  padding:4px 6px;
+  border:1px solid var(--bb-border);
+}
+.ann-edit textarea{min-height:60px;line-height:1.45}
+.ann-edit .row{display:flex;gap:10px;flex-wrap:wrap}
+.ann-edit .row > div{flex:1;min-width:130px}
+.ann-edit .tools{
+  margin-top:8px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-size:12px;
+}
+.ann-edit .tools button{
+  font:inherit;
+  font-size:12px;
+  padding:3px 9px;
+  border:1px solid var(--bb-danger);
+  background:#fff;
+  color:var(--bb-danger);
+  cursor:pointer;
+}
+.ann-edit .tools label{
+  margin:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-size:12px;
+  font-weight:400;
+  color:var(--bb-blue);
+}
+#addAnn{
+  font:inherit;
+  font-size:12px;
+  margin-top:8px;
+  padding:5px 11px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ---------- month grid ---------- */
+.cal{margin-top:14px}
+.cal h3{
+  margin:0 0 4px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:3px;
+}
+.gh{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  text-align:center;
+  padding:1px 0 2px;
+}
+.cell{
+  min-height:50px;
+  border:1px solid var(--bb-border);
+  background:var(--bb-soft);
+  padding:3px 4px 4px;
+  overflow-wrap:anywhere;
+}
+.cell.blank{border:none;background:none;min-height:0}
+.cell .n{
+  font-size:11px;
+  font-weight:400;
+  color:#aab2ba;
+  line-height:1.1;
+}
+.cell .lbl{
+  margin-top:2px;
+  font-size:10px;
+  line-height:1.25;
+  color:var(--bb-muted);
+}
+.cell.flex{
+  background:var(--white);
+  border-color:#b9c6d4;
+}
+.cell.flex .n{color:var(--bb-blue);font-weight:700}
+.cell.flex .lbl{color:var(--bb-blue)}
+.cell.mass{
+  background:var(--bb-gold-soft);
+  border-color:var(--bb-gold);
+}
+.cell.mass .lbl{color:#7d5f22;font-weight:700}
+.cell.today{box-shadow:inset 0 0 0 2px var(--bb-green)}
+.cell.past{opacity:.5}
+.cell .dress{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--bb-danger);
+}
+.cell .warn{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  color:var(--bb-danger);
+}
+
+/* ---------- edit mode ---------- */
+.cell.editable{cursor:text}
+.cell.editable:hover{outline:1px dashed var(--bb-link)}
+.cell.custom .lbl::after{
+  content:"\2022";
+  color:var(--bb-link);
+  margin-left:3px;
+  font-weight:700;
+}
+.cell input{
+  font:inherit;
+  font-size:10px;
+  width:100%;
+  margin-top:2px;
+  border:1px solid var(--bb-link);
+  padding:1px 2px;
+}
+.editbar{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid var(--bb-link);
+  background:#eef4fa;
+  font-size:12px;
+  line-height:1.5;
+}
+.editbar strong{display:block;margin-bottom:2px}
+.editbar .btns{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.editbar button{
+  font:inherit;
+  font-size:12px;
+  padding:5px 11px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+.editbar button.ghost{background:#fff;color:var(--bb-link)}
+.editbar textarea{
+  font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:11px;
+  width:100%;
+  min-height:120px;
+  margin-top:8px;
+  padding:6px;
+  border:1px solid var(--bb-border);
+}
+
+@media (max-width:520px){
+  .cell{min-height:44px;padding:2px 3px}
+  .cell .n{font-size:10px}
+  .cell .lbl{font-size:9px;line-height:1.2}
+  .cell .dress,.cell .warn{font-size:8px}
+  .gh{font-size:9px}
+  .grid{gap:2px}
+}
+
+/* ---------- filters ---------- */
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:12px 0 0;
+}
+.chip{
+  font:inherit;
+  font-size:12px;
+  padding:5px 11px;
+  border:1px solid var(--bb-border);
+  background:var(--white);
+  color:var(--bb-blue);
+  border-radius:999px;
+  cursor:pointer;
+}
+.chip[aria-pressed="true"]{
+  background:var(--bb-blue);
+  border-color:var(--bb-blue);
+  color:var(--white);
+  font-weight:700;
+}
+
+/* ---------- day list ---------- */
+.month{
+  margin-top:16px;
+}
+.month h3{
+  margin:0 0 2px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.day{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:12px;
+  padding:10px 4px 10px 8px;
+  border-bottom:1px solid var(--bb-border);
+  border-left:3px solid transparent;
+  background:var(--white);
+}
+.day.mass{
+  border-left-color:var(--bb-gold);
+  background:var(--bb-gold-soft);
+}
+.day.today{
+  border-left-color:var(--bb-green);
+  background:#f2f8f4;
+}
+.day.past{
+  opacity:.45;
+}
+.day .dnum{
+  text-align:center;
+}
+.day .dow{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.day .dd{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.1;
+}
+.day .headline{
+  font-size:14px;
+  font-weight:700;
+  color:var(--bb-link);
+  line-height:1.35;
+}
+.day .headline.plain{
+  color:var(--bb-blue);
+  font-weight:400;
+}
+.day .line{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:3px;
+  line-height:1.45;
+}
+.day .extra{
+  font-size:12px;
+  margin-top:5px;
+  padding-top:5px;
+  border-top:1px dotted var(--bb-border);
+  line-height:1.45;
+}
+.badge{
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:2px 6px;
+  border-radius:3px;
+  vertical-align:2px;
+  margin-left:6px;
+}
+.badge.mass{background:var(--bb-gold);color:#fff}
+.badge.dress{background:#fff;color:var(--bb-danger);border:1px solid var(--bb-danger)}
+.badge.today{background:var(--bb-green);color:#fff}
+.note{
+  display:block;
+  font-size:12px;
+  color:var(--bb-danger);
+  margin-top:4px;
+}
+
+/* ---------- other events ---------- */
+.other{
+  margin-top:10px;
+  font-size:13px;
+}
+.other div{
+  padding:7px 4px;
+  border-bottom:1px solid var(--bb-border);
+  line-height:1.45;
+}
+.other .od{
+  font-weight:700;
+  margin-right:6px;
+}
+
+/* ---------- footer ---------- */
+.foot{
+  margin-top:20px;
+  padding-top:10px;
+  border-top:1px solid var(--bb-border);
+  font-size:11px;
+  color:var(--bb-muted);
+  line-height:1.6;
+}
+.toggle{
+  font:inherit;
+  font-size:12px;
+  background:none;
+  border:none;
+  color:var(--bb-link);
+  cursor:pointer;
+  padding:8px 0 0;
+  text-decoration:underline;
+}
+.empty,.error{
+  padding:16px 4px;
+  font-size:13px;
+  color:var(--bb-muted);
+}
+.error{color:var(--bb-danger)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <h1>FLEX 7-1 &mdash; Homeroom Schedule</h1>
+    <p id="subtitle">Loading&hellip;</p>
+  </div>
+
+  <h2 id="annHead" hidden>Announcements</h2>
+  <div id="announce"></div>
+  <button type="button" id="addAnn" hidden>+ Add announcement</button>
+
+  <div id="next"></div>
+
+  <h2>Semester at a Glance <span class="count" id="gridCount"></span></h2>
+  <div id="editbar"></div>
+  <div id="cal"></div>
+
+  <h2>Mass &amp; Reconciliation <span class="count" id="massCount"></span></h2>
+  <div class="masses" id="masses"></div>
+
+  <h2>Every FLEX Day <span class="count" id="dayCount"></span></h2>
+  <div class="filters">
+    <button class="chip" data-filter="all" aria-pressed="true">All days</button>
+    <button class="chip" data-filter="mass" aria-pressed="false">Mass &amp; Reconciliation</button>
+    <button class="chip" data-filter="event" aria-pressed="false">Anything scheduled</button>
+  </div>
+  <button class="toggle" id="pastToggle" hidden></button>
+  <div id="days"></div>
+
+  <h2 id="otherHead" hidden>Also on the Calendar <span class="count">outside the FLEX block</span></h2>
+  <div class="other" id="other"></div>
+
+  <div class="foot" id="foot"></div>
+
+</div>
+
+<script>
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => (
+  {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+));
+
+// Dates in the feed are plain YYYY-MM-DD. Parse them as local days so nothing
+// slips a day either side of midnight.
+function localDate(iso){
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+const TODAY = (() => { const t = new Date(); t.setHours(0,0,0,0); return t; })();
+
+const MONTHS = ["January","February","March","April","May","June",
+                "July","August","September","October","November","December"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+const isHoly = e => e.kind === "mass" || e.kind === "reconciliation";
+const holyOf = day => day.events.find(isHoly);
+
+// The feed titles a plain grade-level Mass just "Mass". Give it a name.
+function displayTitle(e){
+  if(!/^mass$/i.test(e.title)) return e.title;
+  return /6th|7th|8th|middle\s*school|\bms\b/i.test(e.audience || "")
+    ? "Middle School Mass" : "All-School Mass";
+}
+
+// Marks an entry taken from the Mass schedule document rather than the feed.
+const fromDoc = e => e.source === "mass-schedule-doc";
+
+function longDate(d){
+  return d.toLocaleDateString("en-US", {weekday:"long", month:"long", day:"numeric"});
+}
+
+function daysUntil(d){
+  const diff = Math.round((d - TODAY) / 86400000);
+  if(diff === 0) return "That's today.";
+  if(diff === 1) return "That's tomorrow.";
+  return "In " + diff + " days.";
+}
+
+/* ---------- custom labels ----------
+   overrides.json is a plain date -> {label, kind} map that the teacher edits.
+   It lives in its own file so the daily rebuild of schedule.json can't wipe it. */
+let overrides = {};
+const EDIT = new URLSearchParams(location.search).has("edit");
+const DRAFT_KEY = "flex71-label-draft";
+
+function iso(d){
+  return d.getFullYear() + "-" +
+    String(d.getMonth() + 1).padStart(2, "0") + "-" +
+    String(d.getDate()).padStart(2, "0");
+}
+
+// What a given FLEX day should say, and what colour it should be.
+function labelFor(day){
+  const o = overrides[day.date];
+  const holy = holyOf(day);
+  const first = day.events[0];
+  if(o && typeof o.label === "string" && o.label.trim()){
+    return {
+      text: o.label.trim(),
+      kind: o.kind || (holy ? holy.kind : first ? first.kind : "normal"),
+      custom: true,
+      dress: holy ? holy.dress : "",
+    };
+  }
+  if(holy) return {text: displayTitle(holy), kind: holy.kind, dress: holy.dress};
+  if(first) return {text: first.title, kind: first.kind, dress: first.dress};
+  return {text: "Normal", kind: "normal"};
+}
+
+/* ---------- announcements ----------
+   announcements.json is a small list the teacher edits, in its own file so the
+   daily rebuild of schedule.json can't touch it. */
+let announcements = [];
+const ANN_DRAFT_KEY = "flex71-ann-draft";
+
+function annIsLive(a){
+  if(!a.until) return true;
+  return localDate(a.until) >= TODAY;
+}
+
+function annSorted(list){
+  return list.slice().sort((a, b) => {
+    if(Boolean(b.pinned) !== Boolean(a.pinned)) return b.pinned ? 1 : -1;
+    return String(b.posted || "").localeCompare(String(a.posted || ""));
+  });
+}
+
+function saveAnnDraft(){
+  try{ localStorage.setItem(ANN_DRAFT_KEY, JSON.stringify(announcements)); }catch(e){}
+}
+
+function announcementsJson(){
+  const clean = announcements
+    .filter(a => (a.text || "").trim() || (a.title || "").trim())
+    .map(a => {
+      const o = {};
+      if((a.title || "").trim()) o.title = a.title.trim();
+      o.text = (a.text || "").trim();
+      if(a.posted) o.posted = a.posted;
+      if(a.until)  o.until  = a.until;
+      if(a.pinned) o.pinned = true;
+      return o;
+    });
+  return JSON.stringify({announcements: clean}, null, 2);
+}
+
+function renderAnnouncements(){
+  const host = document.getElementById("announce");
+  const head = document.getElementById("annHead");
+  const add  = document.getElementById("addAnn");
+
+  if(EDIT){
+    head.hidden = false;
+    add.hidden = false;
+    host.innerHTML = announcements.map((a, i) => {
+      const stale = !annIsLive(a);
+      return '<div class="ann-item' + (a.pinned ? " pinned" : "") +
+             (stale ? " expired" : "") + '">' +
+        '<div class="ann-edit" data-i="' + i + '">' +
+          "<label>Heading (optional)</label>" +
+          '<input type="text" data-f="title" value="' + esc(a.title || "") + '">' +
+          "<label>Announcement</label>" +
+          "<textarea data-f=\"text\">" + esc(a.text || "") + "</textarea>" +
+          '<div class="row">' +
+            "<div><label>Posted</label>" +
+              '<input type="date" data-f="posted" value="' + esc(a.posted || "") + '"></div>' +
+            "<div><label>Hide after</label>" +
+              '<input type="date" data-f="until" value="' + esc(a.until || "") + '"></div>' +
+          "</div>" +
+          '<div class="tools">' +
+            "<label><input type=\"checkbox\" data-f=\"pinned\"" +
+              (a.pinned ? " checked" : "") + "> Pin to top</label>" +
+            '<button type="button" data-remove="' + i + '">Remove</button>' +
+            (stale ? '<span style="color:var(--bb-muted)">Past its hide-after date &mdash; ' +
+                     "students no longer see this.</span>" : "") +
+          "</div>" +
+        "</div>" +
+      "</div>";
+    }).join("");
+    return;
+  }
+
+  const live = annSorted(announcements.filter(a => annIsLive(a) && (a.text || a.title)));
+  head.hidden = live.length === 0;
+  add.hidden = true;
+  host.innerHTML = live.map(a =>
+    '<div class="ann-item' + (a.pinned ? " pinned" : "") + '">' +
+      (a.title ? '<div class="ann-title">' + esc(a.title) +
+        (a.pinned ? '<span class="badge pin">Important</span>' : "") + "</div>" : "") +
+      '<div class="ann-text">' + esc(a.text || "") + "</div>" +
+      (a.posted ? '<div class="ann-meta">Posted ' +
+        esc(localDate(a.posted).toLocaleDateString("en-US",
+            {month:"short", day:"numeric"})) + "</div>" : "") +
+    "</div>"
+  ).join("");
+}
+
+/* ---------- month grid ---------- */
+function renderGrid(){
+  const byDate = new Map(allDays.map(d => [d.date, d]));
+  const start = localDate(SEMESTER.start);
+  const end   = localDate(SEMESTER.end);
+
+  const months = [];
+  for(let m = new Date(start.getFullYear(), start.getMonth(), 1); m <= end;
+      m = new Date(m.getFullYear(), m.getMonth() + 1, 1)){
+    months.push(m);
+  }
+
+  document.getElementById("cal").innerHTML = months.map(m => {
+    const y = m.getFullYear(), mo = m.getMonth();
+    const last = new Date(y, mo + 1, 0).getDate();
+    const cells = [];
+    let placed = false;
+
+    for(let n = 1; n <= last; n++){
+      const d = new Date(y, mo, n);
+      const w = d.getDay();
+      if(w === 0 || w === 6) continue;      // Mon-Fri only
+      if(!placed){                          // pad the first partial week
+        for(let i = 0; i < w - 1; i++) cells.push('<div class="cell blank"></div>');
+        placed = true;
+      }
+      cells.push(renderCell(d, byDate.get(iso(d)), start, end));
+    }
+
+    return '<div class="cal"><h3>' + MONTHS[mo] + " " + y + "</h3><div class=\"grid\">" +
+      ["Mon","Tue","Wed","Thu","Fri"].map(x => '<div class="gh">' + x + "</div>").join("") +
+      cells.join("") + "</div></div>";
+  }).join("");
+}
+
+function renderCell(d, day, start, end){
+  const key = iso(d);
+  const inTerm = d >= start && d <= end;
+  const cls = ["cell"];
+
+  if(!day){
+    if(!inTerm) cls.push("blank");
+    return '<div class="' + cls.join(" ") + '"' + (inTerm ? "" : ">") +
+      (inTerm ? ' data-date="' + key + '"><div class="n">' + d.getDate() + "</div>" : "") +
+      "</div>";
+  }
+
+  const info = labelFor(day);
+  cls.push("flex");
+  if(info.kind === "mass" || info.kind === "reconciliation") cls.push("mass");
+  if(d.getTime() === TODAY.getTime()) cls.push("today");
+  if(d < TODAY) cls.push("past");
+  if(info.custom) cls.push("custom");
+  if(EDIT) cls.push("editable");
+
+  return '<div class="' + cls.join(" ") + '" data-date="' + key + '">' +
+    '<div class="n">' + d.getDate() + "</div>" +
+    '<div class="lbl">' + esc(info.text) + "</div>" +
+    (info.dress ? '<span class="dress">Special Dress</span>' : "") +
+    day.notes.map(() => '<span class="warn">&#9888; Early Release</span>').join("") +
+  "</div>";
+}
+
+/* ---------- edit mode ---------- */
+function startEdit(cell){
+  if(cell.querySelector("input")) return;
+  const date = cell.dataset.date;
+  const day = allDays.find(x => x.date === date);
+  if(!day) return;
+
+  const lbl = cell.querySelector(".lbl");
+  const current = labelFor(day).text;
+  const input = document.createElement("input");
+  input.value = (overrides[date] && overrides[date].label) || "";
+  input.placeholder = current;
+  lbl.replaceWith(input);
+  input.focus();
+  input.select();
+
+  let done = false;
+  const finish = commit => {
+    if(done) return;
+    done = true;
+    if(commit){
+      const v = input.value.trim();
+      if(v) overrides[date] = Object.assign({}, overrides[date], {label: v});
+      else delete overrides[date];
+      saveDraft();
+    }
+    renderGrid();
+    renderDays();
+    renderEditBar();
+  };
+  input.addEventListener("blur", () => finish(true));
+  input.addEventListener("keydown", e => {
+    if(e.key === "Enter"){ e.preventDefault(); finish(true); }
+    if(e.key === "Escape"){ e.preventDefault(); finish(false); }
+  });
+}
+
+function customCount(){
+  return Object.keys(overrides).filter(k => k !== "_comment").length;
+}
+
+function overridesJson(){
+  const out = {};
+  Object.keys(overrides).sort().forEach(k => {
+    if(k !== "_comment") out[k] = overrides[k];
+  });
+  return JSON.stringify(out, null, 2);
+}
+
+function saveDraft(){
+  try{ localStorage.setItem(DRAFT_KEY, overridesJson()); }catch(e){}
+}
+
+function renderEditBar(){
+  if(!EDIT) return;
+  const n = customCount();
+  const a = announcements.length;
+  document.getElementById("editbar").innerHTML =
+    '<div class="editbar">' +
+      "<strong>Edit mode &mdash; students do not see this.</strong>" +
+      "Click any FLEX day in the grid to retype its label. Enter saves, Esc cancels, " +
+      "an empty box puts the automatic label back. Edited days are marked with a dot. " +
+      "Announcements are edited at the top of the page." +
+      "<div><br><strong>" +
+        n + " custom label" + (n === 1 ? "" : "s") + " &middot; " +
+        a + " announcement" + (a === 1 ? "" : "s") +
+      ".</strong> Copy each block into its file and commit it for your students to see it.</div>" +
+      '<div class="btns">' +
+        '<button type="button" data-copy="labels">Copy labels &rarr; overrides.json</button>' +
+        '<button type="button" data-copy="ann">Copy announcements &rarr; announcements.json</button>' +
+        '<button type="button" class="ghost" id="clearJson">Clear all labels</button>' +
+      "</div>" +
+      '<textarea id="jsonBox" hidden readonly></textarea>' +
+    "</div>";
+
+  const box = document.getElementById("jsonBox");
+  document.querySelectorAll("[data-copy]").forEach(btn => {
+    btn.onclick = () => {
+      box.value = btn.dataset.copy === "ann" ? announcementsJson() : overridesJson();
+      box.hidden = false;
+      box.select();
+      try{ navigator.clipboard.writeText(box.value); }catch(e){}
+    };
+  });
+  document.getElementById("clearJson").onclick = () => {
+    if(!confirm("Remove every custom label? Announcements are not affected.")) return;
+    overrides = {};
+    saveDraft();
+    renderGrid(); renderDays(); renderEditBar();
+  };
+}
+
+/* ---------- next up ---------- */
+function renderNext(days){
+  const upcoming = days.filter(x => localDate(x.date) >= TODAY);
+  const box = document.getElementById("next");
+  if(!upcoming.length){
+    box.innerHTML = '<div class="next"><div class="kicker">All done</div>' +
+      '<div class="when">No FLEX days left this semester.</div></div>';
+    return;
+  }
+  const day = upcoming[0];
+  const d = localDate(day.date);
+  const holy = holyOf(day);
+  const headline = holy
+    ? displayTitle(holy) + (holy.audience ? " &mdash; " + esc(holy.audience) : "")
+    : (day.events[0] ? day.events[0].title : "Regular FLEX in our classroom");
+
+  const bits = [];
+  if(holy){
+    bits.push("<strong>" + esc(displayTitle(holy)) + "</strong>");
+    if(holy.location) bits.push(esc(holy.location));
+    bits.push("Starts " + esc(holy.time || day.time));
+    if(holy.dress) bits.push('<span class="badge dress">' + esc(holy.dress) + "</span>");
+  } else if(day.events.length){
+    day.events.forEach(e => {
+      bits.push("<strong>" + esc(e.title) + "</strong>" + (e.time ? " at " + esc(e.time) : ""));
+    });
+  } else {
+    bits.push("Regular FLEX in our classroom at " + esc(day.time) + ".");
+  }
+
+  box.innerHTML =
+    '<div class="next' + (holy ? " is-mass" : "") + '">' +
+      '<div class="kicker">' + (holy ? "Next Mass day" : "Next FLEX") + "</div>" +
+      '<div class="when">' + esc(longDate(d)) + "</div>" +
+      '<div class="what">' + bits.join(" &middot; ") + "</div>" +
+      '<div class="countdown">' + esc(daysUntil(d)) + "</div>" +
+    "</div>";
+}
+
+/* ---------- mass cards ---------- */
+function renderMasses(days, other){
+  const cards = [];
+
+  days.forEach(day => {
+    day.events.filter(isHoly).forEach(e => cards.push({date: day.date, ev: e, flex: true}));
+  });
+  other.filter(isHoly).forEach(e => cards.push({date: e.date, ev: e, flex: false}));
+
+  cards.sort((a, b) => a.date.localeCompare(b.date));
+
+  document.getElementById("massCount").textContent =
+    cards.length + " this semester";
+
+  document.getElementById("masses").innerHTML = cards.map(c => {
+    const d = localDate(c.date);
+    const past = d < TODAY;
+    const sub = [];
+    if(c.ev.audience) sub.push(esc(c.ev.audience));
+    if(c.ev.time) sub.push(esc(c.ev.time));
+    if(c.ev.location) sub.push(esc(c.ev.location));
+    return '<div class="mass-card' + (past ? " past" : "") + '">' +
+      '<div class="date">' + DOW[d.getDay()] + ", " +
+        MONTHS[d.getMonth()].slice(0,3) + " " + d.getDate() +
+        (c.flex ? "" : ' <span class="badge dress">Not our FLEX block</span>') + "</div>" +
+      '<div class="title">' + esc(displayTitle(c.ev)) +
+        (fromDoc(c.ev) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") + "</div>" +
+      '<div class="sub">' + sub.join(" &middot; ") +
+        (c.ev.dress ? '<br><span class="badge dress">' + esc(c.ev.dress) + "</span>" : "") +
+      "</div>" +
+    "</div>";
+  }).join("");
+}
+
+/* ---------- the full list ---------- */
+let allDays = [];
+let SEMESTER = {start: "", end: ""};
+let filter = "all";
+let showPast = false;
+
+function dayMatches(day){
+  if(filter === "mass")  return Boolean(holyOf(day));
+  if(filter === "event") return day.events.length > 0;
+  return true;
+}
+
+function renderDays(){
+  let list = allDays.filter(dayMatches);
+  const hiddenPast = list.filter(x => localDate(x.date) < TODAY).length;
+  if(!showPast) list = list.filter(x => localDate(x.date) >= TODAY);
+
+  const toggle = document.getElementById("pastToggle");
+  if(hiddenPast){
+    toggle.hidden = false;
+    toggle.textContent = showPast
+      ? "Hide the " + hiddenPast + " day" + (hiddenPast === 1 ? "" : "s") + " already past"
+      : "Show the " + hiddenPast + " day" + (hiddenPast === 1 ? "" : "s") + " already past";
+  } else {
+    toggle.hidden = true;
+  }
+
+  const host = document.getElementById("days");
+  if(!list.length){
+    host.innerHTML = '<div class="empty">Nothing matches that filter.</div>';
+    return;
+  }
+
+  // group by month
+  const groups = [];
+  list.forEach(day => {
+    const d = localDate(day.date);
+    const key = MONTHS[d.getMonth()] + " " + d.getFullYear();
+    if(!groups.length || groups[groups.length - 1].key !== key){
+      groups.push({key, days: []});
+    }
+    groups[groups.length - 1].days.push(day);
+  });
+
+  host.innerHTML = groups.map(g =>
+    '<div class="month"><h3>' + esc(g.key) + "</h3>" +
+    g.days.map(renderDay).join("") + "</div>"
+  ).join("");
+}
+
+function renderDay(day){
+  const d = localDate(day.date);
+  const past = d < TODAY;
+  const today = d.getTime() === TODAY.getTime();
+  const holy = holyOf(day);
+
+  const info = labelFor(day);
+  let headline, line;
+  if(holy){
+    headline = esc(info.text) +
+      (fromDoc(holy) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") +
+      '<span class="badge mass">' +
+      (holy.kind === "reconciliation" ? "Reconciliation" : "Mass") + "</span>" +
+      (holy.dress ? '<span class="badge dress">' + esc(holy.dress) + "</span>" : "");
+    const parts = [];
+    if(holy.audience) parts.push(esc(holy.audience));
+    if(holy.time) parts.push(esc(holy.time));
+    if(holy.location) parts.push(esc(holy.location));
+    line = parts.join(" &middot; ");
+  } else if(info.custom || day.events.length){
+    headline = esc(info.text);
+    line = "A day &middot; " + esc(day.time);
+  } else {
+    headline = '<span class="headline plain">FLEX in our classroom</span>';
+    line = "A day &middot; " + esc(day.time);
+  }
+  if(today) headline += '<span class="badge today">Today</span>';
+
+  const promoted = holy || (info.custom ? null : day.events[0]);
+  const rest = day.events.filter(e => e !== promoted).map(e =>
+    "<strong>" + esc(e.title) + "</strong>" +
+    (e.time ? " &middot; " + esc(e.time) : "") +
+    (e.location ? " &middot; " + esc(e.location) : "")
+  );
+
+  return '<div class="day' + (holy ? " mass" : "") + (today ? " today" : "") +
+           (past ? " past" : "") + '">' +
+    '<div class="dnum">' +
+      '<div class="dow">' + DOW[d.getDay()] + "</div>" +
+      '<div class="dd">' + d.getDate() + "</div>" +
+    "</div>" +
+    "<div>" +
+      '<div class="headline">' + headline + "</div>" +
+      '<div class="line">' + line + "</div>" +
+      (rest.length ? '<div class="extra">' + rest.join("<br>") + "</div>" : "") +
+      day.notes.map(n => '<span class="note">&#9888; ' + esc(n) + "</span>").join("") +
+    "</div>" +
+  "</div>";
+}
+
+/* ---------- other events ---------- */
+function renderOther(other){
+  const rows = other.filter(e => !isHoly(e) && localDate(e.date) >= TODAY);
+  if(!rows.length) return;
+  document.getElementById("otherHead").hidden = false;
+  document.getElementById("other").innerHTML = rows.map(e => {
+    const d = localDate(e.date);
+    const bits = [];
+    if(e.audience) bits.push(esc(e.audience));
+    if(e.time) bits.push(esc(e.time));
+    if(e.location) bits.push(esc(e.location));
+    return "<div><span class='od'>" + DOW[d.getDay()] + ", " +
+      MONTHS[d.getMonth()].slice(0,3) + " " + d.getDate() + "</span>" +
+      esc(e.title) + (bits.length ? ' <span style="color:var(--bb-muted)">&mdash; ' +
+      bits.join(" &middot; ") + "</span>" : "") + "</div>";
+  }).join("");
+}
+
+/* ---------- boot ---------- */
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    filter = chip.dataset.filter;
+    document.querySelectorAll(".chip").forEach(c =>
+      c.setAttribute("aria-pressed", String(c === chip)));
+    renderDays();
+  });
+});
+// Announcement fields write straight to state so typing never loses focus;
+// only add and remove redraw the editor.
+document.getElementById("announce").addEventListener("input", e => {
+  const wrap = e.target.closest(".ann-edit");
+  if(!wrap) return;
+  const item = announcements[Number(wrap.dataset.i)];
+  if(!item) return;
+  const field = e.target.dataset.f;
+  item[field] = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  saveAnnDraft();
+  renderEditBar();
+});
+document.getElementById("announce").addEventListener("click", e => {
+  const btn = e.target.closest("[data-remove]");
+  if(!btn) return;
+  const item = announcements[Number(btn.dataset.remove)];
+  if(item && (item.text || item.title) && !confirm("Remove this announcement?")) return;
+  announcements.splice(Number(btn.dataset.remove), 1);
+  saveAnnDraft();
+  renderAnnouncements();
+  renderEditBar();
+});
+document.getElementById("addAnn").addEventListener("click", () => {
+  announcements.unshift({title: "", text: "", posted: iso(TODAY), until: "", pinned: false});
+  saveAnnDraft();
+  renderAnnouncements();
+  renderEditBar();
+  const fresh = document.querySelector('.ann-edit[data-i="0"] textarea');
+  if(fresh) fresh.focus();
+});
+
+document.getElementById("cal").addEventListener("click", e => {
+  if(!EDIT) return;
+  const cell = e.target.closest(".cell.editable");
+  if(cell) startEdit(cell);
+});
+document.getElementById("pastToggle").addEventListener("click", () => {
+  showPast = !showPast;
+  renderDays();
+});
+
+/* ---------- embedding ----------
+   The page is far taller than a typical content block, so tell a parent frame
+   how tall we are and let it size the iframe. Harmless when not embedded. */
+(function(){
+  if(window.parent === window) return;
+  const wrap = document.querySelector(".wrap");
+  if(!wrap) return;
+  let last = 0;
+  const report = () => {
+    // Measure the content, not the document. documentElement.scrollHeight is at
+    // least the viewport height, so reporting it makes the parent grow the frame,
+    // which grows the reported height, forever.
+    const h = Math.ceil(wrap.getBoundingClientRect().height);
+    if(Math.abs(h - last) > 1){
+      last = h;
+      window.parent.postMessage({flex71Height: h}, "*");
+    }
+  };
+  if(window.ResizeObserver) new ResizeObserver(report).observe(wrap);
+  window.addEventListener("load", report);
+  window.addEventListener("resize", report);
+})();
+
+const loadSchedule = fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => {
+    if(!r.ok) throw new Error("Could not load the FLEX schedule.");
+    return r.json();
+  });
+
+// Custom labels and announcements are optional; a missing or malformed file
+// just means there are none.
+const loadOverrides = fetch("overrides.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => r.ok ? r.json() : {})
+  .catch(() => ({}));
+
+const loadAnnouncements = fetch("announcements.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => r.ok ? r.json() : {})
+  .catch(() => ({}));
+
+Promise.all([loadSchedule, loadOverrides, loadAnnouncements])
+  .then(([data, custom, ann]) => {
+    overrides = {};
+    Object.keys(custom || {}).forEach(k => {
+      if(k !== "_comment") overrides[k] = custom[k];
+    });
+    announcements = Array.isArray(ann && ann.announcements) ? ann.announcements : [];
+
+    // In edit mode, pick up any work in progress from a previous sitting.
+    if(EDIT){
+      try{
+        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
+        Object.keys(draft).forEach(k => { overrides[k] = draft[k]; });
+      }catch(e){}
+      try{
+        const annDraft = JSON.parse(localStorage.getItem(ANN_DRAFT_KEY) || "null");
+        if(Array.isArray(annDraft)) announcements = annDraft;
+      }catch(e){}
+    }
+
+    allDays = Array.isArray(data.days) ? data.days : [];
+    const other = Array.isArray(data.other_events) ? data.other_events : [];
+
+    const start = localDate(data.semester.start);
+    const end   = localDate(data.semester.end);
+    document.getElementById("subtitle").innerHTML =
+      esc(data.semester.name) + " &middot; A days at " +
+      esc(allDays.length ? allDays[0].time : "1:15 PM") + " &middot; " +
+      allDays.length + " meetings from " +
+      esc(longDate(start)) + " through " + esc(longDate(end)) + ".";
+    document.getElementById("dayCount").textContent = allDays.length + " total";
+
+    SEMESTER = data.semester;
+    document.getElementById("gridCount").textContent =
+      allDays.length + " FLEX days, Mon\u2013Fri";
+
+    renderAnnouncements();
+    renderNext(allDays);
+    renderGrid();
+    renderEditBar();
+    renderMasses(allDays, other);
+    renderDays();
+    renderOther(other);
+
+    const foot = [];
+    foot.push("<strong>Mass days are highlighted in gold.</strong> " +
+      "On those days we go straight to Our Lady of Belen Chapel instead of meeting in our room. " +
+      "Watch for the <em>Special Dress Uniform</em> tag &mdash; that one is not optional.");
+    foot.push("Only Masses that include 7th grade are listed. Masses for other grades are left out on purpose.");
+    const docSourced = allDays.some(d => d.events.some(fromDoc)) || other.some(fromDoc);
+    if(docSourced){
+      foot.push("&dagger; Taken from the 2026-27 Mass and Reconciliation Service schedule. " +
+        "This one is not on the school's Blackbaud calendar yet, so double-check it closer to the date.");
+    }
+    if(data.updated_at){
+      const u = new Date(data.updated_at);
+      foot.push("Schedule last refreshed " + new Intl.DateTimeFormat("en-US",
+        {month:"short", day:"numeric", year:"numeric"}).format(u) + ".");
+    }
+    document.getElementById("foot").innerHTML = foot.map(p => "<p style='margin:0 0 6px'>" + p + "</p>").join("");
+  })
+  .catch(err => {
+    document.getElementById("subtitle").textContent = "";
+    document.getElementById("days").innerHTML =
+      '<div class="error">' + esc(err.message) + "</div>";
+  });
+</script>
+</body>
+</html>

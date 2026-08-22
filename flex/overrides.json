@@ -1,0 +1,11 @@
+{
+  "_comment": [
+    "Custom labels for the FLEX 7-1 calendar, keyed by date (YYYY-MM-DD).",
+    "Whatever you put in 'label' replaces what the page would show for that day.",
+    "Delete a date's entry to go back to the automatic label.",
+    "Optional 'kind' sets the colour: normal | mass | reconciliation | assembly | activity.",
+    "This file is never touched by the daily refresh, so edits here stick.",
+    "Example:",
+    "  \"2026-09-22\": { \"label\": \"Quiz review - bring notebook\" }"
+  ]
+}
