@@ -13,9 +13,55 @@ folder, so the page itself never has to be edited to change what it shows.
 
 ## Publishing on myBelen
 
-Point a myBelen content block at the published page, the same way the
-`assignments/` page is embedded. The page draws on a transparent background with
-no outer margins so it sits inside a Blackbaud content area cleanly.
+GitHub Pages serves this repository from the `main` branch, so once these files
+are on `main` the page is live at:
+
+```
+https://elastres25.github.io/myBelen-page/flex/
+```
+
+The page draws on a transparent background with no outer margins, so it sits
+inside a Blackbaud content area cleanly.
+
+### Embedding it
+
+Add a **Content** block to the myBelen page and paste one of these into its HTML
+view.
+
+**Auto-sizing (recommended).** The page is around 5,000px tall, so a fixed frame
+either clips it or leaves a lot of blank space. The page posts its height to the
+parent, and this listener resizes the frame to match:
+
+```html
+<iframe id="flex71"
+        src="https://elastres25.github.io/myBelen-page/flex/"
+        style="width:100%;border:0;height:1200px" scrolling="no"
+        title="FLEX 7-1 Schedule"></iframe>
+<script>
+window.addEventListener("message", function (e) {
+  if (e.data && e.data.flex71Height) {
+    document.getElementById("flex71").style.height = (e.data.flex71Height + 20) + "px";
+  }
+});
+</script>
+```
+
+**Fixed height,** if the block strips `<script>`. Students scroll inside the
+frame:
+
+```html
+<iframe src="https://elastres25.github.io/myBelen-page/flex/"
+        style="width:100%;border:0;height:900px"
+        title="FLEX 7-1 Schedule"></iframe>
+```
+
+**Or just link to it** — the page stands on its own and reads fine on a phone:
+
+```html
+<a href="https://elastres25.github.io/myBelen-page/flex/">FLEX 7-1 Schedule</a>
+```
+
+Remember the `?edit=1` URL is yours alone; do not put it in the embed.
 
 ## Where the data comes from
 

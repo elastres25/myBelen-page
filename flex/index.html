@@ -331,6 +331,15 @@ h2 .count{
   border:1px solid var(--bb-border);
 }
 
+@media (max-width:520px){
+  .cell{min-height:44px;padding:2px 3px}
+  .cell .n{font-size:10px}
+  .cell .lbl{font-size:9px;line-height:1.2}
+  .cell .dress,.cell .warn{font-size:8px}
+  .gh{font-size:9px}
+  .grid{gap:2px}
+}
+
 /* ---------- filters ---------- */
 .filters{
   display:flex;
@@ -1080,6 +1089,29 @@ document.getElementById("pastToggle").addEventListener("click", () => {
   showPast = !showPast;
   renderDays();
 });
+
+/* ---------- embedding ----------
+   The page is far taller than a typical content block, so tell a parent frame
+   how tall we are and let it size the iframe. Harmless when not embedded. */
+(function(){
+  if(window.parent === window) return;
+  const wrap = document.querySelector(".wrap");
+  if(!wrap) return;
+  let last = 0;
+  const report = () => {
+    // Measure the content, not the document. documentElement.scrollHeight is at
+    // least the viewport height, so reporting it makes the parent grow the frame,
+    // which grows the reported height, forever.
+    const h = Math.ceil(wrap.getBoundingClientRect().height);
+    if(Math.abs(h - last) > 1){
+      last = h;
+      window.parent.postMessage({flex71Height: h}, "*");
+    }
+  };
+  if(window.ResizeObserver) new ResizeObserver(report).observe(wrap);
+  window.addEventListener("load", report);
+  window.addEventListener("resize", report);
+})();
 
 const loadSchedule = fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
   .then(r => {
