@@ -42,6 +42,7 @@ html,body{
   color:var(--bb-muted);
 }
 
+
 /* ---------- next up ---------- */
 .next{
   margin:14px 0 0;
@@ -121,6 +122,126 @@ h2 .count{
   color:var(--bb-muted);
   margin-top:3px;
   line-height:1.4;
+}
+
+/* ---------- month grid ---------- */
+.cal{margin-top:14px}
+.cal h3{
+  margin:0 0 4px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:3px;
+}
+.gh{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  text-align:center;
+  padding:1px 0 2px;
+}
+.cell{
+  min-height:50px;
+  border:1px solid var(--bb-border);
+  background:var(--bb-soft);
+  padding:3px 4px 4px;
+  overflow-wrap:anywhere;
+}
+.cell.blank{border:none;background:none;min-height:0}
+.cell .n{
+  font-size:11px;
+  font-weight:400;
+  color:#aab2ba;
+  line-height:1.1;
+}
+.cell .lbl{
+  margin-top:2px;
+  font-size:10px;
+  line-height:1.25;
+  color:var(--bb-muted);
+}
+.cell.flex{
+  background:var(--white);
+  border-color:#b9c6d4;
+}
+.cell.flex .n{color:var(--bb-blue);font-weight:700}
+.cell.flex .lbl{color:var(--bb-blue)}
+.cell.mass{
+  background:var(--bb-gold-soft);
+  border-color:var(--bb-gold);
+}
+.cell.mass .lbl{color:#7d5f22;font-weight:700}
+.cell.today{box-shadow:inset 0 0 0 2px var(--bb-green)}
+.cell.past{opacity:.5}
+.cell .dress{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--bb-danger);
+}
+.cell .warn{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  color:var(--bb-danger);
+}
+
+/* ---------- edit mode ---------- */
+.cell.editable{cursor:text}
+.cell.editable:hover{outline:1px dashed var(--bb-link)}
+.cell.custom .lbl::after{
+  content:"\2022";
+  color:var(--bb-link);
+  margin-left:3px;
+  font-weight:700;
+}
+.cell input{
+  font:inherit;
+  font-size:10px;
+  width:100%;
+  margin-top:2px;
+  border:1px solid var(--bb-link);
+  padding:1px 2px;
+}
+.editbar{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid var(--bb-link);
+  background:#eef4fa;
+  font-size:12px;
+  line-height:1.5;
+}
+.editbar strong{display:block;margin-bottom:2px}
+.editbar .btns{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.editbar button{
+  font:inherit;
+  font-size:12px;
+  padding:5px 11px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+.editbar button.ghost{background:#fff;color:var(--bb-link)}
+.editbar textarea{
+  font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:11px;
+  width:100%;
+  min-height:120px;
+  margin-top:8px;
+  padding:6px;
+  border:1px solid var(--bb-border);
 }
 
 /* ---------- filters ---------- */
@@ -290,6 +411,10 @@ h2 .count{
 
   <div id="next"></div>
 
+  <h2>Semester at a Glance <span class="count" id="gridCount"></span></h2>
+  <div id="editbar"></div>
+  <div id="cal"></div>
+
   <h2>Mass &amp; Reconciliation <span class="count" id="massCount"></span></h2>
   <div class="masses" id="masses"></div>
 
@@ -348,6 +473,194 @@ function daysUntil(d){
   if(diff === 0) return "That's today.";
   if(diff === 1) return "That's tomorrow.";
   return "In " + diff + " days.";
+}
+
+/* ---------- custom labels ----------
+   overrides.json is a plain date -> {label, kind} map that the teacher edits.
+   It lives in its own file so the daily rebuild of schedule.json can't wipe it. */
+let overrides = {};
+const EDIT = new URLSearchParams(location.search).has("edit");
+const DRAFT_KEY = "flex71-label-draft";
+
+function iso(d){
+  return d.getFullYear() + "-" +
+    String(d.getMonth() + 1).padStart(2, "0") + "-" +
+    String(d.getDate()).padStart(2, "0");
+}
+
+// What a given FLEX day should say, and what colour it should be.
+function labelFor(day){
+  const o = overrides[day.date];
+  const holy = holyOf(day);
+  const first = day.events[0];
+  if(o && typeof o.label === "string" && o.label.trim()){
+    return {
+      text: o.label.trim(),
+      kind: o.kind || (holy ? holy.kind : first ? first.kind : "normal"),
+      custom: true,
+      dress: holy ? holy.dress : "",
+    };
+  }
+  if(holy) return {text: displayTitle(holy), kind: holy.kind, dress: holy.dress};
+  if(first) return {text: first.title, kind: first.kind, dress: first.dress};
+  return {text: "Normal", kind: "normal"};
+}
+
+/* ---------- month grid ---------- */
+function renderGrid(){
+  const byDate = new Map(allDays.map(d => [d.date, d]));
+  const start = localDate(SEMESTER.start);
+  const end   = localDate(SEMESTER.end);
+
+  const months = [];
+  for(let m = new Date(start.getFullYear(), start.getMonth(), 1); m <= end;
+      m = new Date(m.getFullYear(), m.getMonth() + 1, 1)){
+    months.push(m);
+  }
+
+  document.getElementById("cal").innerHTML = months.map(m => {
+    const y = m.getFullYear(), mo = m.getMonth();
+    const last = new Date(y, mo + 1, 0).getDate();
+    const cells = [];
+    let placed = false;
+
+    for(let n = 1; n <= last; n++){
+      const d = new Date(y, mo, n);
+      const w = d.getDay();
+      if(w === 0 || w === 6) continue;      // Mon-Fri only
+      if(!placed){                          // pad the first partial week
+        for(let i = 0; i < w - 1; i++) cells.push('<div class="cell blank"></div>');
+        placed = true;
+      }
+      cells.push(renderCell(d, byDate.get(iso(d)), start, end));
+    }
+
+    return '<div class="cal"><h3>' + MONTHS[mo] + " " + y + "</h3><div class=\"grid\">" +
+      ["Mon","Tue","Wed","Thu","Fri"].map(x => '<div class="gh">' + x + "</div>").join("") +
+      cells.join("") + "</div></div>";
+  }).join("");
+}
+
+function renderCell(d, day, start, end){
+  const key = iso(d);
+  const inTerm = d >= start && d <= end;
+  const cls = ["cell"];
+
+  if(!day){
+    if(!inTerm) cls.push("blank");
+    return '<div class="' + cls.join(" ") + '"' + (inTerm ? "" : ">") +
+      (inTerm ? ' data-date="' + key + '"><div class="n">' + d.getDate() + "</div>" : "") +
+      "</div>";
+  }
+
+  const info = labelFor(day);
+  cls.push("flex");
+  if(info.kind === "mass" || info.kind === "reconciliation") cls.push("mass");
+  if(d.getTime() === TODAY.getTime()) cls.push("today");
+  if(d < TODAY) cls.push("past");
+  if(info.custom) cls.push("custom");
+  if(EDIT) cls.push("editable");
+
+  return '<div class="' + cls.join(" ") + '" data-date="' + key + '">' +
+    '<div class="n">' + d.getDate() + "</div>" +
+    '<div class="lbl">' + esc(info.text) + "</div>" +
+    (info.dress ? '<span class="dress">Special Dress</span>' : "") +
+    day.notes.map(() => '<span class="warn">&#9888; Early Release</span>').join("") +
+  "</div>";
+}
+
+/* ---------- edit mode ---------- */
+function startEdit(cell){
+  if(cell.querySelector("input")) return;
+  const date = cell.dataset.date;
+  const day = allDays.find(x => x.date === date);
+  if(!day) return;
+
+  const lbl = cell.querySelector(".lbl");
+  const current = labelFor(day).text;
+  const input = document.createElement("input");
+  input.value = (overrides[date] && overrides[date].label) || "";
+  input.placeholder = current;
+  lbl.replaceWith(input);
+  input.focus();
+  input.select();
+
+  let done = false;
+  const finish = commit => {
+    if(done) return;
+    done = true;
+    if(commit){
+      const v = input.value.trim();
+      if(v) overrides[date] = Object.assign({}, overrides[date], {label: v});
+      else delete overrides[date];
+      saveDraft();
+    }
+    renderGrid();
+    renderDays();
+    renderEditBar();
+  };
+  input.addEventListener("blur", () => finish(true));
+  input.addEventListener("keydown", e => {
+    if(e.key === "Enter"){ e.preventDefault(); finish(true); }
+    if(e.key === "Escape"){ e.preventDefault(); finish(false); }
+  });
+}
+
+function customCount(){
+  return Object.keys(overrides).filter(k => k !== "_comment").length;
+}
+
+function overridesJson(){
+  const out = {};
+  Object.keys(overrides).sort().forEach(k => {
+    if(k !== "_comment") out[k] = overrides[k];
+  });
+  return JSON.stringify(out, null, 2);
+}
+
+function saveDraft(){
+  try{ localStorage.setItem(DRAFT_KEY, overridesJson()); }catch(e){}
+}
+
+function renderEditBar(){
+  if(!EDIT) return;
+  const n = customCount();
+  document.getElementById("editbar").innerHTML =
+    '<div class="editbar">' +
+      "<strong>Edit mode &mdash; students do not see this.</strong>" +
+      "Click any FLEX day to retype its label. Enter saves, Esc cancels, " +
+      "an empty box puts the automatic label back. " +
+      "Edited days are marked with a dot." +
+      "<div>" + (n
+        ? "<br><strong>" + n + " custom label" + (n === 1 ? "" : "s") + ".</strong> " +
+          "Copy the JSON below into <code>flex/overrides.json</code> and commit it " +
+          "for your students to see it."
+        : "<br>No custom labels yet.") + "</div>" +
+      '<div class="btns">' +
+        '<button type="button" id="copyJson">Copy JSON</button>' +
+        '<button type="button" class="ghost" id="showJson">Show JSON</button>' +
+        '<button type="button" class="ghost" id="clearJson">Clear all</button>' +
+      "</div>" +
+      '<textarea id="jsonBox" hidden readonly></textarea>' +
+    "</div>";
+
+  const box = document.getElementById("jsonBox");
+  document.getElementById("showJson").onclick = () => {
+    box.value = overridesJson();
+    box.hidden = !box.hidden;
+  };
+  document.getElementById("copyJson").onclick = () => {
+    box.value = overridesJson();
+    box.hidden = false;
+    box.select();
+    try{ navigator.clipboard.writeText(box.value); }catch(e){}
+  };
+  document.getElementById("clearJson").onclick = () => {
+    if(!confirm("Remove every custom label?")) return;
+    overrides = {};
+    saveDraft();
+    renderGrid(); renderDays(); renderEditBar();
+  };
 }
 
 /* ---------- next up ---------- */
@@ -425,6 +738,7 @@ function renderMasses(days, other){
 
 /* ---------- the full list ---------- */
 let allDays = [];
+let SEMESTER = {start: "", end: ""};
 let filter = "all";
 let showPast = false;
 
@@ -478,9 +792,10 @@ function renderDay(day){
   const today = d.getTime() === TODAY.getTime();
   const holy = holyOf(day);
 
+  const info = labelFor(day);
   let headline, line;
   if(holy){
-    headline = esc(displayTitle(holy)) +
+    headline = esc(info.text) +
       (fromDoc(holy) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") +
       '<span class="badge mass">' +
       (holy.kind === "reconciliation" ? "Reconciliation" : "Mass") + "</span>" +
@@ -490,13 +805,17 @@ function renderDay(day){
     if(holy.time) parts.push(esc(holy.time));
     if(holy.location) parts.push(esc(holy.location));
     line = parts.join(" &middot; ");
+  } else if(info.custom || day.events.length){
+    headline = esc(info.text);
+    line = "A day &middot; " + esc(day.time);
   } else {
     headline = '<span class="headline plain">FLEX in our classroom</span>';
     line = "A day &middot; " + esc(day.time);
   }
   if(today) headline += '<span class="badge today">Today</span>';
 
-  const rest = day.events.filter(e => e !== holy).map(e =>
+  const promoted = holy || (info.custom ? null : day.events[0]);
+  const rest = day.events.filter(e => e !== promoted).map(e =>
     "<strong>" + esc(e.title) + "</strong>" +
     (e.time ? " &middot; " + esc(e.time) : "") +
     (e.location ? " &middot; " + esc(e.location) : "")
@@ -544,17 +863,41 @@ document.querySelectorAll(".chip").forEach(chip => {
     renderDays();
   });
 });
+document.getElementById("cal").addEventListener("click", e => {
+  if(!EDIT) return;
+  const cell = e.target.closest(".cell.editable");
+  if(cell) startEdit(cell);
+});
 document.getElementById("pastToggle").addEventListener("click", () => {
   showPast = !showPast;
   renderDays();
 });
 
-fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
+const loadSchedule = fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
   .then(r => {
     if(!r.ok) throw new Error("Could not load the FLEX schedule.");
     return r.json();
-  })
-  .then(data => {
+  });
+
+// Custom labels are optional; a missing or malformed file just means none.
+const loadOverrides = fetch("overrides.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => r.ok ? r.json() : {})
+  .catch(() => ({}));
+
+Promise.all([loadSchedule, loadOverrides])
+  .then(([data, custom]) => {
+    overrides = {};
+    Object.keys(custom || {}).forEach(k => {
+      if(k !== "_comment") overrides[k] = custom[k];
+    });
+    // In edit mode, pick up any work in progress from a previous sitting.
+    if(EDIT){
+      try{
+        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
+        Object.keys(draft).forEach(k => { overrides[k] = draft[k]; });
+      }catch(e){}
+    }
+
     allDays = Array.isArray(data.days) ? data.days : [];
     const other = Array.isArray(data.other_events) ? data.other_events : [];
 
@@ -567,7 +910,13 @@ fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
       esc(longDate(start)) + " through " + esc(longDate(end)) + ".";
     document.getElementById("dayCount").textContent = allDays.length + " total";
 
+    SEMESTER = data.semester;
+    document.getElementById("gridCount").textContent =
+      allDays.length + " FLEX days, Mon\u2013Fri";
+
     renderNext(allDays);
+    renderGrid();
+    renderEditBar();
     renderMasses(allDays, other);
     renderDays();
     renderOther(other);
