@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLEX 7-1 Schedule</title>
+<style>
+:root{
+  --bb-blue:#34495e;
+  --bb-link:#2f5f8f;
+  --bb-border:#d9dee3;
+  --bb-soft:#f7f8fa;
+  --bb-muted:#6f7c88;
+  --bb-gold:#b48a3b;
+  --bb-gold-soft:#fdf7ea;
+  --bb-danger:#a23a32;
+  --bb-green:#2f6b4f;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:var(--bb-blue);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+/* ---------- header ---------- */
+.header{
+  padding:0 0 10px 0;
+  border-bottom:1px solid var(--bb-border);
+}
+.header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+}
+.header p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:var(--bb-muted);
+}
+
+/* ---------- next up ---------- */
+.next{
+  margin:14px 0 0;
+  border:1px solid var(--bb-border);
+  border-left:4px solid var(--bb-link);
+  background:var(--bb-soft);
+  padding:12px 14px;
+}
+.next.is-mass{
+  border-left-color:var(--bb-gold);
+  background:var(--bb-gold-soft);
+}
+.next .kicker{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.next .when{
+  font-size:18px;
+  font-weight:700;
+  margin-top:2px;
+}
+.next .what{
+  font-size:13px;
+  margin-top:4px;
+  line-height:1.45;
+}
+.next .countdown{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:4px;
+}
+
+/* ---------- section headings ---------- */
+h2{
+  font-size:14px;
+  font-weight:700;
+  margin:22px 0 0;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--bb-border);
+}
+h2 .count{
+  font-weight:400;
+  color:var(--bb-muted);
+  font-size:12px;
+}
+
+/* ---------- mass cards ---------- */
+.masses{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.mass-card{
+  border:1px solid var(--bb-border);
+  border-top:3px solid var(--bb-gold);
+  background:var(--white);
+  padding:10px 12px;
+}
+.mass-card.past{opacity:.45}
+.mass-card .date{
+  font-size:13px;
+  font-weight:700;
+}
+.mass-card .title{
+  font-size:13px;
+  color:var(--bb-link);
+  font-weight:700;
+  margin-top:3px;
+  line-height:1.35;
+}
+.mass-card .sub{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:3px;
+  line-height:1.4;
+}
+
+/* ---------- filters ---------- */
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:12px 0 0;
+}
+.chip{
+  font:inherit;
+  font-size:12px;
+  padding:5px 11px;
+  border:1px solid var(--bb-border);
+  background:var(--white);
+  color:var(--bb-blue);
+  border-radius:999px;
+  cursor:pointer;
+}
+.chip[aria-pressed="true"]{
+  background:var(--bb-blue);
+  border-color:var(--bb-blue);
+  color:var(--white);
+  font-weight:700;
+}
+
+/* ---------- day list ---------- */
+.month{
+  margin-top:16px;
+}
+.month h3{
+  margin:0 0 2px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.day{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:12px;
+  padding:10px 4px 10px 8px;
+  border-bottom:1px solid var(--bb-border);
+  border-left:3px solid transparent;
+  background:var(--white);
+}
+.day.mass{
+  border-left-color:var(--bb-gold);
+  background:var(--bb-gold-soft);
+}
+.day.today{
+  border-left-color:var(--bb-green);
+  background:#f2f8f4;
+}
+.day.past{
+  opacity:.45;
+}
+.day .dnum{
+  text-align:center;
+}
+.day .dow{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.day .dd{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.1;
+}
+.day .headline{
+  font-size:14px;
+  font-weight:700;
+  color:var(--bb-link);
+  line-height:1.35;
+}
+.day .headline.plain{
+  color:var(--bb-blue);
+  font-weight:400;
+}
+.day .line{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:3px;
+  line-height:1.45;
+}
+.day .extra{
+  font-size:12px;
+  margin-top:5px;
+  padding-top:5px;
+  border-top:1px dotted var(--bb-border);
+  line-height:1.45;
+}
+.badge{
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:2px 6px;
+  border-radius:3px;
+  vertical-align:2px;
+  margin-left:6px;
+}
+.badge.mass{background:var(--bb-gold);color:#fff}
+.badge.dress{background:#fff;color:var(--bb-danger);border:1px solid var(--bb-danger)}
+.badge.today{background:var(--bb-green);color:#fff}
+.note{
+  display:block;
+  font-size:12px;
+  color:var(--bb-danger);
+  margin-top:4px;
+}
+
+/* ---------- other events ---------- */
+.other{
+  margin-top:10px;
+  font-size:13px;
+}
+.other div{
+  padding:7px 4px;
+  border-bottom:1px solid var(--bb-border);
+  line-height:1.45;
+}
+.other .od{
+  font-weight:700;
+  margin-right:6px;
+}
+
+/* ---------- footer ---------- */
+.foot{
+  margin-top:20px;
+  padding-top:10px;
+  border-top:1px solid var(--bb-border);
+  font-size:11px;
+  color:var(--bb-muted);
+  line-height:1.6;
+}
+.toggle{
+  font:inherit;
+  font-size:12px;
+  background:none;
+  border:none;
+  color:var(--bb-link);
+  cursor:pointer;
+  padding:8px 0 0;
+  text-decoration:underline;
+}
+.empty,.error{
+  padding:16px 4px;
+  font-size:13px;
+  color:var(--bb-muted);
+}
+.error{color:var(--bb-danger)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <h1>FLEX 7-1 &mdash; Homeroom Schedule</h1>
+    <p id="subtitle">Loading&hellip;</p>
+  </div>
+
+  <div id="next"></div>
+
+  <h2>Mass &amp; Reconciliation <span class="count" id="massCount"></span></h2>
+  <div class="masses" id="masses"></div>
+
+  <h2>Every FLEX Day <span class="count" id="dayCount"></span></h2>
+  <div class="filters">
+    <button class="chip" data-filter="all" aria-pressed="true">All days</button>
+    <button class="chip" data-filter="mass" aria-pressed="false">Mass &amp; Reconciliation</button>
+    <button class="chip" data-filter="event" aria-pressed="false">Anything scheduled</button>
+  </div>
+  <button class="toggle" id="pastToggle" hidden></button>
+  <div id="days"></div>
+
+  <h2 id="otherHead" hidden>Also on the Calendar <span class="count">outside the FLEX block</span></h2>
+  <div class="other" id="other"></div>
+
+  <div class="foot" id="foot"></div>
+
+</div>
+
+<script>
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => (
+  {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+));
+
+// Dates in the feed are plain YYYY-MM-DD. Parse them as local days so nothing
+// slips a day either side of midnight.
+function localDate(iso){
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+const TODAY = (() => { const t = new Date(); t.setHours(0,0,0,0); return t; })();
+
+const MONTHS = ["January","February","March","April","May","June",
+                "July","August","September","October","November","December"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+const isHoly = e => e.kind === "mass" || e.kind === "reconciliation";
+const holyOf = day => day.events.find(isHoly);
+
+// The feed titles a plain grade-level Mass just "Mass". Give it a name.
+function displayTitle(e){
+  if(!/^mass$/i.test(e.title)) return e.title;
+  return /6th|7th|8th|middle\s*school|\bms\b/i.test(e.audience || "")
+    ? "Middle School Mass" : "All-School Mass";
+}
+
+// Marks an entry taken from the Mass schedule document rather than the feed.
+const fromDoc = e => e.source === "mass-schedule-doc";
+
+function longDate(d){
+  return d.toLocaleDateString("en-US", {weekday:"long", month:"long", day:"numeric"});
+}
+
+function daysUntil(d){
+  const diff = Math.round((d - TODAY) / 86400000);
+  if(diff === 0) return "That's today.";
+  if(diff === 1) return "That's tomorrow.";
+  return "In " + diff + " days.";
+}
+
+/* ---------- next up ---------- */
+function renderNext(days){
+  const upcoming = days.filter(x => localDate(x.date) >= TODAY);
+  const box = document.getElementById("next");
+  if(!upcoming.length){
+    box.innerHTML = '<div class="next"><div class="kicker">All done</div>' +
+      '<div class="when">No FLEX days left this semester.</div></div>';
+    return;
+  }
+  const day = upcoming[0];
+  const d = localDate(day.date);
+  const holy = holyOf(day);
+  const headline = holy
+    ? displayTitle(holy) + (holy.audience ? " &mdash; " + esc(holy.audience) : "")
+    : (day.events[0] ? day.events[0].title : "Regular FLEX in our classroom");
+
+  const bits = [];
+  if(holy){
+    bits.push("<strong>" + esc(displayTitle(holy)) + "</strong>");
+    if(holy.location) bits.push(esc(holy.location));
+    bits.push("Starts " + esc(holy.time || day.time));
+    if(holy.dress) bits.push('<span class="badge dress">' + esc(holy.dress) + "</span>");
+  } else if(day.events.length){
+    day.events.forEach(e => {
+      bits.push("<strong>" + esc(e.title) + "</strong>" + (e.time ? " at " + esc(e.time) : ""));
+    });
+  } else {
+    bits.push("Regular FLEX in our classroom at " + esc(day.time) + ".");
+  }
+
+  box.innerHTML =
+    '<div class="next' + (holy ? " is-mass" : "") + '">' +
+      '<div class="kicker">' + (holy ? "Next Mass day" : "Next FLEX") + "</div>" +
+      '<div class="when">' + esc(longDate(d)) + "</div>" +
+      '<div class="what">' + bits.join(" &middot; ") + "</div>" +
+      '<div class="countdown">' + esc(daysUntil(d)) + "</div>" +
+    "</div>";
+}
+
+/* ---------- mass cards ---------- */
+function renderMasses(days, other){
+  const cards = [];
+
+  days.forEach(day => {
+    day.events.filter(isHoly).forEach(e => cards.push({date: day.date, ev: e, flex: true}));
+  });
+  other.filter(isHoly).forEach(e => cards.push({date: e.date, ev: e, flex: false}));
+
+  cards.sort((a, b) => a.date.localeCompare(b.date));
+
+  document.getElementById("massCount").textContent =
+    cards.length + " this semester";
+
+  document.getElementById("masses").innerHTML = cards.map(c => {
+    const d = localDate(c.date);
+    const past = d < TODAY;
+    const sub = [];
+    if(c.ev.audience) sub.push(esc(c.ev.audience));
+    if(c.ev.time) sub.push(esc(c.ev.time));
+    if(c.ev.location) sub.push(esc(c.ev.location));
+    return '<div class="mass-card' + (past ? " past" : "") + '">' +
+      '<div class="date">' + DOW[d.getDay()] + ", " +
+        MONTHS[d.getMonth()].slice(0,3) + " " + d.getDate() +
+        (c.flex ? "" : ' <span class="badge dress">Not our FLEX block</span>') + "</div>" +
+      '<div class="title">' + esc(displayTitle(c.ev)) +
+        (fromDoc(c.ev) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") + "</div>" +
+      '<div class="sub">' + sub.join(" &middot; ") +
+        (c.ev.dress ? '<br><span class="badge dress">' + esc(c.ev.dress) + "</span>" : "") +
+      "</div>" +
+    "</div>";
+  }).join("");
+}
+
+/* ---------- the full list ---------- */
+let allDays = [];
+let filter = "all";
+let showPast = false;
+
+function dayMatches(day){
+  if(filter === "mass")  return Boolean(holyOf(day));
+  if(filter === "event") return day.events.length > 0;
+  return true;
+}
+
+function renderDays(){
+  let list = allDays.filter(dayMatches);
+  const hiddenPast = list.filter(x => localDate(x.date) < TODAY).length;
+  if(!showPast) list = list.filter(x => localDate(x.date) >= TODAY);
+
+  const toggle = document.getElementById("pastToggle");
+  if(hiddenPast){
+    toggle.hidden = false;
+    toggle.textContent = showPast
+      ? "Hide the " + hiddenPast + " day" + (hiddenPast === 1 ? "" : "s") + " already past"
+      : "Show the " + hiddenPast + " day" + (hiddenPast === 1 ? "" : "s") + " already past";
+  } else {
+    toggle.hidden = true;
+  }
+
+  const host = document.getElementById("days");
+  if(!list.length){
+    host.innerHTML = '<div class="empty">Nothing matches that filter.</div>';
+    return;
+  }
+
+  // group by month
+  const groups = [];
+  list.forEach(day => {
+    const d = localDate(day.date);
+    const key = MONTHS[d.getMonth()] + " " + d.getFullYear();
+    if(!groups.length || groups[groups.length - 1].key !== key){
+      groups.push({key, days: []});
+    }
+    groups[groups.length - 1].days.push(day);
+  });
+
+  host.innerHTML = groups.map(g =>
+    '<div class="month"><h3>' + esc(g.key) + "</h3>" +
+    g.days.map(renderDay).join("") + "</div>"
+  ).join("");
+}
+
+function renderDay(day){
+  const d = localDate(day.date);
+  const past = d < TODAY;
+  const today = d.getTime() === TODAY.getTime();
+  const holy = holyOf(day);
+
+  let headline, line;
+  if(holy){
+    headline = esc(displayTitle(holy)) +
+      (fromDoc(holy) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") +
+      '<span class="badge mass">' +
+      (holy.kind === "reconciliation" ? "Reconciliation" : "Mass") + "</span>" +
+      (holy.dress ? '<span class="badge dress">' + esc(holy.dress) + "</span>" : "");
+    const parts = [];
+    if(holy.audience) parts.push(esc(holy.audience));
+    if(holy.time) parts.push(esc(holy.time));
+    if(holy.location) parts.push(esc(holy.location));
+    line = parts.join(" &middot; ");
+  } else {
+    headline = '<span class="headline plain">FLEX in our classroom</span>';
+    line = "A day &middot; " + esc(day.time);
+  }
+  if(today) headline += '<span class="badge today">Today</span>';
+
+  const rest = day.events.filter(e => e !== holy).map(e =>
+    "<strong>" + esc(e.title) + "</strong>" +
+    (e.time ? " &middot; " + esc(e.time) : "") +
+    (e.location ? " &middot; " + esc(e.location) : "")
+  );
+
+  return '<div class="day' + (holy ? " mass" : "") + (today ? " today" : "") +
+           (past ? " past" : "") + '">' +
+    '<div class="dnum">' +
+      '<div class="dow">' + DOW[d.getDay()] + "</div>" +
+      '<div class="dd">' + d.getDate() + "</div>" +
+    "</div>" +
+    "<div>" +
+      '<div class="headline">' + headline + "</div>" +
+      '<div class="line">' + line + "</div>" +
+      (rest.length ? '<div class="extra">' + rest.join("<br>") + "</div>" : "") +
+      day.notes.map(n => '<span class="note">&#9888; ' + esc(n) + "</span>").join("") +
+    "</div>" +
+  "</div>";
+}
+
+/* ---------- other events ---------- */
+function renderOther(other){
+  const rows = other.filter(e => !isHoly(e) && localDate(e.date) >= TODAY);
+  if(!rows.length) return;
+  document.getElementById("otherHead").hidden = false;
+  document.getElementById("other").innerHTML = rows.map(e => {
+    const d = localDate(e.date);
+    const bits = [];
+    if(e.audience) bits.push(esc(e.audience));
+    if(e.time) bits.push(esc(e.time));
+    if(e.location) bits.push(esc(e.location));
+    return "<div><span class='od'>" + DOW[d.getDay()] + ", " +
+      MONTHS[d.getMonth()].slice(0,3) + " " + d.getDate() + "</span>" +
+      esc(e.title) + (bits.length ? ' <span style="color:var(--bb-muted)">&mdash; ' +
+      bits.join(" &middot; ") + "</span>" : "") + "</div>";
+  }).join("");
+}
+
+/* ---------- boot ---------- */
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    filter = chip.dataset.filter;
+    document.querySelectorAll(".chip").forEach(c =>
+      c.setAttribute("aria-pressed", String(c === chip)));
+    renderDays();
+  });
+});
+document.getElementById("pastToggle").addEventListener("click", () => {
+  showPast = !showPast;
+  renderDays();
+});
+
+fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => {
+    if(!r.ok) throw new Error("Could not load the FLEX schedule.");
+    return r.json();
+  })
+  .then(data => {
+    allDays = Array.isArray(data.days) ? data.days : [];
+    const other = Array.isArray(data.other_events) ? data.other_events : [];
+
+    const start = localDate(data.semester.start);
+    const end   = localDate(data.semester.end);
+    document.getElementById("subtitle").innerHTML =
+      esc(data.semester.name) + " &middot; A days at " +
+      esc(allDays.length ? allDays[0].time : "1:15 PM") + " &middot; " +
+      allDays.length + " meetings from " +
+      esc(longDate(start)) + " through " + esc(longDate(end)) + ".";
+    document.getElementById("dayCount").textContent = allDays.length + " total";
+
+    renderNext(allDays);
+    renderMasses(allDays, other);
+    renderDays();
+    renderOther(other);
+
+    const foot = [];
+    foot.push("<strong>Mass days are highlighted in gold.</strong> " +
+      "On those days we go straight to Our Lady of Belen Chapel instead of meeting in our room. " +
+      "Watch for the <em>Special Dress Uniform</em> tag &mdash; that one is not optional.");
+    foot.push("Only Masses that include 7th grade are listed. Masses for other grades are left out on purpose.");
+    const docSourced = allDays.some(d => d.events.some(fromDoc)) || other.some(fromDoc);
+    if(docSourced){
+      foot.push("&dagger; Taken from the 2026-27 Mass and Reconciliation Service schedule. " +
+        "This one is not on the school's Blackbaud calendar yet, so double-check it closer to the date.");
+    }
+    if(data.updated_at){
+      const u = new Date(data.updated_at);
+      foot.push("Schedule last refreshed " + new Intl.DateTimeFormat("en-US",
+        {month:"short", day:"numeric", year:"numeric"}).format(u) + ".");
+    }
+    document.getElementById("foot").innerHTML = foot.map(p => "<p style='margin:0 0 6px'>" + p + "</p>").join("");
+  })
+  .catch(err => {
+    document.getElementById("subtitle").textContent = "";
+    document.getElementById("days").innerHTML =
+      '<div class="error">' + esc(err.message) + "</div>";
+  });
+</script>
+</body>
+</html>
