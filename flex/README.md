@@ -5,8 +5,11 @@ with every FLEX 7-1 day highlighted and Mass days in gold. Days with nothing
 special say "Normal". Below the grid it repeats the same information as a Mass
 list and a day-by-day list.
 
-It reads `schedule.json` and `overrides.json` from the same folder, so the page
-itself never has to be edited to change the schedule.
+Above all of that sits an announcements strip for anything you need to tell the
+class. It hides itself when there is nothing to say.
+
+It reads `schedule.json`, `overrides.json` and `announcements.json` from the same
+folder, so the page itself never has to be edited to change what it shows.
 
 ## Publishing on myBelen
 
@@ -58,15 +61,52 @@ https://<your-page-url>/flex/?edit=1
 
 That reveals an edit bar and makes every FLEX day clickable. Type a label, press
 Enter to save or Esc to cancel; an empty box restores the automatic label.
-Edited days get a small dot. When you are done, hit **Copy JSON** and paste the
-result into `flex/overrides.json`.
+Edited days get a small dot. When you are done, hit **Copy labels** and paste the
+result into `flex/overrides.json`. The same edit bar handles announcements.
 
 Edit mode is deliberately not linked from the page, so students never stumble
 into it. Work in progress is held in your own browser until you paste it in —
 nothing your students load changes until that file is committed.
 
-`overrides.json` is never written by the daily refresh, so your labels survive
-every rebuild.
+`overrides.json` and `announcements.json` are never written by the daily
+refresh, so your edits survive every rebuild.
+
+## Announcements
+
+Same two doors as the labels.
+
+**Edit the file.** `flex/announcements.json` holds a list. Only `text` is
+required:
+
+```json
+{
+  "announcements": [
+    {
+      "title": "Field Day permission slips",
+      "text": "Due back this Friday. No slip, no Field Day.",
+      "posted": "2026-09-28",
+      "until": "2026-10-07",
+      "pinned": true
+    }
+  ]
+}
+```
+
+| Field | What it does |
+| --- | --- |
+| `text` | the announcement itself; line breaks are kept |
+| `title` | optional bold heading |
+| `posted` | optional, shown to students as "Posted Sep 28" |
+| `until` | optional last day it shows — after that it drops off by itself |
+| `pinned` | optional, keeps it at the top with an "Important" tag |
+
+An empty list hides the whole section, so students never see an empty heading.
+
+**Or click through it.** In `?edit=1` mode, **+ Add announcement** appears under
+the section with fields for each of the above. Announcements past their
+`until` date stay visible to you, greyed out and marked, so you can see what
+your students no longer see. **Copy announcements** hands you the JSON to paste
+back into `flex/announcements.json`.
 
 ## Events the school feed is missing
 

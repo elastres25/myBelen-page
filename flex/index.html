@@ -124,6 +124,93 @@ h2 .count{
   line-height:1.4;
 }
 
+/* ---------- announcements ---------- */
+.ann-item{
+  border:1px solid #cfdbe6;
+  border-left:4px solid var(--bb-link);
+  background:#f4f8fc;
+  padding:10px 12px;
+  margin-top:8px;
+}
+.ann-item.pinned{border-left-color:var(--bb-danger)}
+.ann-item.expired{opacity:.5}
+.ann-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--bb-blue);
+  margin-bottom:3px;
+}
+.ann-text{
+  font-size:13px;
+  line-height:1.5;
+  color:#42525f;
+  white-space:pre-wrap;
+}
+.ann-meta{
+  font-size:11px;
+  color:var(--bb-muted);
+  margin-top:5px;
+}
+.ann-item .badge.pin{background:var(--bb-danger);color:#fff}
+
+/* announcement editor */
+.ann-edit{margin-top:6px}
+.ann-edit label{
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  margin:6px 0 2px;
+}
+.ann-edit input[type=text],
+.ann-edit input[type=date],
+.ann-edit textarea{
+  font:inherit;
+  font-size:13px;
+  width:100%;
+  padding:4px 6px;
+  border:1px solid var(--bb-border);
+}
+.ann-edit textarea{min-height:60px;line-height:1.45}
+.ann-edit .row{display:flex;gap:10px;flex-wrap:wrap}
+.ann-edit .row > div{flex:1;min-width:130px}
+.ann-edit .tools{
+  margin-top:8px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-size:12px;
+}
+.ann-edit .tools button{
+  font:inherit;
+  font-size:12px;
+  padding:3px 9px;
+  border:1px solid var(--bb-danger);
+  background:#fff;
+  color:var(--bb-danger);
+  cursor:pointer;
+}
+.ann-edit .tools label{
+  margin:0;
+  text-transform:none;
+  letter-spacing:0;
+  font-size:12px;
+  font-weight:400;
+  color:var(--bb-blue);
+}
+#addAnn{
+  font:inherit;
+  font-size:12px;
+  margin-top:8px;
+  padding:5px 11px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+
 /* ---------- month grid ---------- */
 .cal{margin-top:14px}
 .cal h3{
@@ -409,6 +496,10 @@ h2 .count{
     <p id="subtitle">Loading&hellip;</p>
   </div>
 
+  <h2 id="annHead" hidden>Announcements</h2>
+  <div id="announce"></div>
+  <button type="button" id="addAnn" hidden>+ Add announcement</button>
+
   <div id="next"></div>
 
   <h2>Semester at a Glance <span class="count" id="gridCount"></span></h2>
@@ -504,6 +595,94 @@ function labelFor(day){
   if(holy) return {text: displayTitle(holy), kind: holy.kind, dress: holy.dress};
   if(first) return {text: first.title, kind: first.kind, dress: first.dress};
   return {text: "Normal", kind: "normal"};
+}
+
+/* ---------- announcements ----------
+   announcements.json is a small list the teacher edits, in its own file so the
+   daily rebuild of schedule.json can't touch it. */
+let announcements = [];
+const ANN_DRAFT_KEY = "flex71-ann-draft";
+
+function annIsLive(a){
+  if(!a.until) return true;
+  return localDate(a.until) >= TODAY;
+}
+
+function annSorted(list){
+  return list.slice().sort((a, b) => {
+    if(Boolean(b.pinned) !== Boolean(a.pinned)) return b.pinned ? 1 : -1;
+    return String(b.posted || "").localeCompare(String(a.posted || ""));
+  });
+}
+
+function saveAnnDraft(){
+  try{ localStorage.setItem(ANN_DRAFT_KEY, JSON.stringify(announcements)); }catch(e){}
+}
+
+function announcementsJson(){
+  const clean = announcements
+    .filter(a => (a.text || "").trim() || (a.title || "").trim())
+    .map(a => {
+      const o = {};
+      if((a.title || "").trim()) o.title = a.title.trim();
+      o.text = (a.text || "").trim();
+      if(a.posted) o.posted = a.posted;
+      if(a.until)  o.until  = a.until;
+      if(a.pinned) o.pinned = true;
+      return o;
+    });
+  return JSON.stringify({announcements: clean}, null, 2);
+}
+
+function renderAnnouncements(){
+  const host = document.getElementById("announce");
+  const head = document.getElementById("annHead");
+  const add  = document.getElementById("addAnn");
+
+  if(EDIT){
+    head.hidden = false;
+    add.hidden = false;
+    host.innerHTML = announcements.map((a, i) => {
+      const stale = !annIsLive(a);
+      return '<div class="ann-item' + (a.pinned ? " pinned" : "") +
+             (stale ? " expired" : "") + '">' +
+        '<div class="ann-edit" data-i="' + i + '">' +
+          "<label>Heading (optional)</label>" +
+          '<input type="text" data-f="title" value="' + esc(a.title || "") + '">' +
+          "<label>Announcement</label>" +
+          "<textarea data-f=\"text\">" + esc(a.text || "") + "</textarea>" +
+          '<div class="row">' +
+            "<div><label>Posted</label>" +
+              '<input type="date" data-f="posted" value="' + esc(a.posted || "") + '"></div>' +
+            "<div><label>Hide after</label>" +
+              '<input type="date" data-f="until" value="' + esc(a.until || "") + '"></div>' +
+          "</div>" +
+          '<div class="tools">' +
+            "<label><input type=\"checkbox\" data-f=\"pinned\"" +
+              (a.pinned ? " checked" : "") + "> Pin to top</label>" +
+            '<button type="button" data-remove="' + i + '">Remove</button>' +
+            (stale ? '<span style="color:var(--bb-muted)">Past its hide-after date &mdash; ' +
+                     "students no longer see this.</span>" : "") +
+          "</div>" +
+        "</div>" +
+      "</div>";
+    }).join("");
+    return;
+  }
+
+  const live = annSorted(announcements.filter(a => annIsLive(a) && (a.text || a.title)));
+  head.hidden = live.length === 0;
+  add.hidden = true;
+  host.innerHTML = live.map(a =>
+    '<div class="ann-item' + (a.pinned ? " pinned" : "") + '">' +
+      (a.title ? '<div class="ann-title">' + esc(a.title) +
+        (a.pinned ? '<span class="badge pin">Important</span>' : "") + "</div>" : "") +
+      '<div class="ann-text">' + esc(a.text || "") + "</div>" +
+      (a.posted ? '<div class="ann-meta">Posted ' +
+        esc(localDate(a.posted).toLocaleDateString("en-US",
+            {month:"short", day:"numeric"})) + "</div>" : "") +
+    "</div>"
+  ).join("");
 }
 
 /* ---------- month grid ---------- */
@@ -625,38 +804,36 @@ function saveDraft(){
 function renderEditBar(){
   if(!EDIT) return;
   const n = customCount();
+  const a = announcements.length;
   document.getElementById("editbar").innerHTML =
     '<div class="editbar">' +
       "<strong>Edit mode &mdash; students do not see this.</strong>" +
-      "Click any FLEX day to retype its label. Enter saves, Esc cancels, " +
-      "an empty box puts the automatic label back. " +
-      "Edited days are marked with a dot." +
-      "<div>" + (n
-        ? "<br><strong>" + n + " custom label" + (n === 1 ? "" : "s") + ".</strong> " +
-          "Copy the JSON below into <code>flex/overrides.json</code> and commit it " +
-          "for your students to see it."
-        : "<br>No custom labels yet.") + "</div>" +
+      "Click any FLEX day in the grid to retype its label. Enter saves, Esc cancels, " +
+      "an empty box puts the automatic label back. Edited days are marked with a dot. " +
+      "Announcements are edited at the top of the page." +
+      "<div><br><strong>" +
+        n + " custom label" + (n === 1 ? "" : "s") + " &middot; " +
+        a + " announcement" + (a === 1 ? "" : "s") +
+      ".</strong> Copy each block into its file and commit it for your students to see it.</div>" +
       '<div class="btns">' +
-        '<button type="button" id="copyJson">Copy JSON</button>' +
-        '<button type="button" class="ghost" id="showJson">Show JSON</button>' +
-        '<button type="button" class="ghost" id="clearJson">Clear all</button>' +
+        '<button type="button" data-copy="labels">Copy labels &rarr; overrides.json</button>' +
+        '<button type="button" data-copy="ann">Copy announcements &rarr; announcements.json</button>' +
+        '<button type="button" class="ghost" id="clearJson">Clear all labels</button>' +
       "</div>" +
       '<textarea id="jsonBox" hidden readonly></textarea>' +
     "</div>";
 
   const box = document.getElementById("jsonBox");
-  document.getElementById("showJson").onclick = () => {
-    box.value = overridesJson();
-    box.hidden = !box.hidden;
-  };
-  document.getElementById("copyJson").onclick = () => {
-    box.value = overridesJson();
-    box.hidden = false;
-    box.select();
-    try{ navigator.clipboard.writeText(box.value); }catch(e){}
-  };
+  document.querySelectorAll("[data-copy]").forEach(btn => {
+    btn.onclick = () => {
+      box.value = btn.dataset.copy === "ann" ? announcementsJson() : overridesJson();
+      box.hidden = false;
+      box.select();
+      try{ navigator.clipboard.writeText(box.value); }catch(e){}
+    };
+  });
   document.getElementById("clearJson").onclick = () => {
-    if(!confirm("Remove every custom label?")) return;
+    if(!confirm("Remove every custom label? Announcements are not affected.")) return;
     overrides = {};
     saveDraft();
     renderGrid(); renderDays(); renderEditBar();
@@ -863,6 +1040,37 @@ document.querySelectorAll(".chip").forEach(chip => {
     renderDays();
   });
 });
+// Announcement fields write straight to state so typing never loses focus;
+// only add and remove redraw the editor.
+document.getElementById("announce").addEventListener("input", e => {
+  const wrap = e.target.closest(".ann-edit");
+  if(!wrap) return;
+  const item = announcements[Number(wrap.dataset.i)];
+  if(!item) return;
+  const field = e.target.dataset.f;
+  item[field] = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  saveAnnDraft();
+  renderEditBar();
+});
+document.getElementById("announce").addEventListener("click", e => {
+  const btn = e.target.closest("[data-remove]");
+  if(!btn) return;
+  const item = announcements[Number(btn.dataset.remove)];
+  if(item && (item.text || item.title) && !confirm("Remove this announcement?")) return;
+  announcements.splice(Number(btn.dataset.remove), 1);
+  saveAnnDraft();
+  renderAnnouncements();
+  renderEditBar();
+});
+document.getElementById("addAnn").addEventListener("click", () => {
+  announcements.unshift({title: "", text: "", posted: iso(TODAY), until: "", pinned: false});
+  saveAnnDraft();
+  renderAnnouncements();
+  renderEditBar();
+  const fresh = document.querySelector('.ann-edit[data-i="0"] textarea');
+  if(fresh) fresh.focus();
+});
+
 document.getElementById("cal").addEventListener("click", e => {
   if(!EDIT) return;
   const cell = e.target.closest(".cell.editable");
@@ -879,22 +1087,33 @@ const loadSchedule = fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
     return r.json();
   });
 
-// Custom labels are optional; a missing or malformed file just means none.
+// Custom labels and announcements are optional; a missing or malformed file
+// just means there are none.
 const loadOverrides = fetch("overrides.json?ts=" + Date.now(), {cache:"no-store"})
   .then(r => r.ok ? r.json() : {})
   .catch(() => ({}));
 
-Promise.all([loadSchedule, loadOverrides])
-  .then(([data, custom]) => {
+const loadAnnouncements = fetch("announcements.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => r.ok ? r.json() : {})
+  .catch(() => ({}));
+
+Promise.all([loadSchedule, loadOverrides, loadAnnouncements])
+  .then(([data, custom, ann]) => {
     overrides = {};
     Object.keys(custom || {}).forEach(k => {
       if(k !== "_comment") overrides[k] = custom[k];
     });
+    announcements = Array.isArray(ann && ann.announcements) ? ann.announcements : [];
+
     // In edit mode, pick up any work in progress from a previous sitting.
     if(EDIT){
       try{
         const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
         Object.keys(draft).forEach(k => { overrides[k] = draft[k]; });
+      }catch(e){}
+      try{
+        const annDraft = JSON.parse(localStorage.getItem(ANN_DRAFT_KEY) || "null");
+        if(Array.isArray(annDraft)) announcements = annDraft;
       }catch(e){}
     }
 
@@ -914,6 +1133,7 @@ Promise.all([loadSchedule, loadOverrides])
     document.getElementById("gridCount").textContent =
       allDays.length + " FLEX days, Mon\u2013Fri";
 
+    renderAnnouncements();
     renderNext(allDays);
     renderGrid();
     renderEditBar();
