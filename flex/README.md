@@ -80,11 +80,60 @@ Only events whose audience includes a 7th grader are kept — `All MS`,
 `6th, 7th & 8th`, `7th`, school-wide, and section ranges that contain 7-1.
 Masses for other grades are filtered out.
 
-## Changing what a day says
+## Changing what a day says, or posting an announcement
 
-Two ways, and they end up in the same place.
+Open the page with `?edit=1` on the end:
 
-**Edit the file.** Open `flex/overrides.json` on github.com, add a date, commit.
+```
+https://elastres25.github.io/myBelen-page/flex/?edit=1
+```
+
+Click any FLEX day in the grid and a popup opens for what that day says and what
+colour it is. **+ Add announcement** at the top opens the same kind of popup for
+notices, and each announcement gets Edit and Remove buttons.
+
+**Save** commits the change to the repository, and your students see it about a
+minute later once the site rebuilds. Nothing else to do.
+
+### Only you can edit
+
+`?edit=1` on its own does nothing. The editor stays locked until this browser
+holds a GitHub access key that GitHub itself confirms can write to the
+repository — the page asks GitHub on every load, before any editing control
+exists.
+
+Someone who guesses the URL gets a read-only page and a bar saying editing is
+locked: no editable days, no add button, no popup, nothing to save. A key that
+is wrong, expired or revoked is cleared and treated the same way. Because the
+check is GitHub's, it cannot be faked from the browser — editing state in local
+storage grants nothing on its own.
+
+Click **Lock again** in the unlock dialog when you are on a shared computer.
+
+### Unlocking, once per device
+
+1. Open the page with `?edit=1` and click **Unlock editing**.
+2. Follow the steps in the popup: create a fine-grained personal access token on
+   GitHub, scoped to **only this repository**, with **Contents: Read and write**,
+   and give it an expiry date.
+3. Paste it in and click **Unlock**. The page verifies it with GitHub before
+   storing anything.
+
+The key is held in that browser's local storage. It is never committed to the
+repository and never reaches anyone else loading the page. Treat it like a
+password: anyone with access to that browser profile could use it to write to
+this repository, which is why it should be scoped to this one repo and given an
+expiry.
+
+Once unlocked, the **Copy labels** and **Copy announcements** buttons are still
+there if you would rather paste the JSON into the files by hand.
+
+### Editing the files directly
+
+Both files are plain JSON and can be edited straight on github.com:
+
+- `flex/overrides.json` — what each day says
+- `flex/announcements.json` — the notices at the top
 
 ```json
 {
@@ -98,21 +147,6 @@ the entry to go back to the automatic label. An optional `"kind"` sets the
 colour: `normal`, `mass`, `reconciliation`, `assembly` or `activity` — leave it
 out and the day keeps the colour it already had, so relabelling a Mass day still
 shows gold and the Special Dress tag.
-
-**Or click through it.** Open the page with `?edit=1` on the end:
-
-```
-https://<your-page-url>/flex/?edit=1
-```
-
-That reveals an edit bar and makes every FLEX day clickable. Type a label, press
-Enter to save or Esc to cancel; an empty box restores the automatic label.
-Edited days get a small dot. When you are done, hit **Copy labels** and paste the
-result into `flex/overrides.json`. The same edit bar handles announcements.
-
-Edit mode is deliberately not linked from the page, so students never stumble
-into it. Work in progress is held in your own browser until you paste it in —
-nothing your students load changes until that file is committed.
 
 `overrides.json` and `announcements.json` are never written by the daily
 refresh, so your edits survive every rebuild.
@@ -148,11 +182,10 @@ required:
 
 An empty list hides the whole section, so students never see an empty heading.
 
-**Or click through it.** In `?edit=1` mode, **+ Add announcement** appears under
-the section with fields for each of the above. Announcements past their
-`until` date stay visible to you, greyed out and marked, so you can see what
-your students no longer see. **Copy announcements** hands you the JSON to paste
-back into `flex/announcements.json`.
+**Or use the popup.** In `?edit=1` mode, **+ Add announcement** opens a form with
+fields for each of the above, and every announcement gets Edit and Remove
+buttons. Announcements past their `until` date stay visible to you, greyed out
+and marked, so you can see what your students no longer see.
 
 ## Events the school feed is missing
 
