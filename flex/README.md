@@ -92,31 +92,41 @@ Click any FLEX day in the grid and a popup opens for what that day says and what
 colour it is. **+ Add announcement** at the top opens the same kind of popup for
 notices, and each announcement gets Edit and Remove buttons.
 
-Once publishing is connected (below), **Save** commits the change to the
-repository and your students see it about a minute later, once the site
-rebuilds. Nothing else to do.
+**Save** commits the change to the repository, and your students see it about a
+minute later once the site rebuilds. Nothing else to do.
 
-Edit mode is deliberately not linked from the page, so students never stumble
-into it.
+### Only you can edit
 
-### Connecting publishing, once
+`?edit=1` on its own does nothing. The editor stays locked until this browser
+holds a GitHub access key that GitHub itself confirms can write to the
+repository — the page asks GitHub on every load, before any editing control
+exists.
 
-The page is static, so by default it cannot write anything back. Give this
-browser an access key and it commits for you:
+Someone who guesses the URL gets a read-only page and a bar saying editing is
+locked: no editable days, no add button, no popup, nothing to save. A key that
+is wrong, expired or revoked is cleared and treated the same way. Because the
+check is GitHub's, it cannot be faked from the browser — editing state in local
+storage grants nothing on its own.
 
-1. In edit mode, click **Connect publishing**.
+Click **Lock again** in the unlock dialog when you are on a shared computer.
+
+### Unlocking, once per device
+
+1. Open the page with `?edit=1` and click **Unlock editing**.
 2. Follow the steps in the popup: create a fine-grained personal access token on
-   GitHub, scoped to **only this repository**, with **Contents: Read and write**.
-3. Paste it in and click **Connect**. The page checks it before storing it.
+   GitHub, scoped to **only this repository**, with **Contents: Read and write**,
+   and give it an expiry date.
+3. Paste it in and click **Unlock**. The page verifies it with GitHub before
+   storing anything.
 
 The key is held in that browser's local storage. It is never committed to the
-repository and never reaches anyone loading the page normally — students get no
-edit interface and no key. Do it once per device; click **Disconnect** if you
-are ever on a shared computer.
+repository and never reaches anyone else loading the page. Treat it like a
+password: anyone with access to that browser profile could use it to write to
+this repository, which is why it should be scoped to this one repo and given an
+expiry.
 
-If you would rather not use a key at all, the **Copy labels** and
-**Copy announcements** buttons still hand you the JSON to paste into the files
-by hand.
+Once unlocked, the **Copy labels** and **Copy announcements** buttons are still
+there if you would rather paste the JSON into the files by hand.
 
 ### Editing the files directly
 

@@ -667,8 +667,28 @@ function daysUntil(d){
    overrides.json is a plain date -> {label, kind} map that the teacher edits.
    It lives in its own file so the daily rebuild of schedule.json can't wipe it. */
 let overrides = {};
+
+// ?edit=1 only asks for the editor. ADMIN is what actually unlocks it, and it
+// is set only after GitHub confirms this browser holds a key that can write to
+// the repository. Anyone can put ?edit=1 on the URL; nobody without a verified
+// key gets an editing control, a draft of their own, or a way to publish.
 const EDIT = new URLSearchParams(location.search).has("edit");
+let ADMIN = false;
+let adminError = "";
 const DRAFT_KEY = "flex71-label-draft";
+
+async function unlockAdmin(){
+  adminError = "";
+  if(!EDIT || !GH.connected) return false;
+  try{
+    await GH.verify();
+    return true;
+  }catch(err){
+    GH.key = "";               // stale or revoked: make them connect again
+    adminError = err.message;
+    return false;
+  }
+}
 
 function iso(d){
   return d.getFullYear() + "-" +
@@ -851,9 +871,8 @@ async function publish(which){
   const path = which === "ann" ? "flex/announcements.json" : "flex/overrides.json";
   const text = which === "ann" ? announcementsJson() : overridesJson();
 
-  if(!GH.connected){
-    Modal.msg("Changed on this page only — your students will not see it yet. " +
-              "Use Connect in the edit bar to publish automatically.", "err");
+  if(!ADMIN || !GH.connected){
+    Modal.msg("Editing is locked, so nothing was published.", "err");
     return false;
   }
   Modal.busy(true);
@@ -914,7 +933,7 @@ function renderAnnouncements(){
   const head = document.getElementById("annHead");
   const add  = document.getElementById("addAnn");
 
-  if(EDIT){
+  if(ADMIN){
     head.hidden = false;
     add.hidden = false;
     // Show them exactly as students will, with buttons that open the popup.
@@ -1009,7 +1028,7 @@ function renderCell(d, day, start, end){
   if(d.getTime() === TODAY.getTime()) cls.push("today");
   if(d < TODAY) cls.push("past");
   if(info.custom) cls.push("custom");
-  if(EDIT) cls.push("editable");
+  if(ADMIN) cls.push("editable");
 
   return '<div class="' + cls.join(" ") + '" data-date="' + key + '">' +
     '<div class="n">' + d.getDate() + "</div>" +
@@ -1138,21 +1157,21 @@ function editAnnouncement(index){
   });
 }
 
-// One-time setup so the page can commit on your behalf.
+// One-time setup so the page can commit on your behalf. Until this succeeds
+// there is no editing interface, so this is also the lock on the whole editor.
 function editConnection(){
-  const on = GH.connected;
   Modal.open({
-    title: on ? "Publishing is connected" : "Connect publishing",
-    sub: on
+    title: ADMIN ? "Editing is unlocked" : "Unlock editing",
+    sub: ADMIN
       ? "Edits you save go straight into the repository."
-      : "One-time setup, stored only in this browser.",
-    body: on
+      : "For the teacher who owns this site. Stored only in this browser.",
+    body: ADMIN
       ? '<div class="help">This browser holds an access key for ' +
         "<code>" + GH.owner + "/" + GH.repo + "</code>. Everything you save is " +
-        "committed automatically.<br><br>Disconnect if this is a shared or " +
+        "committed automatically.<br><br>Lock it again if this is a shared or " +
         "borrowed computer.</div>"
-      : '<div class="help">Create a fine-grained personal access key on GitHub, ' +
-        "then paste it here." +
+      : '<div class="help">Editing needs a GitHub access key for this site. ' +
+        "Without one the page stays read-only." +
         "<ol>" +
           '<li>Open <code>github.com/settings/personal-access-tokens</code> ' +
             "and choose <strong>Generate new token</strong>.</li>" +
@@ -1160,39 +1179,44 @@ function editConnection(){
             "repositories</strong>, and choose <code>" + GH.repo + "</code>.</li>" +
           "<li>Under <strong>Repository permissions</strong> set " +
             "<strong>Contents</strong> to <strong>Read and write</strong>.</li>" +
-          "<li>Generate it, copy it, and paste it below.</li>" +
+          "<li>Give it an expiry date, generate it, and paste it below.</li>" +
         "</ol>" +
-        "It is kept in this browser only — never in the repository, never " +
-        "visible to students.</div>" +
+        "It is kept in this browser only — never in the repository, never sent " +
+        "to anyone else loading the page.</div>" +
         "<label>Access key</label>" +
         '<input type="password" data-f="key" autocomplete="off" ' +
         'placeholder="github_pat_…">',
-    saveLabel: on ? "Done" : "Connect",
+    saveLabel: ADMIN ? "Done" : "Unlock",
     onSave: async () => {
-      if(on){ Modal.close(); return; }
+      if(ADMIN){ Modal.close(); return; }
       const key = String(Modal.val("key")).trim();
       if(!key){ Modal.msg("Paste the key first.", "err"); return; }
       Modal.busy(true);
-      Modal.msg("Checking…");
+      Modal.msg("Checking with GitHub…");
       GH.key = key;
       try{
         await GH.verify();
-        Modal.msg("Connected. Your edits will publish from now on.", "ok");
-        renderEditBar();
+        ADMIN = true;
+        adminError = "";
+        Modal.msg("Unlocked. Your edits will publish from now on.", "ok");
+        refreshAll();
         setTimeout(() => Modal.close(), 1200);
       }catch(err){
         GH.key = "";
+        ADMIN = false;
         Modal.msg(err.message, "err");
       }finally{
         Modal.busy(false);
       }
     },
-    onRemove: on ? () => {
+    onRemove: ADMIN ? () => {
       GH.key = "";
-      renderEditBar();
+      ADMIN = false;
+      adminError = "";
+      refreshAll();
       Modal.close();
     } : null,
-    removeLabel: "Disconnect"
+    removeLabel: "Lock again"
   });
 }
 
@@ -1214,27 +1238,40 @@ function saveDraft(){
 
 function renderEditBar(){
   if(!EDIT) return;
+  const host = document.getElementById("editbar");
+
+  // Locked: ?edit=1 without a key GitHub accepts. No editing controls exist at
+  // all in this state, so there is nothing here for a student to use.
+  if(!ADMIN){
+    host.innerHTML =
+      '<div class="editbar">' +
+        "<strong>Editing is locked.</strong>" +
+        "This page can only be changed by someone holding an access key for the " +
+        "site. Everything below is read-only." +
+        (adminError ? '<div><br><span style="color:var(--bb-danger)">' +
+          esc(adminError) + "</span></div>" : "") +
+        '<div class="btns">' +
+          '<button type="button" id="connectBtn">Unlock editing</button>' +
+        "</div>" +
+      "</div>";
+    document.getElementById("connectBtn").onclick = editConnection;
+    return;
+  }
+
   const n = customCount();
   const a = announcements.length;
-  const on = GH.connected;
 
-  document.getElementById("editbar").innerHTML =
+  host.innerHTML =
     '<div class="editbar">' +
-      "<strong>Edit mode &mdash; students do not see this.</strong>" +
+      "<strong>Editing unlocked &mdash; students do not see this.</strong>" +
       "Click any FLEX day in the grid to change what it says. Use " +
       "<strong>+ Add announcement</strong> at the top for notices." +
-      "<div><br>" +
-        (on
-          ? "<strong>Publishing is on.</strong> Everything you save goes straight " +
-            "to the website; students see it about a minute later."
-          : "<strong>Publishing is off.</strong> Edits stay in this browser until " +
-            "you connect, or copy the JSON into the files yourself.") +
-      "</div>" +
+      "<div><br><strong>Everything you save publishes straight to the website;</strong> " +
+      "students see it about a minute later.</div>" +
       "<div><br>" + n + " custom label" + (n === 1 ? "" : "s") + " &middot; " +
         a + " announcement" + (a === 1 ? "" : "s") + ".</div>" +
       '<div class="btns">' +
-        '<button type="button" id="connectBtn"' + (on ? ' class="ghost"' : "") + ">" +
-          (on ? "Publishing connected ✓" : "Connect publishing") + "</button>" +
+        '<button type="button" class="ghost" id="connectBtn">Publishing connected ✓</button>' +
         '<button type="button" class="ghost" data-copy="labels">Copy labels</button>' +
         '<button type="button" class="ghost" data-copy="ann">Copy announcements</button>' +
         '<button type="button" class="ghost" id="clearJson">Clear all labels</button>' +
@@ -1470,15 +1507,18 @@ document.querySelectorAll(".chip").forEach(chip => {
 Modal.init();
 
 document.getElementById("announce").addEventListener("click", e => {
+  if(!ADMIN) return;
   const edit = e.target.closest("[data-ann-edit]");
   if(edit){ editAnnouncement(Number(edit.dataset.annEdit)); return; }
   const del = e.target.closest("[data-ann-del]");
   if(del) editAnnouncement(Number(del.dataset.annDel));
 });
-document.getElementById("addAnn").addEventListener("click", () => editAnnouncement(null));
+document.getElementById("addAnn").addEventListener("click", () => {
+  if(ADMIN) editAnnouncement(null);
+});
 
 document.getElementById("cal").addEventListener("click", e => {
-  if(!EDIT) return;
+  if(!ADMIN) return;
   const cell = e.target.closest(".cell.editable");
   if(cell) editDay(cell.dataset.date);
 });
@@ -1527,15 +1567,18 @@ const loadAnnouncements = fetch("announcements.json?ts=" + Date.now(), {cache:"n
   .catch(() => ({}));
 
 Promise.all([loadSchedule, loadOverrides, loadAnnouncements])
-  .then(([data, custom, ann]) => {
+  .then(async ([data, custom, ann]) => {
     overrides = {};
     Object.keys(custom || {}).forEach(k => {
       if(k !== "_comment") overrides[k] = custom[k];
     });
     announcements = Array.isArray(ann && ann.announcements) ? ann.announcements : [];
 
-    // In edit mode, pick up any work in progress from a previous sitting.
-    if(EDIT){
+    // Ask GitHub whether this browser may edit, before any editing UI exists.
+    ADMIN = await unlockAdmin();
+
+    // Only an unlocked editor keeps work in progress from a previous sitting.
+    if(ADMIN){
       try{
         const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
         Object.keys(draft).forEach(k => { overrides[k] = draft[k]; });
