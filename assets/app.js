@@ -154,7 +154,10 @@ function verifyToken(t){
     if(!r.ok) throw new Error("GitHub returned " + r.status + ".");
     return r.json();
   }).then(function(repo){
-    if(!repo.permissions || !repo.permissions.push){
+    // If GitHub reports no permissions object we can't tell what the token can
+    // do — let the save attempt surface the real error rather than refusing a
+    // token that would have worked fine.
+    if(repo.permissions && !repo.permissions.push){
       throw new Error("That token is read-only. It needs Contents: Read and write.");
     }
     return true;
