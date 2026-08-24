@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-08-24T01:58:56.939220+00:00",
+  "updated_at": "2026-08-24T03:17:21.792386+00:00",
   "assignments": [
     {
-      "id": "99350fc5-47b7-4f97-9ca2-ee9538a20d95",
+      "id": "7e78b255-0ca3-4ea8-a224-aebbe778c8f5",
       "title": "Theology 7 - 5: 8/25: HW Signed Syllabus, Bring Material (0.25)",
       "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-25",
@@ -13,7 +13,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "3ad26e02-5f48-4b35-91b0-e0545cc5d9e4",
+      "id": "2bc37652-ba8e-4f03-83bb-28960cee1ab9",
       "title": "Theology 7 - 6: 8/25: HW Signed Syllabus, Bring Material (0.25)",
       "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-25",
@@ -24,7 +24,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "7f55346d-c81d-4062-8695-39c596020437",
+      "id": "400130a7-f0cd-4fd4-9f99-58f05d7a506b",
       "title": "Theology 6 - 1: 8/26: HW Signed Syllabus, Bring Materials (0.25)",
       "description": "DUE WEDNESDAY AUGUST 26 AT START OF CLASS:  Students will PRINT and RETURN&#160;a signed hard-copy of the Syllabus signed by at least one parent/guardian.  NOTE: YOU ONLY HAVE TO SIGN THE LAST PAGE OF THE SYLLABUS   Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-26",
@@ -35,7 +35,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "be3ef0c2-7940-47dc-8082-59b70ebac255",
+      "id": "12cc4cdd-9298-4f2a-b823-6efffdb66ca5",
       "title": "Theology 6 - 3: 8/26: HW Signed Syllabus, Bring Materials (0.25)",
       "description": "DUE WEDNESDAY AUGUST 26 AT START OF CLASS:  Students will PRINT and RETURN&#160;a signed hard-copy of the Syllabus signed by at least one parent/guardian.  NOTE: YOU ONLY HAVE TO SIGN THE LAST PAGE OF THE SYLLABUS   Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-26",
@@ -46,7 +46,29 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "3b5f9172-c81c-4205-8538-c2965e383836",
+      "id": "778294e5-989c-4d1b-816a-5538e6c0b008",
+      "title": "Theology 6 - 1: 8/31: HW Beginning of Year Survey (0.25)",
+      "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
+      "due": "2026-08-28",
+      "end": "2026-08-29",
+      "url": "https://forms.gle/kJXov3dFNNbBMUdi9",
+      "location": "",
+      "categories": "podium, events",
+      "course": "Theology 6 - 1"
+    },
+    {
+      "id": "e857f424-48c4-429a-b60e-df6bf5858ca0",
+      "title": "Theology 6 - 3: 8/31: HW Beginning of Year Survey (0.25)",
+      "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
+      "due": "2026-08-28",
+      "end": "2026-08-29",
+      "url": "https://forms.gle/kJXov3dFNNbBMUdi9",
+      "location": "",
+      "categories": "podium, events",
+      "course": "Theology 6 - 3"
+    },
+    {
+      "id": "0189ea5e-04da-44da-9e57-0b14fd461099",
       "title": "Theology 7 - 5: 8/31: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due": "2026-08-31",
@@ -57,7 +79,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "1b2ec286-807c-40cb-8ef9-f7fc8059602d",
+      "id": "461d06ac-33e6-4f83-821e-9c98554ae311",
       "title": "Theology 7 - 6: 8/31: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due": "2026-08-31",
