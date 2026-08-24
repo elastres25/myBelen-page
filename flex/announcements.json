@@ -1,0 +1,21 @@
+{
+  "_comment": [
+    "Announcements shown at the top of the FLEX 7-1 page.",
+    "Each entry needs 'text'. Everything else is optional:",
+    "  title   a bold heading above the text",
+    "  posted  YYYY-MM-DD, shown as 'Posted Aug 22'",
+    "  until   YYYY-MM-DD, the last day it shows; it disappears by itself after that",
+    "  pinned  true to keep it at the top of the list",
+    "Leave the list empty and the whole section disappears.",
+    "This file is never touched by the daily refresh, so edits here stick."
+  ],
+  "announcements": [
+    {
+      "title": "Mass of the Holy Spirit is Monday",
+      "text": "We go straight to Our Lady of Belen Chapel at 1:15 instead of meeting in our room. Special Dress Uniform - shirt tucked in, tie on, blazer.",
+      "posted": "2026-08-22",
+      "until": "2026-08-24",
+      "pinned": true
+    }
+  ]
+}

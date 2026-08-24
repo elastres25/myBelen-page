@@ -1,0 +1,41 @@
+name: Update Blackbaud assignments
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests icalendar
+
+      - name: Fetch Blackbaud assignments
+        env:
+          BLACKBAUD_ICAL_URL: ${{ secrets.BLACKBAUD_ICAL_URL }}
+        run: python update_assignments.py
+
+      - name: Commit updated assignment data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assignments/assignments.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update Blackbaud assignments"
+            git push
+          fi

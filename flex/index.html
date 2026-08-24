@@ -1,0 +1,1640 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLEX 7-1 Schedule</title>
+<style>
+:root{
+  --bb-blue:#34495e;
+  --bb-link:#2f5f8f;
+  --bb-border:#d9dee3;
+  --bb-soft:#f7f8fa;
+  --bb-muted:#6f7c88;
+  --bb-gold:#b48a3b;
+  --bb-gold-soft:#fdf7ea;
+  --bb-danger:#a23a32;
+  --bb-green:#2f6b4f;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:var(--bb-blue);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+/* ---------- header ---------- */
+.header{
+  padding:0 0 10px 0;
+  border-bottom:1px solid var(--bb-border);
+}
+.header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+}
+.header p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:var(--bb-muted);
+}
+
+
+/* ---------- next up ---------- */
+.next{
+  margin:14px 0 0;
+  border:1px solid var(--bb-border);
+  border-left:4px solid var(--bb-link);
+  background:var(--bb-soft);
+  padding:12px 14px;
+}
+.next.is-mass{
+  border-left-color:var(--bb-gold);
+  background:var(--bb-gold-soft);
+}
+.next .kicker{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.next .when{
+  font-size:18px;
+  font-weight:700;
+  margin-top:2px;
+}
+.next .what{
+  font-size:13px;
+  margin-top:4px;
+  line-height:1.45;
+}
+.next .countdown{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:4px;
+}
+
+/* ---------- section headings ---------- */
+h2{
+  font-size:14px;
+  font-weight:700;
+  margin:22px 0 0;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--bb-border);
+}
+h2 .count{
+  font-weight:400;
+  color:var(--bb-muted);
+  font-size:12px;
+}
+
+/* ---------- mass cards ---------- */
+.masses{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.mass-card{
+  border:1px solid var(--bb-border);
+  border-top:3px solid var(--bb-gold);
+  background:var(--white);
+  padding:10px 12px;
+}
+.mass-card.past{opacity:.45}
+.mass-card .date{
+  font-size:13px;
+  font-weight:700;
+}
+.mass-card .title{
+  font-size:13px;
+  color:var(--bb-link);
+  font-weight:700;
+  margin-top:3px;
+  line-height:1.35;
+}
+.mass-card .sub{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:3px;
+  line-height:1.4;
+}
+
+/* ---------- announcements ---------- */
+.ann-item{
+  border:1px solid #cfdbe6;
+  border-left:4px solid var(--bb-link);
+  background:#f4f8fc;
+  padding:10px 12px;
+  margin-top:8px;
+}
+.ann-item.pinned{border-left-color:var(--bb-danger)}
+.ann-item.expired{opacity:.5}
+.ann-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--bb-blue);
+  margin-bottom:3px;
+}
+.ann-text{
+  font-size:13px;
+  line-height:1.5;
+  color:#42525f;
+  white-space:pre-wrap;
+}
+.ann-meta{
+  font-size:11px;
+  color:var(--bb-muted);
+  margin-top:5px;
+}
+.ann-item .badge.pin{background:var(--bb-danger);color:#fff}
+
+#addAnn{
+  font:inherit;
+  font-size:12px;
+  margin-top:8px;
+  padding:5px 11px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ---------- popup editor ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(20,30,40,.45);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:24px 12px;
+  overflow:auto;
+  z-index:9999;
+}
+.modal[hidden]{display:none}
+.modal-card{
+  background:#fff;
+  border:1px solid var(--bb-border);
+  box-shadow:0 8px 32px rgba(0,0,0,.25);
+  width:100%;
+  max-width:440px;
+  padding:16px 18px 14px;
+}
+.modal-card h4{
+  margin:0 0 2px;
+  font-size:16px;
+  color:var(--bb-blue);
+}
+.modal-card .sub{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-bottom:10px;
+}
+.modal-card label{
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  margin:10px 0 3px;
+}
+.modal-card input[type=text],
+.modal-card input[type=date],
+.modal-card input[type=password],
+.modal-card textarea,
+.modal-card select{
+  font:inherit;
+  font-size:14px;
+  width:100%;
+  padding:6px 8px;
+  border:1px solid var(--bb-border);
+  background:#fff;
+  color:var(--bb-blue);
+}
+.modal-card textarea{min-height:76px;line-height:1.45;resize:vertical}
+.modal-card .row{display:flex;gap:10px}
+.modal-card .row > div{flex:1;min-width:0}
+.modal-card .check{
+  margin-top:10px;
+  font-size:13px;
+  color:var(--bb-blue);
+}
+.modal-card .check input{margin-right:5px}
+.modal-actions{
+  margin-top:16px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.modal-actions button{
+  font:inherit;
+  font-size:13px;
+  padding:7px 14px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+.modal-actions button.ghost{background:#fff;color:var(--bb-link)}
+.modal-actions button.danger{border-color:var(--bb-danger);background:#fff;color:var(--bb-danger)}
+.modal-actions .spacer{flex:1}
+.modal-actions button[disabled]{opacity:.55;cursor:default}
+.modal-msg{
+  margin-top:10px;
+  font-size:12px;
+  line-height:1.45;
+  min-height:16px;
+}
+.modal-msg.err{color:var(--bb-danger)}
+.modal-msg.ok{color:var(--bb-green)}
+.modal-card .help{
+  font-size:12px;
+  line-height:1.5;
+  color:var(--bb-muted);
+}
+.modal-card .help ol{margin:6px 0 0;padding-left:18px}
+.modal-card .help li{margin-bottom:4px}
+.modal-card code{
+  background:var(--bb-soft);
+  padding:1px 4px;
+  font-size:12px;
+}
+
+/* editable affordances */
+.ann-row{position:relative}
+.ann-row .rowbtns{
+  margin-top:6px;
+  display:flex;
+  gap:6px;
+}
+.ann-row .rowbtns button{
+  font:inherit;
+  font-size:11px;
+  padding:3px 9px;
+  border:1px solid var(--bb-link);
+  background:#fff;
+  color:var(--bb-link);
+  cursor:pointer;
+}
+.ann-row .rowbtns button.danger{border-color:var(--bb-danger);color:var(--bb-danger)}
+
+/* ---------- month grid ---------- */
+.cal{margin-top:14px}
+.cal h3{
+  margin:0 0 4px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:3px;
+}
+.gh{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  text-align:center;
+  padding:1px 0 2px;
+}
+.cell{
+  min-height:50px;
+  border:1px solid var(--bb-border);
+  background:var(--bb-soft);
+  padding:3px 4px 4px;
+  overflow-wrap:anywhere;
+}
+.cell.blank{border:none;background:none;min-height:0}
+.cell .n{
+  font-size:11px;
+  font-weight:400;
+  color:#aab2ba;
+  line-height:1.1;
+}
+.cell .lbl{
+  margin-top:2px;
+  font-size:10px;
+  line-height:1.25;
+  color:var(--bb-muted);
+}
+.cell.flex{
+  background:var(--white);
+  border-color:#b9c6d4;
+}
+.cell.flex .n{color:var(--bb-blue);font-weight:700}
+.cell.flex .lbl{color:var(--bb-blue)}
+.cell.mass{
+  background:var(--bb-gold-soft);
+  border-color:var(--bb-gold);
+}
+.cell.mass .lbl{color:#7d5f22;font-weight:700}
+.cell.today{box-shadow:inset 0 0 0 2px var(--bb-green)}
+.cell.past{opacity:.5}
+.cell .dress{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--bb-danger);
+}
+.cell .warn{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  color:var(--bb-danger);
+}
+
+/* ---------- edit mode ---------- */
+.cell.editable{cursor:text}
+.cell.editable:hover{outline:1px dashed var(--bb-link)}
+.cell.custom .lbl::after{
+  content:"\2022";
+  color:var(--bb-link);
+  margin-left:3px;
+  font-weight:700;
+}
+.cell input{
+  font:inherit;
+  font-size:10px;
+  width:100%;
+  margin-top:2px;
+  border:1px solid var(--bb-link);
+  padding:1px 2px;
+}
+.editbar{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid var(--bb-link);
+  background:#eef4fa;
+  font-size:12px;
+  line-height:1.5;
+}
+.editbar strong{display:block;margin-bottom:2px}
+.editbar .btns{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.editbar button{
+  font:inherit;
+  font-size:12px;
+  padding:5px 11px;
+  border:1px solid var(--bb-link);
+  background:var(--bb-link);
+  color:#fff;
+  cursor:pointer;
+}
+.editbar button.ghost{background:#fff;color:var(--bb-link)}
+.editbar textarea{
+  font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:11px;
+  width:100%;
+  min-height:120px;
+  margin-top:8px;
+  padding:6px;
+  border:1px solid var(--bb-border);
+}
+
+@media (max-width:520px){
+  .cell{min-height:44px;padding:2px 3px}
+  .cell .n{font-size:10px}
+  .cell .lbl{font-size:9px;line-height:1.2}
+  .cell .dress,.cell .warn{font-size:8px}
+  .gh{font-size:9px}
+  .grid{gap:2px}
+}
+
+/* ---------- filters ---------- */
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:12px 0 0;
+}
+.chip{
+  font:inherit;
+  font-size:12px;
+  padding:5px 11px;
+  border:1px solid var(--bb-border);
+  background:var(--white);
+  color:var(--bb-blue);
+  border-radius:999px;
+  cursor:pointer;
+}
+.chip[aria-pressed="true"]{
+  background:var(--bb-blue);
+  border-color:var(--bb-blue);
+  color:var(--white);
+  font-weight:700;
+}
+
+/* ---------- day list ---------- */
+.month{
+  margin-top:16px;
+}
+.month h3{
+  margin:0 0 2px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.day{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:12px;
+  padding:10px 4px 10px 8px;
+  border-bottom:1px solid var(--bb-border);
+  border-left:3px solid transparent;
+  background:var(--white);
+}
+.day.mass{
+  border-left-color:var(--bb-gold);
+  background:var(--bb-gold-soft);
+}
+.day.today{
+  border-left-color:var(--bb-green);
+  background:#f2f8f4;
+}
+.day.past{
+  opacity:.45;
+}
+.day .dnum{
+  text-align:center;
+}
+.day .dow{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.day .dd{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.1;
+}
+.day .headline{
+  font-size:14px;
+  font-weight:700;
+  color:var(--bb-link);
+  line-height:1.35;
+}
+.day .headline.plain{
+  color:var(--bb-blue);
+  font-weight:400;
+}
+.day .line{
+  font-size:12px;
+  color:var(--bb-muted);
+  margin-top:3px;
+  line-height:1.45;
+}
+.day .extra{
+  font-size:12px;
+  margin-top:5px;
+  padding-top:5px;
+  border-top:1px dotted var(--bb-border);
+  line-height:1.45;
+}
+.badge{
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:2px 6px;
+  border-radius:3px;
+  vertical-align:2px;
+  margin-left:6px;
+}
+.badge.mass{background:var(--bb-gold);color:#fff}
+.badge.dress{background:#fff;color:var(--bb-danger);border:1px solid var(--bb-danger)}
+.badge.today{background:var(--bb-green);color:#fff}
+.note{
+  display:block;
+  font-size:12px;
+  color:var(--bb-danger);
+  margin-top:4px;
+}
+
+/* ---------- other events ---------- */
+.other{
+  margin-top:10px;
+  font-size:13px;
+}
+.other div{
+  padding:7px 4px;
+  border-bottom:1px solid var(--bb-border);
+  line-height:1.45;
+}
+.other .od{
+  font-weight:700;
+  margin-right:6px;
+}
+
+/* ---------- footer ---------- */
+.foot{
+  margin-top:20px;
+  padding-top:10px;
+  border-top:1px solid var(--bb-border);
+  font-size:11px;
+  color:var(--bb-muted);
+  line-height:1.6;
+}
+.toggle{
+  font:inherit;
+  font-size:12px;
+  background:none;
+  border:none;
+  color:var(--bb-link);
+  cursor:pointer;
+  padding:8px 0 0;
+  text-decoration:underline;
+}
+.empty,.error{
+  padding:16px 4px;
+  font-size:13px;
+  color:var(--bb-muted);
+}
+.error{color:var(--bb-danger)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <h1>FLEX 7-1 &mdash; Homeroom Schedule</h1>
+    <p id="subtitle">Loading&hellip;</p>
+  </div>
+
+  <h2 id="annHead" hidden>Announcements</h2>
+  <div id="announce"></div>
+  <button type="button" id="addAnn" hidden>+ Add announcement</button>
+
+  <div id="next"></div>
+
+  <h2>Semester at a Glance <span class="count" id="gridCount"></span></h2>
+  <div id="editbar"></div>
+  <div id="cal"></div>
+
+  <h2>Mass &amp; Reconciliation <span class="count" id="massCount"></span></h2>
+  <div class="masses" id="masses"></div>
+
+  <h2>Every FLEX Day <span class="count" id="dayCount"></span></h2>
+  <div class="filters">
+    <button class="chip" data-filter="all" aria-pressed="true">All days</button>
+    <button class="chip" data-filter="mass" aria-pressed="false">Mass &amp; Reconciliation</button>
+    <button class="chip" data-filter="event" aria-pressed="false">Anything scheduled</button>
+  </div>
+  <button class="toggle" id="pastToggle" hidden></button>
+  <div id="days"></div>
+
+  <h2 id="otherHead" hidden>Also on the Calendar <span class="count">outside the FLEX block</span></h2>
+  <div class="other" id="other"></div>
+
+  <div class="foot" id="foot"></div>
+
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h4 id="modalTitle"></h4>
+    <div class="sub" id="modalSub"></div>
+    <div id="modalBody"></div>
+    <div class="modal-actions">
+      <button type="button" id="modalSave">Save</button>
+      <button type="button" class="ghost" id="modalCancel">Cancel</button>
+      <span class="spacer"></span>
+      <button type="button" class="danger" id="modalRemove">Remove</button>
+    </div>
+    <div class="modal-msg" id="modalMsg"></div>
+  </div>
+</div>
+
+<script>
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => (
+  {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+));
+
+// Dates in the feed are plain YYYY-MM-DD. Parse them as local days so nothing
+// slips a day either side of midnight.
+function localDate(iso){
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+const TODAY = (() => { const t = new Date(); t.setHours(0,0,0,0); return t; })();
+
+const MONTHS = ["January","February","March","April","May","June",
+                "July","August","September","October","November","December"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+const isHoly = e => e.kind === "mass" || e.kind === "reconciliation";
+const holyOf = day => day.events.find(isHoly);
+
+// The feed titles a plain grade-level Mass just "Mass". Give it a name.
+function displayTitle(e){
+  if(!/^mass$/i.test(e.title)) return e.title;
+  return /6th|7th|8th|middle\s*school|\bms\b/i.test(e.audience || "")
+    ? "Middle School Mass" : "All-School Mass";
+}
+
+// Marks an entry taken from the Mass schedule document rather than the feed.
+const fromDoc = e => e.source === "mass-schedule-doc";
+
+function longDate(d){
+  return d.toLocaleDateString("en-US", {weekday:"long", month:"long", day:"numeric"});
+}
+
+function daysUntil(d){
+  const diff = Math.round((d - TODAY) / 86400000);
+  if(diff === 0) return "That's today.";
+  if(diff === 1) return "That's tomorrow.";
+  return "In " + diff + " days.";
+}
+
+/* ---------- custom labels ----------
+   overrides.json is a plain date -> {label, kind} map that the teacher edits.
+   It lives in its own file so the daily rebuild of schedule.json can't wipe it. */
+let overrides = {};
+
+// ?edit=1 only asks for the editor. ADMIN is what actually unlocks it, and it
+// is set only after GitHub confirms this browser holds a key that can write to
+// the repository. Anyone can put ?edit=1 on the URL; nobody without a verified
+// key gets an editing control, a draft of their own, or a way to publish.
+const EDIT = new URLSearchParams(location.search).has("edit");
+let ADMIN = false;
+let adminError = "";
+const DRAFT_KEY = "flex71-label-draft";
+
+async function unlockAdmin(){
+  adminError = "";
+  if(!EDIT || !GH.connected) return false;
+  try{
+    await GH.verify();
+    return true;
+  }catch(err){
+    GH.key = "";               // stale or revoked: make them connect again
+    adminError = err.message;
+    return false;
+  }
+}
+
+function iso(d){
+  return d.getFullYear() + "-" +
+    String(d.getMonth() + 1).padStart(2, "0") + "-" +
+    String(d.getDate()).padStart(2, "0");
+}
+
+// What a given FLEX day should say, and what colour it should be.
+function labelFor(day){
+  const o = overrides[day.date];
+  const holy = holyOf(day);
+  const first = day.events[0];
+  if(o && typeof o.label === "string" && o.label.trim()){
+    return {
+      text: o.label.trim(),
+      kind: o.kind || (holy ? holy.kind : first ? first.kind : "normal"),
+      custom: true,
+      dress: holy ? holy.dress : "",
+    };
+  }
+  if(holy) return {text: displayTitle(holy), kind: holy.kind, dress: holy.dress};
+  if(first) return {text: first.title, kind: first.kind, dress: first.dress};
+  return {text: "Normal", kind: "normal"};
+}
+
+/* ---------- publishing to the repo ----------
+   A static page can still write to its own repository: the GitHub Contents API
+   allows cross-origin calls, so with an access key held in this browser the
+   page can commit the JSON files itself. The key is never stored in the repo
+   and never leaves this device. Students load the page without one and get no
+   editing interface at all. */
+const GH = {
+  owner: "elastres25",
+  repo: "myBelen-page",
+  branch: "main",
+  KEY: "flex71-gh-key",
+
+  get key(){
+    try{ return localStorage.getItem(this.KEY) || ""; }catch(e){ return ""; }
+  },
+  set key(v){
+    try{
+      if(v) localStorage.setItem(this.KEY, v);
+      else localStorage.removeItem(this.KEY);
+    }catch(e){}
+  },
+  get connected(){ return Boolean(this.key); },
+
+  url(path){
+    return "https://api.github.com/repos/" + this.owner + "/" + this.repo +
+           "/contents/" + path;
+  },
+  head(){
+    return {
+      "Authorization": "Bearer " + this.key,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  },
+
+  // btoa handles latin-1 only, and these files carry accents and en dashes.
+  encode(text){
+    const bytes = new TextEncoder().encode(text);
+    let bin = "";
+    for(const b of bytes) bin += String.fromCharCode(b);
+    return btoa(bin);
+  },
+
+  async verify(){
+    const r = await fetch(this.url("flex/overrides.json") + "?ref=" + this.branch,
+                          {headers: this.head(), cache: "no-store"});
+    if(r.status === 401 || r.status === 403){
+      throw new Error("GitHub rejected that key. Check it grants Contents: " +
+                      "Read and write on this repository.");
+    }
+    if(r.status === 404) throw new Error("That key cannot see this repository.");
+    if(!r.ok) throw new Error("GitHub returned " + r.status + ".");
+    return true;
+  },
+
+  async sha(path){
+    const r = await fetch(this.url(path) + "?ref=" + this.branch,
+                          {headers: this.head(), cache: "no-store"});
+    if(r.status === 404) return null;              // file does not exist yet
+    if(!r.ok) throw new Error("Could not read " + path + " (" + r.status + ").");
+    return (await r.json()).sha;
+  },
+
+  async put(path, text, message){
+    const body = {message: message, content: this.encode(text), branch: this.branch};
+    const sha = await this.sha(path);
+    if(sha) body.sha = sha;
+
+    const send = () => fetch(this.url(path), {
+      method: "PUT",
+      headers: Object.assign({"Content-Type": "application/json"}, this.head()),
+      body: JSON.stringify(body)
+    });
+
+    let r = await send();
+    // Something else committed between our read and our write. Re-read, retry once.
+    if(r.status === 409){
+      const fresh = await this.sha(path);
+      if(fresh) body.sha = fresh;
+      r = await send();
+    }
+    if(r.status === 401 || r.status === 403){
+      throw new Error("GitHub refused the write. The key may have expired, or it " +
+                      "lacks Contents: Read and write.");
+    }
+    if(!r.ok){
+      let detail = "";
+      try{ detail = " " + ((await r.json()).message || ""); }catch(e){}
+      throw new Error("Save failed (" + r.status + ")." + detail);
+    }
+    return true;
+  }
+};
+
+/* ---------- popup ---------- */
+const Modal = {
+  el: null, onSave: null, onRemove: null,
+
+  init(){
+    this.el = document.getElementById("modal");
+    document.getElementById("modalCancel").addEventListener("click", () => this.close());
+    this.el.addEventListener("click", e => { if(e.target === this.el) this.close(); });
+    document.addEventListener("keydown", e => {
+      if(e.key === "Escape" && !this.el.hidden) this.close();
+    });
+    document.getElementById("modalSave").addEventListener("click", () => {
+      if(this.onSave) this.onSave();
+    });
+    document.getElementById("modalRemove").addEventListener("click", () => {
+      if(this.onRemove) this.onRemove();
+    });
+  },
+
+  open(opts){
+    document.getElementById("modalTitle").textContent = opts.title;
+    document.getElementById("modalSub").textContent = opts.sub || "";
+    document.getElementById("modalBody").innerHTML = opts.body;
+    document.getElementById("modalSave").textContent = opts.saveLabel || "Save";
+    document.getElementById("modalRemove").hidden = !opts.onRemove;
+    document.getElementById("modalRemove").textContent = opts.removeLabel || "Remove";
+    this.onSave = opts.onSave || null;
+    this.onRemove = opts.onRemove || null;
+    this.msg("");
+    this.busy(false);
+    this.el.hidden = false;
+    const first = this.el.querySelector("input,textarea,select");
+    if(first){ first.focus(); if(first.select) first.select(); }
+  },
+
+  close(){
+    this.el.hidden = true;
+    this.onSave = this.onRemove = null;
+  },
+
+  val(name){
+    const el = this.el.querySelector('[data-f="' + name + '"]');
+    if(!el) return "";
+    return el.type === "checkbox" ? el.checked : el.value;
+  },
+
+  msg(text, kind){
+    const m = document.getElementById("modalMsg");
+    m.textContent = text || "";
+    m.className = "modal-msg" + (kind ? " " + kind : "");
+  },
+
+  busy(on){
+    document.getElementById("modalSave").disabled = on;
+    document.getElementById("modalRemove").disabled = on;
+  }
+};
+
+/* Commit whichever file this edit touched, and say what actually happened. */
+async function publish(which){
+  const path = which === "ann" ? "flex/announcements.json" : "flex/overrides.json";
+  const text = which === "ann" ? announcementsJson() : overridesJson();
+
+  if(!ADMIN || !GH.connected){
+    Modal.msg("Editing is locked, so nothing was published.", "err");
+    return false;
+  }
+  Modal.busy(true);
+  Modal.msg("Publishing…");
+  try{
+    await GH.put(path, text, "Update FLEX 7-1 " +
+      (which === "ann" ? "announcements" : "day labels") + " from the page");
+    Modal.msg("Published. Students see it in about a minute, once the site rebuilds.", "ok");
+    setTimeout(() => Modal.close(), 1500);
+    return true;
+  }catch(err){
+    Modal.msg(err.message, "err");
+    return false;
+  }finally{
+    Modal.busy(false);
+  }
+}
+
+/* ---------- announcements ----------
+   announcements.json is a small list the teacher edits, in its own file so the
+   daily rebuild of schedule.json can't touch it. */
+let announcements = [];
+const ANN_DRAFT_KEY = "flex71-ann-draft";
+
+function annIsLive(a){
+  if(!a.until) return true;
+  return localDate(a.until) >= TODAY;
+}
+
+function annSorted(list){
+  return list.slice().sort((a, b) => {
+    if(Boolean(b.pinned) !== Boolean(a.pinned)) return b.pinned ? 1 : -1;
+    return String(b.posted || "").localeCompare(String(a.posted || ""));
+  });
+}
+
+function saveAnnDraft(){
+  try{ localStorage.setItem(ANN_DRAFT_KEY, JSON.stringify(announcements)); }catch(e){}
+}
+
+function announcementsJson(){
+  const clean = announcements
+    .filter(a => (a.text || "").trim() || (a.title || "").trim())
+    .map(a => {
+      const o = {};
+      if((a.title || "").trim()) o.title = a.title.trim();
+      o.text = (a.text || "").trim();
+      if(a.posted) o.posted = a.posted;
+      if(a.until)  o.until  = a.until;
+      if(a.pinned) o.pinned = true;
+      return o;
+    });
+  return JSON.stringify({announcements: clean}, null, 2);
+}
+
+function renderAnnouncements(){
+  const host = document.getElementById("announce");
+  const head = document.getElementById("annHead");
+  const add  = document.getElementById("addAnn");
+
+  if(ADMIN){
+    head.hidden = false;
+    add.hidden = false;
+    // Show them exactly as students will, with buttons that open the popup.
+    host.innerHTML = announcements.map((a, i) => {
+      const stale = !annIsLive(a);
+      return '<div class="ann-item ann-row' + (a.pinned ? " pinned" : "") +
+             (stale ? " expired" : "") + '">' +
+        (a.title ? '<div class="ann-title">' + esc(a.title) +
+          (a.pinned ? '<span class="badge pin">Important</span>' : "") + "</div>" : "") +
+        '<div class="ann-text">' + esc(a.text || "(empty)") + "</div>" +
+        '<div class="ann-meta">' +
+          (a.posted ? "Posted " + esc(localDate(a.posted).toLocaleDateString("en-US",
+              {month:"short", day:"numeric"})) : "") +
+          (a.until ? " &middot; hides after " + esc(localDate(a.until).toLocaleDateString("en-US",
+              {month:"short", day:"numeric"})) : "") +
+          (stale ? " &middot; expired, students no longer see this" : "") +
+        "</div>" +
+        '<div class="rowbtns">' +
+          '<button type="button" data-ann-edit="' + i + '">Edit</button>' +
+          '<button type="button" class="danger" data-ann-del="' + i + '">Remove</button>' +
+        "</div>" +
+      "</div>";
+    }).join("") || '<div class="empty">No announcements yet.</div>';
+    return;
+  }
+
+  const live = annSorted(announcements.filter(a => annIsLive(a) && (a.text || a.title)));
+  head.hidden = live.length === 0;
+  add.hidden = true;
+  host.innerHTML = live.map(a =>
+    '<div class="ann-item' + (a.pinned ? " pinned" : "") + '">' +
+      (a.title ? '<div class="ann-title">' + esc(a.title) +
+        (a.pinned ? '<span class="badge pin">Important</span>' : "") + "</div>" : "") +
+      '<div class="ann-text">' + esc(a.text || "") + "</div>" +
+      (a.posted ? '<div class="ann-meta">Posted ' +
+        esc(localDate(a.posted).toLocaleDateString("en-US",
+            {month:"short", day:"numeric"})) + "</div>" : "") +
+    "</div>"
+  ).join("");
+}
+
+/* ---------- month grid ---------- */
+function renderGrid(){
+  const byDate = new Map(allDays.map(d => [d.date, d]));
+  const start = localDate(SEMESTER.start);
+  const end   = localDate(SEMESTER.end);
+
+  const months = [];
+  for(let m = new Date(start.getFullYear(), start.getMonth(), 1); m <= end;
+      m = new Date(m.getFullYear(), m.getMonth() + 1, 1)){
+    months.push(m);
+  }
+
+  document.getElementById("cal").innerHTML = months.map(m => {
+    const y = m.getFullYear(), mo = m.getMonth();
+    const last = new Date(y, mo + 1, 0).getDate();
+    const cells = [];
+    let placed = false;
+
+    for(let n = 1; n <= last; n++){
+      const d = new Date(y, mo, n);
+      const w = d.getDay();
+      if(w === 0 || w === 6) continue;      // Mon-Fri only
+      if(!placed){                          // pad the first partial week
+        for(let i = 0; i < w - 1; i++) cells.push('<div class="cell blank"></div>');
+        placed = true;
+      }
+      cells.push(renderCell(d, byDate.get(iso(d)), start, end));
+    }
+
+    return '<div class="cal"><h3>' + MONTHS[mo] + " " + y + "</h3><div class=\"grid\">" +
+      ["Mon","Tue","Wed","Thu","Fri"].map(x => '<div class="gh">' + x + "</div>").join("") +
+      cells.join("") + "</div></div>";
+  }).join("");
+}
+
+function renderCell(d, day, start, end){
+  const key = iso(d);
+  const inTerm = d >= start && d <= end;
+  const cls = ["cell"];
+
+  if(!day){
+    if(!inTerm) cls.push("blank");
+    return '<div class="' + cls.join(" ") + '"' + (inTerm ? "" : ">") +
+      (inTerm ? ' data-date="' + key + '"><div class="n">' + d.getDate() + "</div>" : "") +
+      "</div>";
+  }
+
+  const info = labelFor(day);
+  cls.push("flex");
+  if(info.kind === "mass" || info.kind === "reconciliation") cls.push("mass");
+  if(d.getTime() === TODAY.getTime()) cls.push("today");
+  if(d < TODAY) cls.push("past");
+  if(info.custom) cls.push("custom");
+  if(ADMIN) cls.push("editable");
+
+  return '<div class="' + cls.join(" ") + '" data-date="' + key + '">' +
+    '<div class="n">' + d.getDate() + "</div>" +
+    '<div class="lbl">' + esc(info.text) + "</div>" +
+    (info.dress ? '<span class="dress">Special Dress</span>' : "") +
+    day.notes.map(() => '<span class="warn">&#9888; Early Release</span>').join("") +
+  "</div>";
+}
+
+/* ---------- edit mode ---------- */
+const KINDS = [
+  ["", "Keep as it is"],
+  ["normal", "Normal FLEX"],
+  ["activity", "Activity"],
+  ["assembly", "Assembly"],
+  ["mass", "Mass"],
+  ["reconciliation", "Reconciliation"]
+];
+
+function refreshAll(){
+  renderAnnouncements();
+  renderGrid();
+  renderDays();
+  renderEditBar();
+}
+
+// Click a day in the grid -> popup for what that day says.
+function editDay(date){
+  const day = allDays.find(x => x.date === date);
+  if(!day) return;
+  const d = localDate(date);
+  const o = overrides[date] || {};
+  const auto = labelFor(day);
+
+  Modal.open({
+    title: longDate(d),
+    sub: "FLEX 7-1 at " + day.time + (day.notes.length ? " — " + day.notes[0] : ""),
+    body:
+      "<label>What this day says</label>" +
+      '<input type="text" data-f="label" value="' + esc(o.label || "") +
+        '" placeholder="' + esc(auto.text) + '">' +
+      "<label>Colour</label>" +
+      '<select data-f="kind">' +
+        KINDS.map(k => '<option value="' + k[0] + '"' +
+          (String(o.kind || "") === k[0] ? " selected" : "") + ">" + k[1] + "</option>").join("") +
+      "</select>" +
+      '<div class="help" style="margin-top:10px">Leave the box empty to go back to ' +
+      "the automatic label (<strong>" + esc(auto.text) + "</strong>).</div>",
+    onSave: async () => {
+      const label = String(Modal.val("label")).trim();
+      const kind  = String(Modal.val("kind"));
+      if(label){
+        overrides[date] = {label: label};
+        if(kind) overrides[date].kind = kind;
+      }else{
+        delete overrides[date];
+      }
+      saveDraft();
+      refreshAll();
+      await publish("labels");
+    },
+    onRemove: Object.keys(o).length ? async () => {
+      delete overrides[date];
+      saveDraft();
+      refreshAll();
+      await publish("labels");
+    } : null,
+    removeLabel: "Reset to automatic"
+  });
+}
+
+// Add or change an announcement.
+function editAnnouncement(index){
+  const adding = index == null;
+  const a = adding
+    ? {title: "", text: "", posted: iso(TODAY), until: "", pinned: false}
+    : announcements[index];
+  if(!a) return;
+
+  Modal.open({
+    title: adding ? "New announcement" : "Edit announcement",
+    sub: "Shown at the top of the page for your class.",
+    body:
+      "<label>Heading (optional)</label>" +
+      '<input type="text" data-f="title" value="' + esc(a.title || "") + '">' +
+      "<label>Announcement</label>" +
+      '<textarea data-f="text" placeholder="What do they need to know?">' +
+        esc(a.text || "") + "</textarea>" +
+      '<div class="row">' +
+        "<div><label>Posted</label>" +
+          '<input type="date" data-f="posted" value="' + esc(a.posted || "") + '"></div>' +
+        "<div><label>Hide after</label>" +
+          '<input type="date" data-f="until" value="' + esc(a.until || "") + '"></div>' +
+      "</div>" +
+      '<div class="check"><label style="display:inline;text-transform:none;' +
+        'letter-spacing:0;font-size:13px;font-weight:400;color:var(--bb-blue)">' +
+        '<input type="checkbox" data-f="pinned"' + (a.pinned ? " checked" : "") +
+        "> Pin to the top and mark it Important</label></div>" +
+      '<div class="help" style="margin-top:10px">Leave <em>Hide after</em> blank ' +
+      "and it stays until you remove it.</div>",
+    saveLabel: adding ? "Add it" : "Save",
+    onSave: async () => {
+      const next = {
+        title:  String(Modal.val("title")).trim(),
+        text:   String(Modal.val("text")).trim(),
+        posted: String(Modal.val("posted")),
+        until:  String(Modal.val("until")),
+        pinned: Boolean(Modal.val("pinned"))
+      };
+      if(!next.text && !next.title){
+        Modal.msg("Type an announcement first.", "err");
+        return;
+      }
+      if(adding) announcements.unshift(next);
+      else announcements[index] = next;
+      saveAnnDraft();
+      refreshAll();
+      await publish("ann");
+    },
+    onRemove: adding ? null : async () => {
+      announcements.splice(index, 1);
+      saveAnnDraft();
+      refreshAll();
+      await publish("ann");
+    }
+  });
+}
+
+// One-time setup so the page can commit on your behalf. Until this succeeds
+// there is no editing interface, so this is also the lock on the whole editor.
+function editConnection(){
+  Modal.open({
+    title: ADMIN ? "Editing is unlocked" : "Unlock editing",
+    sub: ADMIN
+      ? "Edits you save go straight into the repository."
+      : "For the teacher who owns this site. Stored only in this browser.",
+    body: ADMIN
+      ? '<div class="help">This browser holds an access key for ' +
+        "<code>" + GH.owner + "/" + GH.repo + "</code>. Everything you save is " +
+        "committed automatically.<br><br>Lock it again if this is a shared or " +
+        "borrowed computer.</div>"
+      : '<div class="help">Editing needs a GitHub access key for this site. ' +
+        "Without one the page stays read-only." +
+        "<ol>" +
+          '<li>Open <code>github.com/settings/personal-access-tokens</code> ' +
+            "and choose <strong>Generate new token</strong>.</li>" +
+          "<li>Under <strong>Repository access</strong> pick <strong>Only select " +
+            "repositories</strong>, and choose <code>" + GH.repo + "</code>.</li>" +
+          "<li>Under <strong>Repository permissions</strong> set " +
+            "<strong>Contents</strong> to <strong>Read and write</strong>.</li>" +
+          "<li>Give it an expiry date, generate it, and paste it below.</li>" +
+        "</ol>" +
+        "It is kept in this browser only — never in the repository, never sent " +
+        "to anyone else loading the page.</div>" +
+        "<label>Access key</label>" +
+        '<input type="password" data-f="key" autocomplete="off" ' +
+        'placeholder="github_pat_…">',
+    saveLabel: ADMIN ? "Done" : "Unlock",
+    onSave: async () => {
+      if(ADMIN){ Modal.close(); return; }
+      const key = String(Modal.val("key")).trim();
+      if(!key){ Modal.msg("Paste the key first.", "err"); return; }
+      Modal.busy(true);
+      Modal.msg("Checking with GitHub…");
+      GH.key = key;
+      try{
+        await GH.verify();
+        ADMIN = true;
+        adminError = "";
+        Modal.msg("Unlocked. Your edits will publish from now on.", "ok");
+        refreshAll();
+        setTimeout(() => Modal.close(), 1200);
+      }catch(err){
+        GH.key = "";
+        ADMIN = false;
+        Modal.msg(err.message, "err");
+      }finally{
+        Modal.busy(false);
+      }
+    },
+    onRemove: ADMIN ? () => {
+      GH.key = "";
+      ADMIN = false;
+      adminError = "";
+      refreshAll();
+      Modal.close();
+    } : null,
+    removeLabel: "Lock again"
+  });
+}
+
+function customCount(){
+  return Object.keys(overrides).filter(k => k !== "_comment").length;
+}
+
+function overridesJson(){
+  const out = {};
+  Object.keys(overrides).sort().forEach(k => {
+    if(k !== "_comment") out[k] = overrides[k];
+  });
+  return JSON.stringify(out, null, 2);
+}
+
+function saveDraft(){
+  try{ localStorage.setItem(DRAFT_KEY, overridesJson()); }catch(e){}
+}
+
+function renderEditBar(){
+  if(!EDIT) return;
+  const host = document.getElementById("editbar");
+
+  // Locked: ?edit=1 without a key GitHub accepts. No editing controls exist at
+  // all in this state, so there is nothing here for a student to use.
+  if(!ADMIN){
+    host.innerHTML =
+      '<div class="editbar">' +
+        "<strong>Editing is locked.</strong>" +
+        "This page can only be changed by someone holding an access key for the " +
+        "site. Everything below is read-only." +
+        (adminError ? '<div><br><span style="color:var(--bb-danger)">' +
+          esc(adminError) + "</span></div>" : "") +
+        '<div class="btns">' +
+          '<button type="button" id="connectBtn">Unlock editing</button>' +
+        "</div>" +
+      "</div>";
+    document.getElementById("connectBtn").onclick = editConnection;
+    return;
+  }
+
+  const n = customCount();
+  const a = announcements.length;
+
+  host.innerHTML =
+    '<div class="editbar">' +
+      "<strong>Editing unlocked &mdash; students do not see this.</strong>" +
+      "Click any FLEX day in the grid to change what it says. Use " +
+      "<strong>+ Add announcement</strong> at the top for notices." +
+      "<div><br><strong>Everything you save publishes straight to the website;</strong> " +
+      "students see it about a minute later.</div>" +
+      "<div><br>" + n + " custom label" + (n === 1 ? "" : "s") + " &middot; " +
+        a + " announcement" + (a === 1 ? "" : "s") + ".</div>" +
+      '<div class="btns">' +
+        '<button type="button" class="ghost" id="connectBtn">Publishing connected ✓</button>' +
+        '<button type="button" class="ghost" data-copy="labels">Copy labels</button>' +
+        '<button type="button" class="ghost" data-copy="ann">Copy announcements</button>' +
+        '<button type="button" class="ghost" id="clearJson">Clear all labels</button>' +
+      "</div>" +
+      '<textarea id="jsonBox" hidden readonly></textarea>' +
+    "</div>";
+
+  document.getElementById("connectBtn").onclick = editConnection;
+
+  const box = document.getElementById("jsonBox");
+  document.querySelectorAll("[data-copy]").forEach(btn => {
+    btn.onclick = () => {
+      box.value = btn.dataset.copy === "ann" ? announcementsJson() : overridesJson();
+      box.hidden = false;
+      box.select();
+      try{ navigator.clipboard.writeText(box.value); }catch(e){}
+    };
+  });
+  document.getElementById("clearJson").onclick = async () => {
+    if(!confirm("Remove every custom label? Announcements are not affected.")) return;
+    overrides = {};
+    saveDraft();
+    refreshAll();
+    if(GH.connected){
+      try{
+        await GH.put("flex/overrides.json", overridesJson(),
+                     "Clear FLEX 7-1 day labels from the page");
+      }catch(err){ alert(err.message); }
+    }
+  };
+}
+
+/* ---------- next up ---------- */
+function renderNext(days){
+  const upcoming = days.filter(x => localDate(x.date) >= TODAY);
+  const box = document.getElementById("next");
+  if(!upcoming.length){
+    box.innerHTML = '<div class="next"><div class="kicker">All done</div>' +
+      '<div class="when">No FLEX days left this semester.</div></div>';
+    return;
+  }
+  const day = upcoming[0];
+  const d = localDate(day.date);
+  const holy = holyOf(day);
+  const headline = holy
+    ? displayTitle(holy) + (holy.audience ? " &mdash; " + esc(holy.audience) : "")
+    : (day.events[0] ? day.events[0].title : "Regular FLEX in our classroom");
+
+  const bits = [];
+  if(holy){
+    bits.push("<strong>" + esc(displayTitle(holy)) + "</strong>");
+    if(holy.location) bits.push(esc(holy.location));
+    bits.push("Starts " + esc(holy.time || day.time));
+    if(holy.dress) bits.push('<span class="badge dress">' + esc(holy.dress) + "</span>");
+  } else if(day.events.length){
+    day.events.forEach(e => {
+      bits.push("<strong>" + esc(e.title) + "</strong>" + (e.time ? " at " + esc(e.time) : ""));
+    });
+  } else {
+    bits.push("Regular FLEX in our classroom at " + esc(day.time) + ".");
+  }
+
+  box.innerHTML =
+    '<div class="next' + (holy ? " is-mass" : "") + '">' +
+      '<div class="kicker">' + (holy ? "Next Mass day" : "Next FLEX") + "</div>" +
+      '<div class="when">' + esc(longDate(d)) + "</div>" +
+      '<div class="what">' + bits.join(" &middot; ") + "</div>" +
+      '<div class="countdown">' + esc(daysUntil(d)) + "</div>" +
+    "</div>";
+}
+
+/* ---------- mass cards ---------- */
+function renderMasses(days, other){
+  const cards = [];
+
+  days.forEach(day => {
+    day.events.filter(isHoly).forEach(e => cards.push({date: day.date, ev: e, flex: true}));
+  });
+  other.filter(isHoly).forEach(e => cards.push({date: e.date, ev: e, flex: false}));
+
+  cards.sort((a, b) => a.date.localeCompare(b.date));
+
+  document.getElementById("massCount").textContent =
+    cards.length + " this semester";
+
+  document.getElementById("masses").innerHTML = cards.map(c => {
+    const d = localDate(c.date);
+    const past = d < TODAY;
+    const sub = [];
+    if(c.ev.audience) sub.push(esc(c.ev.audience));
+    if(c.ev.time) sub.push(esc(c.ev.time));
+    if(c.ev.location) sub.push(esc(c.ev.location));
+    return '<div class="mass-card' + (past ? " past" : "") + '">' +
+      '<div class="date">' + DOW[d.getDay()] + ", " +
+        MONTHS[d.getMonth()].slice(0,3) + " " + d.getDate() +
+        (c.flex ? "" : ' <span class="badge dress">Not our FLEX block</span>') + "</div>" +
+      '<div class="title">' + esc(displayTitle(c.ev)) +
+        (fromDoc(c.ev) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") + "</div>" +
+      '<div class="sub">' + sub.join(" &middot; ") +
+        (c.ev.dress ? '<br><span class="badge dress">' + esc(c.ev.dress) + "</span>" : "") +
+      "</div>" +
+    "</div>";
+  }).join("");
+}
+
+/* ---------- the full list ---------- */
+let allDays = [];
+let SEMESTER = {start: "", end: ""};
+let filter = "all";
+let showPast = false;
+
+function dayMatches(day){
+  if(filter === "mass")  return Boolean(holyOf(day));
+  if(filter === "event") return day.events.length > 0;
+  return true;
+}
+
+function renderDays(){
+  let list = allDays.filter(dayMatches);
+  const hiddenPast = list.filter(x => localDate(x.date) < TODAY).length;
+  if(!showPast) list = list.filter(x => localDate(x.date) >= TODAY);
+
+  const toggle = document.getElementById("pastToggle");
+  if(hiddenPast){
+    toggle.hidden = false;
+    toggle.textContent = showPast
+      ? "Hide the " + hiddenPast + " day" + (hiddenPast === 1 ? "" : "s") + " already past"
+      : "Show the " + hiddenPast + " day" + (hiddenPast === 1 ? "" : "s") + " already past";
+  } else {
+    toggle.hidden = true;
+  }
+
+  const host = document.getElementById("days");
+  if(!list.length){
+    host.innerHTML = '<div class="empty">Nothing matches that filter.</div>';
+    return;
+  }
+
+  // group by month
+  const groups = [];
+  list.forEach(day => {
+    const d = localDate(day.date);
+    const key = MONTHS[d.getMonth()] + " " + d.getFullYear();
+    if(!groups.length || groups[groups.length - 1].key !== key){
+      groups.push({key, days: []});
+    }
+    groups[groups.length - 1].days.push(day);
+  });
+
+  host.innerHTML = groups.map(g =>
+    '<div class="month"><h3>' + esc(g.key) + "</h3>" +
+    g.days.map(renderDay).join("") + "</div>"
+  ).join("");
+}
+
+function renderDay(day){
+  const d = localDate(day.date);
+  const past = d < TODAY;
+  const today = d.getTime() === TODAY.getTime();
+  const holy = holyOf(day);
+
+  const info = labelFor(day);
+  let headline, line;
+  if(holy){
+    headline = esc(info.text) +
+      (fromDoc(holy) ? ' <span title="From the Mass schedule document">&dagger;</span>' : "") +
+      '<span class="badge mass">' +
+      (holy.kind === "reconciliation" ? "Reconciliation" : "Mass") + "</span>" +
+      (holy.dress ? '<span class="badge dress">' + esc(holy.dress) + "</span>" : "");
+    const parts = [];
+    if(holy.audience) parts.push(esc(holy.audience));
+    if(holy.time) parts.push(esc(holy.time));
+    if(holy.location) parts.push(esc(holy.location));
+    line = parts.join(" &middot; ");
+  } else if(info.custom || day.events.length){
+    headline = esc(info.text);
+    line = "A day &middot; " + esc(day.time);
+  } else {
+    headline = '<span class="headline plain">FLEX in our classroom</span>';
+    line = "A day &middot; " + esc(day.time);
+  }
+  if(today) headline += '<span class="badge today">Today</span>';
+
+  const promoted = holy || (info.custom ? null : day.events[0]);
+  const rest = day.events.filter(e => e !== promoted).map(e =>
+    "<strong>" + esc(e.title) + "</strong>" +
+    (e.time ? " &middot; " + esc(e.time) : "") +
+    (e.location ? " &middot; " + esc(e.location) : "")
+  );
+
+  return '<div class="day' + (holy ? " mass" : "") + (today ? " today" : "") +
+           (past ? " past" : "") + '">' +
+    '<div class="dnum">' +
+      '<div class="dow">' + DOW[d.getDay()] + "</div>" +
+      '<div class="dd">' + d.getDate() + "</div>" +
+    "</div>" +
+    "<div>" +
+      '<div class="headline">' + headline + "</div>" +
+      '<div class="line">' + line + "</div>" +
+      (rest.length ? '<div class="extra">' + rest.join("<br>") + "</div>" : "") +
+      day.notes.map(n => '<span class="note">&#9888; ' + esc(n) + "</span>").join("") +
+    "</div>" +
+  "</div>";
+}
+
+/* ---------- other events ---------- */
+function renderOther(other){
+  const rows = other.filter(e => !isHoly(e) && localDate(e.date) >= TODAY);
+  if(!rows.length) return;
+  document.getElementById("otherHead").hidden = false;
+  document.getElementById("other").innerHTML = rows.map(e => {
+    const d = localDate(e.date);
+    const bits = [];
+    if(e.audience) bits.push(esc(e.audience));
+    if(e.time) bits.push(esc(e.time));
+    if(e.location) bits.push(esc(e.location));
+    return "<div><span class='od'>" + DOW[d.getDay()] + ", " +
+      MONTHS[d.getMonth()].slice(0,3) + " " + d.getDate() + "</span>" +
+      esc(e.title) + (bits.length ? ' <span style="color:var(--bb-muted)">&mdash; ' +
+      bits.join(" &middot; ") + "</span>" : "") + "</div>";
+  }).join("");
+}
+
+/* ---------- boot ---------- */
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    filter = chip.dataset.filter;
+    document.querySelectorAll(".chip").forEach(c =>
+      c.setAttribute("aria-pressed", String(c === chip)));
+    renderDays();
+  });
+});
+Modal.init();
+
+document.getElementById("announce").addEventListener("click", e => {
+  if(!ADMIN) return;
+  const edit = e.target.closest("[data-ann-edit]");
+  if(edit){ editAnnouncement(Number(edit.dataset.annEdit)); return; }
+  const del = e.target.closest("[data-ann-del]");
+  if(del) editAnnouncement(Number(del.dataset.annDel));
+});
+document.getElementById("addAnn").addEventListener("click", () => {
+  if(ADMIN) editAnnouncement(null);
+});
+
+document.getElementById("cal").addEventListener("click", e => {
+  if(!ADMIN) return;
+  const cell = e.target.closest(".cell.editable");
+  if(cell) editDay(cell.dataset.date);
+});
+document.getElementById("pastToggle").addEventListener("click", () => {
+  showPast = !showPast;
+  renderDays();
+});
+
+/* ---------- embedding ----------
+   The page is far taller than a typical content block, so tell a parent frame
+   how tall we are and let it size the iframe. Harmless when not embedded. */
+(function(){
+  if(window.parent === window) return;
+  const wrap = document.querySelector(".wrap");
+  if(!wrap) return;
+  let last = 0;
+  const report = () => {
+    // Measure the content, not the document. documentElement.scrollHeight is at
+    // least the viewport height, so reporting it makes the parent grow the frame,
+    // which grows the reported height, forever.
+    const h = Math.ceil(wrap.getBoundingClientRect().height);
+    if(Math.abs(h - last) > 1){
+      last = h;
+      window.parent.postMessage({flex71Height: h}, "*");
+    }
+  };
+  if(window.ResizeObserver) new ResizeObserver(report).observe(wrap);
+  window.addEventListener("load", report);
+  window.addEventListener("resize", report);
+})();
+
+const loadSchedule = fetch("schedule.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => {
+    if(!r.ok) throw new Error("Could not load the FLEX schedule.");
+    return r.json();
+  });
+
+// Custom labels and announcements are optional; a missing or malformed file
+// just means there are none.
+const loadOverrides = fetch("overrides.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => r.ok ? r.json() : {})
+  .catch(() => ({}));
+
+const loadAnnouncements = fetch("announcements.json?ts=" + Date.now(), {cache:"no-store"})
+  .then(r => r.ok ? r.json() : {})
+  .catch(() => ({}));
+
+Promise.all([loadSchedule, loadOverrides, loadAnnouncements])
+  .then(async ([data, custom, ann]) => {
+    overrides = {};
+    Object.keys(custom || {}).forEach(k => {
+      if(k !== "_comment") overrides[k] = custom[k];
+    });
+    announcements = Array.isArray(ann && ann.announcements) ? ann.announcements : [];
+
+    // Ask GitHub whether this browser may edit, before any editing UI exists.
+    ADMIN = await unlockAdmin();
+
+    // Only an unlocked editor keeps work in progress from a previous sitting.
+    if(ADMIN){
+      try{
+        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
+        Object.keys(draft).forEach(k => { overrides[k] = draft[k]; });
+      }catch(e){}
+      try{
+        const annDraft = JSON.parse(localStorage.getItem(ANN_DRAFT_KEY) || "null");
+        if(Array.isArray(annDraft)) announcements = annDraft;
+      }catch(e){}
+    }
+
+    allDays = Array.isArray(data.days) ? data.days : [];
+    const other = Array.isArray(data.other_events) ? data.other_events : [];
+
+    const start = localDate(data.semester.start);
+    const end   = localDate(data.semester.end);
+    document.getElementById("subtitle").innerHTML =
+      esc(data.semester.name) + " &middot; A days at " +
+      esc(allDays.length ? allDays[0].time : "1:15 PM") + " &middot; " +
+      allDays.length + " meetings from " +
+      esc(longDate(start)) + " through " + esc(longDate(end)) + ".";
+    document.getElementById("dayCount").textContent = allDays.length + " total";
+
+    SEMESTER = data.semester;
+    document.getElementById("gridCount").textContent =
+      allDays.length + " FLEX days, Mon\u2013Fri";
+
+    renderAnnouncements();
+    renderNext(allDays);
+    renderGrid();
+    renderEditBar();
+    renderMasses(allDays, other);
+    renderDays();
+    renderOther(other);
+
+    const foot = [];
+    foot.push("<strong>Mass days are highlighted in gold.</strong> " +
+      "On those days we go straight to Our Lady of Belen Chapel instead of meeting in our room. " +
+      "Watch for the <em>Special Dress Uniform</em> tag &mdash; that one is not optional.");
+    foot.push("Only Masses that include 7th grade are listed. Masses for other grades are left out on purpose.");
+    const docSourced = allDays.some(d => d.events.some(fromDoc)) || other.some(fromDoc);
+    if(docSourced){
+      foot.push("&dagger; Taken from the 2026-27 Mass and Reconciliation Service schedule. " +
+        "This one is not on the school's Blackbaud calendar yet, so double-check it closer to the date.");
+    }
+    if(data.updated_at){
+      const u = new Date(data.updated_at);
+      foot.push("Schedule last refreshed " + new Intl.DateTimeFormat("en-US",
+        {month:"short", day:"numeric", year:"numeric"}).format(u) + ".");
+    }
+    document.getElementById("foot").innerHTML = foot.map(p => "<p style='margin:0 0 6px'>" + p + "</p>").join("");
+  })
+  .catch(err => {
+    document.getElementById("subtitle").textContent = "";
+    document.getElementById("days").innerHTML =
+      '<div class="error">' + esc(err.message) + "</div>";
+  });
+</script>
+</body>
+</html>

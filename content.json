@@ -46,23 +46,23 @@
   ],
   "sections": {
     "heading": "Assignments",
-    "blurb": "Choose your section to see everything that's due in Blackbaud.",
+    "blurb": "Choose your section to see everything that's due.",
     "items": [
       {
         "label": "6-1",
-        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937428/0?svcid=edu"
+        "url": "assignments/theology6-1/"
       },
       {
         "label": "6-2",
-        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937441/0?svcid=edu"
+        "url": "assignments/theology6-3/"
       },
       {
         "label": "7-6",
-        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937457/0?svcid=edu"
+        "url": "assignments/theology7-5/"
       },
       {
         "label": "7-7",
-        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937448/0?svcid=edu"
+        "url": "assignments/theology7-6/"
       }
     ]
   },

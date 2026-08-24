@@ -36,9 +36,27 @@ function isBlackbaudUrl(url){
     return BLACKBAUD_HOSTS.some(function(re){ return re.test(h); });
   } catch(e){ return false; }
 }
-/* _top replaces the whole window; _blank opens a new tab beside Blackbaud. */
+/* Where a link should open:
+     ""      our own pages — stay in the frame, so the embed is never left
+     "_top"  Blackbaud — replace the whole window (it refuses to be framed)
+     "_blank" everything else — a new tab, leaving the class page in place  */
 function outboundTarget(url){
-  return isBlackbaudUrl(url) ? "_top" : "_blank";
+  var u = String(url || "").trim();
+  if(!u) return "_blank";
+  if(/^(mailto|tel):/i.test(u)) return "_blank";
+  try {
+    var a = new URL(u, location.href);
+    if(a.origin === location.origin) return "";
+    if(BLACKBAUD_HOSTS.some(function(re){ return re.test(a.hostname); })) return "_top";
+  } catch(e){}
+  return "_blank";
+}
+/* Apply that to an anchor, leaving target unset for same-site links. */
+function applyTarget(a, url){
+  var t = outboundTarget(url);
+  if(!t) return;
+  a.target = t;
+  if(t === "_blank") a.rel = "noopener";
 }
 
 var state = {
@@ -396,8 +414,7 @@ function renderQuickLinks(){
     if(item.kind === "url"){
       // Outside links open beside Blackbaud; Blackbaud's own pages take over.
       a.href = item.url || "#";
-      a.target = outboundTarget(item.url);
-      if(a.target === "_blank") a.rel = "noopener";
+      applyTarget(a, item.url);
     } else {
       // Internal sub-page: same frame, so it stays inside the embed.
       a.href = "page.html?p=" + encodeURIComponent(item.page || "");
@@ -515,8 +532,7 @@ function renderSections(){
 
     var a = el("a", "sectionbtn");
     a.href = item.url || "#";
-    a.target = outboundTarget(item.url);
-    if(a.target === "_blank") a.rel = "noopener";
+    applyTarget(a, item.url);
     if(state.editing) a.addEventListener("click", function(e){ e.preventDefault(); });
 
     a.appendChild(bind(el("span", "sname"), "sections.items." + i + ".label"));
@@ -658,8 +674,7 @@ function renderSub(){
         var li = el("li");
         var a = el("a", "filerow");
         a.href = item.url || "#";
-        a.target = outboundTarget(item.url);
-        if(a.target === "_blank") a.rel = "noopener";
+        applyTarget(a, item.url);
         if(state.editing) a.addEventListener("click", function(e){ e.preventDefault(); });
 
         a.appendChild(txt("span", "fileicon", fileKind(item.url)));
@@ -711,8 +726,7 @@ function renderSub(){
         a.href = item.url || "#";
         // A Blackbaud assignment link replaces the whole window, landing the
         // student on the real assignment page rather than in a dead frame.
-        a.target = outboundTarget(item.url);
-        if(a.target === "_blank") a.rel = "noopener";
+        applyTarget(a, item.url);
         if(state.editing) a.addEventListener("click", function(e){ e.preventDefault(); });
 
         a.appendChild(txt("span", "fileicon assign", "\u2713"));
