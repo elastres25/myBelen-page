@@ -322,3 +322,27 @@ body.editing .filerow{cursor:default}
   background:#fff4f4; border:1px solid #e8c6ca; border-radius:8px;
   color:#8c2f38; font-size:13px;
 }
+
+/* ---------------- ASSIGNMENTS ---------------- */
+.filerow.assignment{grid-template-columns:38px 1fr auto}
+.fileicon.assign{background:#e6edf7;color:#2f4a75;font-size:15px}
+.filerow .right{display:flex;align-items:center;gap:10px}
+.duebadge{
+  display:inline-block;
+  background:#fbefd6;
+  color:#8a5d12;
+  border:1px solid #ecd8ad;
+  border-radius:999px;
+  padding:4px 12px;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.duebadge:empty{display:none}
+body.editing .duebadge:empty{display:inline-block;min-width:70px}
+body.editing .duebadge:empty:before{content:"due date…";opacity:.55;font-weight:400}
+body.editing .fmeta:empty:before{content:"optional note…";opacity:.55}
+@media(max-width:560px){
+  .filerow.assignment{grid-template-columns:32px 1fr}
+  .filerow .right{grid-column:2;margin-top:6px}
+}

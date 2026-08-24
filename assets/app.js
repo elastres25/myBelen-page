@@ -20,6 +20,27 @@ var BRANCH = "main";                 // the branch GitHub Pages publishes
 var TOKEN_KEY = "t6_gh_token";
 var MAX_UPLOAD_MB = 20;
 
+/* Links that point back into your school's Blackbaud site — an assignment,
+   the gradebook — have to replace the whole browser window. Blackbaud refuses
+   to be displayed inside another page, so loading one in the embed gives a
+   blank box, and a new tab is wrong too because the destination IS Blackbaud.
+   Add your school's domain below if it isn't one of these. */
+var BLACKBAUD_HOSTS = [
+  /(^|\.)myschoolapp\.com$/i,
+  /(^|\.)blackbaud\.com$/i,
+  /(^|\.)oncampus\.[a-z.]+$/i
+];
+function isBlackbaudUrl(url){
+  try {
+    var h = new URL(url, location.href).hostname;
+    return BLACKBAUD_HOSTS.some(function(re){ return re.test(h); });
+  } catch(e){ return false; }
+}
+/* _top replaces the whole window; _blank opens a new tab beside Blackbaud. */
+function outboundTarget(url){
+  return isBlackbaudUrl(url) ? "_top" : "_blank";
+}
+
 var state = {
   mode: document.body.getAttribute("data-page"),  // "home" | "sub"
   slug: null,
@@ -365,10 +386,10 @@ function renderQuickLinks(){
     var a = el("a", "quick");
 
     if(item.kind === "url"){
-      // External link: new tab, so the Blackbaud page stays put behind it.
+      // Outside links open beside Blackbaud; Blackbaud's own pages take over.
       a.href = item.url || "#";
-      a.target = "_blank";
-      a.rel = "noopener";
+      a.target = outboundTarget(item.url);
+      if(a.target === "_blank") a.rel = "noopener";
     } else {
       // Internal sub-page: same frame, so it stays inside the embed.
       a.href = "page.html?p=" + encodeURIComponent(item.page || "");
@@ -568,8 +589,8 @@ function renderSub(){
         var li = el("li");
         var a = el("a", "filerow");
         a.href = item.url || "#";
-        a.target = "_blank";           // new tab — never yanks Blackbaud away
-        a.rel = "noopener";
+        a.target = outboundTarget(item.url);
+        if(a.target === "_blank") a.rel = "noopener";
         if(state.editing) a.addEventListener("click", function(e){ e.preventDefault(); });
 
         a.appendChild(txt("span", "fileicon", fileKind(item.url)));
@@ -612,6 +633,54 @@ function renderSub(){
       }
     }
 
+    else if(block.type === "assignments"){
+      var aul = el("ul", "filelist");
+      (block.items || []).forEach(function(item, j){
+        var base = "blocks." + i + ".items." + j;
+        var li = el("li");
+        var a = el("a", "filerow assignment");
+        a.href = item.url || "#";
+        // A Blackbaud assignment link replaces the whole window, landing the
+        // student on the real assignment page rather than in a dead frame.
+        a.target = outboundTarget(item.url);
+        if(a.target === "_blank") a.rel = "noopener";
+        if(state.editing) a.addEventListener("click", function(e){ e.preventDefault(); });
+
+        a.appendChild(txt("span", "fileicon assign", "\u2713"));
+        var amid = el("span");
+        amid.appendChild(bind(el("span", "fname"), base + ".title"));
+        amid.appendChild(bind(el("small", "fmeta"), base + ".note"));
+        a.appendChild(amid);
+
+        var right = el("span", "right");
+        right.appendChild(bind(el("span", "duebadge"), base + ".due"));
+        right.appendChild(txt("span", "go", "\u2197"));
+        a.appendChild(right);
+        li.appendChild(a);
+
+        if(state.editing){
+          li.appendChild(field("BLACKBAUD LINK", item.url,
+            "Paste the assignment's web address from Blackbaud",
+            function(v){ item.url = v; }));
+          li.appendChild(tools(block.items, j, renderSub));
+        }
+        aul.appendChild(li);
+      });
+      card.appendChild(aul);
+
+      if(!block.items.length && !state.editing){
+        card.appendChild(txt("p", "emptynote", "No assignments posted right now."));
+      }
+      if(state.editing){
+        var arow = el("div", "addrow");
+        arow.appendChild(addBtn("+ Add an assignment", function(){
+          block.items.push({ title:"New assignment", due:"", note:"", url:"" });
+          markDirty(); renderSub();
+        }));
+        card.appendChild(arow);
+      }
+    }
+
     else if(block.type === "image"){
       if(block.url){
         var img = el("img", "blockimg");
@@ -642,6 +711,10 @@ function renderSub(){
     }));
     add.appendChild(addBtn("+ Files & links section", function(){
       blocks.push({ type:"files", heading:"Documents", items:[] });
+      markDirty(); renderSub();
+    }));
+    add.appendChild(addBtn("+ Assignments section", function(){
+      blocks.push({ type:"assignments", heading:"Assignments", items:[] });
       markDirty(); renderSub();
     }));
     add.appendChild(addBtn("+ Picture", function(){

@@ -75,6 +75,49 @@ embedded frames, so the token can't be kept there. Always edit at the direct URL
 
 ---
 
+## Linking assignments to Blackbaud
+
+Add an **Assignments section** to any sub-page (**+ Assignments section** while editing).
+Each row takes a title, a due date, an optional note, and the assignment's Blackbaud link.
+Students click the row and land on the real Blackbaud assignment page.
+
+### Getting the link for an assignment
+
+1. In Blackbaud, open the assignment the way a student would see it
+2. Copy the whole web address out of your browser's address bar
+3. Paste it into the **BLACKBAUD LINK** box on the assignment row
+4. **Save to site**
+
+### Test it as a student before you rely on it
+
+This matters. Some Blackbaud links have a **user ID buried in them**, and a link copied
+from your teacher view can carry *your* ID — which either fails for students or drops them
+somewhere unhelpful. Before posting a batch, check one link from a student account or ask a
+student to try it. If it doesn't work for them, link to the class's general assignment list
+instead of to one specific assignment.
+
+### How assignment links behave
+
+Blackbaud won't display inside another page, so an assignment can't open in the embed —
+it would come up blank. These links **replace the whole browser window** instead, which
+puts the student on the assignment inside Blackbaud, where they already were. Recognizing
+a Blackbaud address is automatic; anything else (Google Drive, a website) still opens in a
+new tab so your class page stays put.
+
+Recognized automatically: `*.myschoolapp.com`, `*.blackbaud.com`, `*.oncampus.*`.
+If your school uses a different address, add it to `BLACKBAUD_HOSTS` near the top of
+`assets/app.js`.
+
+### Keeping the list current
+
+Assignments here are typed by you — they don't sync from Blackbaud automatically. Blackbaud
+does have an API that could pull them in, but it needs a login server and a secret key,
+neither of which a GitHub Pages site can hold safely. If you'd rather not maintain a second
+list, point a box straight at your class's Blackbaud assignment page and let that be the
+one source.
+
+---
+
 ## Files
 
 | Path | What it is |
