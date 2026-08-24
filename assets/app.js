@@ -332,6 +332,7 @@ function renderHome(){
 
   bindStatic();
   renderQuickLinks();
+  renderSections();
   renderAnnouncements();
   renderWeek();
   renderVision();
@@ -342,7 +343,7 @@ function renderHome(){
 
 function bindStatic(){
   Array.prototype.forEach.call(document.querySelectorAll("[data-bind]"), function(n){
-    if(n.closest("#quicklinks,#announcements,#weeklist,#vision,#blocks")) return;
+    if(n.closest("#quicklinks,#sections,#announcements,#weeklist,#vision,#blocks")) return;
     n.textContent = getPath(state.data, n.getAttribute("data-bind")) || "";
     if(state.editing) makeEditable(n, n.hasAttribute("data-multiline"));
   });
@@ -383,6 +384,10 @@ function renderQuickLinks(){
   var list = state.data.quicklinks || [];
 
   list.forEach(function(item, i){
+    // A box with no link yet stays hidden from students until it has one,
+    // so a half-finished box never shows up as a dead end.
+    if(!state.editing && item.kind === "url" && !String(item.url || "").trim()) return;
+
     var a = el("a", "quick");
 
     if(item.kind === "url"){
@@ -434,6 +439,10 @@ function renderQuickLinks(){
 
       if(item.kind === "url"){
         box.appendChild(field("LINK", item.url, "https://…  or  mailto:you@school.org", function(v){ item.url = v; }));
+        if(!String(item.url || "").trim()){
+          box.appendChild(txt("div", "editnote",
+            "Students can't see this box yet — it appears once you paste a link above."));
+        }
       } else {
         var note = el("div", "urlrow");
         note.appendChild(txt("label", "", "PAGE"));
@@ -475,6 +484,63 @@ function renderQuickLinks(){
         url: "", _new: true
       });
       markDirty(); renderQuickLinks();
+    }));
+    wrap.appendChild(add);
+  }
+}
+
+/* One button per class section, each opening that section's Blackbaud
+   assignment center. Nothing is copied from Blackbaud — this is a door to
+   the list Blackbaud already keeps, so it can never drift out of date. */
+function renderSections(){
+  var wrap = $("sections");
+  var card = $("sectionsCard");
+  if(!wrap || !card) return;
+
+  if(!state.data.sections){
+    state.data.sections = { heading:"Assignments", blurb:"", items:[] };
+  }
+  var list = state.data.sections.items || [];
+  wrap.innerHTML = "";
+
+  var usable = list.filter(function(x){ return String(x.url || "").trim(); });
+  // Hide the whole card from students until at least one link is filled in.
+  card.style.display = (!state.editing && !usable.length) ? "none" : "";
+
+  list.forEach(function(item, i){
+    if(!state.editing && !String(item.url || "").trim()) return;
+
+    var a = el("a", "sectionbtn");
+    a.href = item.url || "#";
+    a.target = outboundTarget(item.url);
+    if(a.target === "_blank") a.rel = "noopener";
+    if(state.editing) a.addEventListener("click", function(e){ e.preventDefault(); });
+
+    a.appendChild(bind(el("span", "sname"), "sections.items." + i + ".label"));
+    a.appendChild(txt("span", "sgo", "View assignments \u2192"));
+
+    if(state.editing){
+      var hold = el("div", "sectionedit");
+      hold.appendChild(a);
+      hold.appendChild(field("BLACKBAUD LINK", item.url,
+        "Paste this section's assignment-center address",
+        function(v){ item.url = v; }));
+      if(!String(item.url || "").trim()){
+        hold.appendChild(txt("div", "editnote",
+          "Students can't see this section yet — it appears once you paste its link."));
+      }
+      hold.appendChild(tools(list, i, renderSections, true));
+      wrap.appendChild(hold);
+    } else {
+      wrap.appendChild(a);
+    }
+  });
+
+  if(state.editing){
+    var add = el("div");
+    add.appendChild(addBtn("+ Add a section", function(){
+      list.push({ label:"New", url:"" });
+      markDirty(); renderSections();
     }));
     wrap.appendChild(add);
   }

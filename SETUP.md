@@ -75,46 +75,62 @@ embedded frames, so the token can't be kept there. Always edit at the direct URL
 
 ---
 
-## Linking assignments to Blackbaud
+## Assignments
 
-Add an **Assignments section** to any sub-page (**+ Assignments section** while editing).
-Each row takes a title, a due date, an optional note, and the assignment's Blackbaud link.
-Students click the row and land on the real Blackbaud assignment page.
+Your page does **not** keep a copy of your assignment list. It points at the one Blackbaud
+already maintains, so there is nothing to retype and it can never fall out of date.
 
-### Getting the link for an assignment
+Under the four boxes there's an **Assignments** card with one button per section — 6-1,
+6-2, 7-6, 7-7. A student taps their own section and lands in that course's Blackbaud
+assignment center. All four links are already filled in.
 
-1. In Blackbaud, open the assignment the way a student would see it
-2. Copy the whole web address out of your browser's address bar
-3. Paste it into the **BLACKBAUD LINK** box on the assignment row
-4. **Save to site**
+### Adding, renaming, or removing a section
 
-### Test it as a student before you rely on it
+While editing, each button has its own **BLACKBAUD LINK** field, plus ↑ ↓ and Delete.
+**+ Add a section** makes another. To get the link for a new section: open that course's
+assignment center in Blackbaud and copy the address bar. It looks like this, where the
+number is the course:
 
-This matters. Some Blackbaud links have a **user ID buried in them**, and a link copied
-from your teacher view can carry *your* ID — which either fails for students or drops them
-somewhere unhelpful. Before posting a batch, check one link from a student account or ask a
-student to try it. If it doesn't work for them, link to the class's general assignment list
-instead of to one specific assignment.
+```
+https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937428/0?svcid=edu
+                                                                      ^^^^^^^^
+```
 
-### How assignment links behave
+A section with no link yet is **hidden from students** rather than shown as a dead button,
+and the editor tells you so. If none of them have links, the whole card disappears.
 
-Blackbaud won't display inside another page, so an assignment can't open in the embed —
-it would come up blank. These links **replace the whole browser window** instead, which
-puts the student on the assignment inside Blackbaud, where they already were. Recognizing
-a Blackbaud address is automatic; anything else (Google Drive, a website) still opens in a
-new tab so your class page stays put.
+### Check it as a student once
 
-Recognized automatically: `*.myschoolapp.com`, `*.blackbaud.com`, `*.oncampus.*`.
-If your school uses a different address, add it to `BLACKBAUD_HOSTS` near the top of
-`assets/app.js`.
+These links carry a *course* ID, not a user ID, so they should work for anyone in that
+course. That's read off the URL's shape, though — not confirmed from a student account.
+Ask one student to tap their section before you rely on it.
 
-### Keeping the list current
+A student tapping someone else's section won't see anything useful, which is fine; they'll
+only ever tap their own.
 
-Assignments here are typed by you — they don't sync from Blackbaud automatically. Blackbaud
-does have an API that could pull them in, but it needs a login server and a secret key,
-neither of which a GitHub Pages site can hold safely. If you'd rather not maintain a second
-list, point a box straight at your class's Blackbaud assignment page and let that be the
-one source.
+### Why the buttons take over the whole window
+
+Blackbaud refuses to be displayed inside another page, so an assignment center opened
+inside your embed would come up blank. Blackbaud links therefore **replace the whole
+window**, landing the student in Blackbaud where they already were. This happens
+automatically for `*.myschoolapp.com`, `*.blackbaud.com`, and `*.oncampus.*`. Everything
+else — Google Drive, websites, uploaded PDFs — still opens in a new tab so your class page
+stays put.
+
+### If you ever want a typed list too
+
+Sub-pages support an **Assignments section** (**+ Assignments section** while editing) where
+you type a title, due date, note, and link per row. Handy for spotlighting two or three
+things — but you'd maintain it alongside Blackbaud, so the section buttons above are
+usually the better deal.
+
+### Why it can't pull assignments in automatically
+
+Reading assignments out of Blackbaud needs a password-like key. This site is public, so a
+student could read that key out of the page and reach far more than assignments. Browsers
+also block a page on `github.io` from reading data on `myschoolapp.com` outright. Real
+syncing would need a server running and maintained somewhere — a much bigger project than
+this page, and these buttons get you the same place in one tap.
 
 ---
 

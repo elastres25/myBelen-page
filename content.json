@@ -44,6 +44,28 @@
       "url": "mailto:elastres@belenjesuit.org"
     }
   ],
+  "sections": {
+    "heading": "Assignments",
+    "blurb": "Choose your section to see everything that's due in Blackbaud.",
+    "items": [
+      {
+        "label": "6-1",
+        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937428/0?svcid=edu"
+      },
+      {
+        "label": "6-2",
+        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937441/0?svcid=edu"
+      },
+      {
+        "label": "7-6",
+        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937457/0?svcid=edu"
+      },
+      {
+        "label": "7-7",
+        "url": "https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937448/0?svcid=edu"
+      }
+    ]
+  },
   "main": {
     "heading": "Today in Theology",
     "items": [
@@ -80,9 +102,18 @@
   "vision": {
     "heading": "Our Class Vision",
     "items": [
-      { "icon": "◎", "label": "Show Up Fully" },
-      { "icon": "♡", "label": "Grow in Community" },
-      { "icon": "▢", "label": "Engage in Openness" }
+      {
+        "icon": "◎",
+        "label": "Show Up Fully"
+      },
+      {
+        "icon": "♡",
+        "label": "Grow in Community"
+      },
+      {
+        "icon": "▢",
+        "label": "Engage in Openness"
+      }
     ]
   },
   "quote": "\"Find God in all things.\" — St. Ignatius of Loyola"
