@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-08-26T11:46:34.678241+00:00",
+  "updated_at": "2026-08-26T13:17:45.696182+00:00",
   "assignments": [
     {
-      "id": "86ad5c76-1137-4550-8d0b-8a86f0a1fbe6",
+      "id": "eef8cb71-fb20-415d-8d0f-10e8fab2ad56",
       "title": "Theology 7 - 5: 8/28: HW Journal Entry for Class on Thursday",
       "description": "Gentlemen, please respond to this journal entry for the beginning of class on Thursday.&#160; Answer with 3-5 sentences.&#160;Have the answer written down in your Class Notebook.  Prompt: As you begin 7th grade, what is one area in your life you want to grow this year&#8212;and how might that growth help you better serve others?",
       "due": "2026-08-25",
@@ -13,7 +13,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "0733ae1a-efed-443f-899a-83813bf2b810",
+      "id": "70a38c69-5fbf-4967-a12b-8a110bf71281",
       "title": "Theology 7 - 5: 8/25: HW Signed Syllabus, Bring Material (0.25)",
       "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-25",
@@ -24,18 +24,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "ca12c702-b45e-4d7e-a783-844ca8467dd5",
-      "title": "Theology 7 - 6: 8/25: HW Signed Syllabus, Bring Material (0.25)",
-      "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
-      "due": "2026-08-25",
-      "end": "2026-08-26",
-      "url": "",
-      "location": "",
-      "categories": "podium, events",
-      "course": "Theology 7 - 6"
-    },
-    {
-      "id": "31bf15c2-8011-4422-8fb4-d77233d15151",
+      "id": "1fb7aa5b-dd8c-430d-9c09-cb0e1205b50f",
       "title": "Theology 7 - 6: 8/28: HW Journal Entry for Class on Thursday",
       "description": "Gentlemen, please respond to this journal entry for the beginning of class on Thursday.&#160; Answer with 3-5 sentences.&#160;Have the answer written down in your Class Notebook.  Prompt: As you begin 7th grade, what is one area in your life you want to grow this year&#8212;and how might that growth help you better serve others?",
       "due": "2026-08-25",
@@ -46,7 +35,18 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "85655e3f-779a-4625-8a8c-bde2f62ce778",
+      "id": "d296cd4e-8c0c-4045-b8fb-67d23cdd96e4",
+      "title": "Theology 7 - 6: 8/25: HW Signed Syllabus, Bring Material (0.25)",
+      "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
+      "due": "2026-08-25",
+      "end": "2026-08-26",
+      "url": "",
+      "location": "",
+      "categories": "podium, events",
+      "course": "Theology 7 - 6"
+    },
+    {
+      "id": "96700fa4-6de9-4b52-bfb4-f706ba37c867",
       "title": "Theology 6 - 1: 8/26: HW Signed Syllabus, Bring Materials (0.25)",
       "description": "DUE WEDNESDAY AUGUST 26 AT START OF CLASS:  Students will PRINT and RETURN&#160;a signed hard-copy of the Syllabus signed by at least one parent/guardian.  NOTE: YOU ONLY HAVE TO SIGN THE LAST PAGE OF THE SYLLABUS   Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-26",
@@ -57,7 +57,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "40b46990-7526-4773-9c75-34ae3a42a427",
+      "id": "dbe7763b-14b7-4183-ad73-2110b32e3bb5",
       "title": "Theology 6 - 3: 8/26: HW Signed Syllabus, Bring Materials (0.25)",
       "description": "DUE WEDNESDAY AUGUST 26 AT START OF CLASS:  Students will PRINT and RETURN&#160;a signed hard-copy of the Syllabus signed by at least one parent/guardian.  NOTE: YOU ONLY HAVE TO SIGN THE LAST PAGE OF THE SYLLABUS   Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due": "2026-08-26",
@@ -68,7 +68,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "2c2a45c3-3b48-4b27-aab7-d50d1c8128d9",
+      "id": "c3c78855-68db-4859-acd6-b578261719cf",
       "title": "Theology 6 - 1: 8/31: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due": "2026-08-28",
@@ -79,7 +79,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "c8a6a664-ec78-4187-9469-0c6ee76c30fe",
+      "id": "7df7aac2-4eae-4386-b29e-b237f61e4886",
       "title": "Theology 6 - 3: 8/31: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due": "2026-08-28",
@@ -90,7 +90,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "e2f2fac5-ae8b-4f7e-8a9c-addaaded9136",
+      "id": "0134626a-b8bb-4220-879d-271412c9c51f",
       "title": "Theology 7 - 5: 8/31: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due": "2026-08-31",
@@ -101,7 +101,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "0693d9c7-c20a-4532-948d-c65662d30302",
+      "id": "a7bc3edf-7449-4bdc-9587-83cc6fa73eec",
       "title": "Theology 7 - 6: 8/31: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due": "2026-08-31",
