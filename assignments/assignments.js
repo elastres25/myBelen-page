@@ -282,8 +282,36 @@
       });
   }
 
+  /* ---------- embedding ----------
+     Same contract as the FLEX page: tell a parent frame how tall we are and let
+     it size the iframe. It matters more here — switching tabs or opening an
+     assignment changes the height, so a fixed frame would clip or leave a gap.
+     Harmless when the page isn't embedded. */
+  function reportHeight() {
+    if (window.parent === window) return;
+    var wrap = document.querySelector('.wrap');
+    if (!wrap) return;
+    var last = 0;
+    var report = function () {
+      // Measure the content, not the document: documentElement.scrollHeight is
+      // at least the viewport height, so reporting that makes the parent grow
+      // the frame, which grows the reported height, forever.
+      var h = Math.ceil(wrap.getBoundingClientRect().height);
+      if (Math.abs(h - last) > 1) {
+        last = h;
+        window.parent.postMessage({ assignmentsHeight: h }, '*');
+      }
+    };
+    if (window.ResizeObserver) new ResizeObserver(report).observe(wrap);
+    window.addEventListener('load', report);
+    window.addEventListener('resize', report);
+    // <details> opening doesn't resize .wrap's box in every engine, so nudge it.
+    document.addEventListener('toggle', report, true);
+  }
+
   global.Assignments = {
     mount: mount,
+    reportHeight: reportHeight,
     // exported for the test page
     _internals: { parseLocalDate: parseLocalDate, titleDueDate: titleDueDate, dueDateOf: dueDateOf, dueLabel: dueLabel, cleanTitle: cleanTitle }
   };
