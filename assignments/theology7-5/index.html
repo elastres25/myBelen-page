@@ -4,98 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Theology 7 — Section 5 Assignments</title>
-<style>
-:root{--bb-blue:#34495e;--bb-link:#2f5f8f;--bb-border:#d9dee3;--bb-soft:#f7f8fa;--bb-muted:#6f7c88;--bb-gold:#b48a3b;--bb-danger:#a23a32;}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:transparent;color:var(--bb-blue);font-family:Arial,Helvetica,sans-serif}
-.wrap{width:100%;padding:0}
-.header{padding:0 0 10px;border-bottom:1px solid var(--bb-border)}
-.header h1{margin:0;font-size:20px;color:var(--bb-blue)}
-.header p{margin:4px 0 0;font-size:12px;color:var(--bb-muted)}
-.assignment{border-bottom:1px solid var(--bb-border);background:#fff}
-.assignment summary{list-style:none;cursor:pointer;padding:14px 6px 14px 2px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
-.assignment summary::-webkit-details-marker{display:none}
-.title{color:var(--bb-link);font-size:15px;font-weight:700;line-height:1.3}
-.meta{display:flex;gap:8px 12px;flex-wrap:wrap;margin-top:4px;font-size:12px;color:var(--bb-muted)}
-.due{font-weight:700;color:var(--bb-blue)} .due.urgent{color:var(--bb-danger)}
-.chev{font-size:18px;color:#8a949e;transition:.15s} details[open] .chev{transform:rotate(90deg)}
-.details{background:var(--bb-soft);border-top:1px solid #edf0f2;padding:12px}
-.details h3{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--bb-gold)}
-.details p{margin:0;white-space:pre-wrap;font-size:13px;line-height:1.5;color:#465667}
-.empty,.error{padding:18px 2px;color:var(--bb-muted);font-size:13px}
-.footer{padding:8px 0 0;color:var(--bb-muted);font-size:11px}
-</style>
+<link rel="stylesheet" href="../assignments.css">
 </head>
 <body>
 <div class="wrap">
   <div class="header">
-    <h1>Upcoming Assignments</h1>
-    <p>Theology 7 — Section 5</p>
+    <h1>Assignments</h1>
+    <p>Theology 7 — Section 5 &middot; <span id="subtitle">loading…</span></p>
   </div>
-  <div id="list"></div>
+
+  <div id="tabs" class="tabs" role="tablist"></div>
+  <div id="list" class="list"></div>
   <div id="footer" class="footer"></div>
 </div>
+
+<script src="../assignments.js"></script>
 <script>
-const SECTION = 'Theology 7 - 5';
-const LIMIT = 6;
-const list = document.getElementById("list");
-const footer = document.getElementById("footer");
-
-function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function dueLabel(iso){
-  const d=new Date(iso+"T12:00:00");
-  const now=new Date();
-  const a=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  const b=new Date(d.getFullYear(),d.getMonth(),d.getDate());
-  const diff=Math.round((b-a)/86400000);
-  if(diff<0)return "Past due";
-  if(diff===0)return "Due today";
-  if(diff===1)return "Due tomorrow";
-  return "Due "+new Intl.DateTimeFormat("en-US",{weekday:"short",month:"short",day:"numeric"}).format(d);
-}
-function cleanTitle(title){
-  let t=String(title||"Assignment");
-  t=t.replace(/^\s*Theology\s*[67]\s*-\s*\d+\s*:\s*/i,"");
-  t=t.replace(/^\s*\d{1,2}\/\d{1,2}\s*:\s*/,"");
-  t=t.replace(/\s*\((\d+(?:\.\d+)?)\)\s*$/,"");
-  return t.trim();
-}
-function points(title){const m=String(title||"").match(/\((\d+(?:\.\d+)?)\)\s*$/);return m?m[1]+" pts":"";}
-
-fetch("../assignments.json?ts="+Date.now(),{cache:"no-store"})
-.then(r=>{if(!r.ok)throw new Error("Could not load assignments.");return r.json();})
-.then(data=>{
-  let items=(Array.isArray(data.assignments)?data.assignments:[])
-    .filter(x=>String(x.title||"").toLowerCase().startsWith(SECTION.toLowerCase()+":"))
-    .filter(x=>x.due)
-    .sort((a,b)=>new Date(a.due)-new Date(b.due))
-    .slice(0,LIMIT);
-
-  if(!items.length){list.innerHTML='<div class="empty">No upcoming assignments found for this section.</div>';return;}
-
-  list.innerHTML=items.map(x=>{
-    const dl=dueLabel(x.due);
-    const urgent=["Due today","Due tomorrow","Past due"].includes(dl)?" urgent":"";
-    const pt=points(x.title);
-    const desc=x.description||"No additional assignment details were included in the Blackbaud feed.";
-    return `<details class="assignment">
-      <summary>
-        <div>
-          <div class="title">${esc(cleanTitle(x.title))}</div>
-          <div class="meta"><span class="due${urgent}">${esc(dl)}</span>${pt?`<span>${esc(pt)}</span>`:""}</div>
-        </div>
-        <div class="chev">›</div>
-      </summary>
-      <div class="details"><h3>Assignment Details</h3><p>${esc(desc)}</p></div>
-    </details>`;
-  }).join("");
-
-  if(data.updated_at){
-    const u=new Date(data.updated_at);
-    footer.textContent="Updated "+new Intl.DateTimeFormat("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}).format(u)+".";
-  }
-})
-.catch(e=>list.innerHTML='<div class="error">'+esc(e.message)+'</div>');
+Assignments.mount({
+  dataUrl: '../assignments.json',
+  section: 'Theology 7 - 5',
+  showCourse: false,
+  limit: 6
+});
+Assignments.reportHeight();
 </script>
 </body>
 </html>
