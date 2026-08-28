@@ -1,5 +1,5 @@
 import os, json, re
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 import requests
 from icalendar import Calendar
@@ -19,6 +19,56 @@ def dt_to_iso(value):
     if hasattr(dt, "isoformat"):
         return dt.isoformat()
     return str(dt)
+
+def to_local_date(value):
+    """The calendar day an event falls on, as a plain date.
+
+    All-day assignments arrive as a `date`; timed ones as a tz-aware
+    `datetime`. Either way what matters is the school day, not the instant.
+    """
+    if value is None:
+        return None
+    dt = value.dt if hasattr(value, "dt") else value
+    if isinstance(dt, datetime):
+        return dt.date()
+    if isinstance(dt, date):
+        return dt
+    return None
+
+# "Theology 7 - 5: 8/28: HW Journal Entry" — the M/D the teacher typed.
+TITLE_DATE_RE = re.compile(r"(?:^|:)\s*(\d{1,2})/(\d{1,2})\s*:")
+
+def resolve_due(title, feed_date):
+    """The date an assignment is actually due.
+
+    Blackbaud's DTSTART is the date the work was ASSIGNED, which for anything
+    given out ahead of time is earlier than the due date. Teachers put the real
+    due date in the title ("8/28: HW Journal Entry for Class on Thursday" was
+    posted on 8/25), so trust that when it names a later day in the same term.
+    Only ever moves a due date later, never earlier, so nothing disappears from
+    the upcoming list before it should.
+    """
+    if feed_date is None:
+        return None
+    m = TITLE_DATE_RE.search(title or "")
+    if not m:
+        return feed_date
+
+    month, day = int(m.group(1)), int(m.group(2))
+    try:
+        candidate = date(feed_date.year, month, day)
+    except ValueError:
+        return feed_date
+
+    # Assigned in December, due in January — the year rolled over.
+    if (feed_date - candidate).days > 180:
+        try:
+            candidate = date(feed_date.year + 1, month, day)
+        except ValueError:
+            return feed_date
+
+    offset = (candidate - feed_date).days
+    return candidate if 0 <= offset <= 60 else feed_date
 
 def infer_course(event, title, description, categories):
     hay = f"{title}\n{description}"
@@ -82,10 +132,17 @@ for event in cal.walk("VEVENT"):
     if not due:
         continue
 
+    assigned_date = to_local_date(event.get("DTSTART"))
+    due_date = resolve_due(title, assigned_date)
+
     items.append({
         "id": clean_text(event.get("UID")),
         "title": title,
         "description": description,
+        # `due_date` / `assigned` are plain school days (YYYY-MM-DD) — the pages
+        # read these. `due` stays as the raw feed value for back-compat.
+        "due_date": due_date.isoformat() if due_date else None,
+        "assigned": assigned_date.isoformat() if assigned_date else None,
         "due": due,
         "end": dt_to_iso(event.get("DTEND")),
         "url": get_url(event),
@@ -94,7 +151,7 @@ for event in cal.walk("VEVENT"):
         "course": infer_course(event, title, description, categories),
     })
 
-items.sort(key=lambda x: x["due"] or "")
+items.sort(key=lambda x: (x["due_date"] or "", x["title"]))
 
 payload = {
     "updated_at": datetime.now(timezone.utc).isoformat(),
