@@ -123,6 +123,31 @@ and everything else (Google Drive, websites, uploaded PDFs) opens in a new tab.
 
 ---
 
+## The three bulletin-board sections
+
+Each Blackbaud board carries three embedded pages. All three size themselves to
+their content, and all three can sit on one board without interfering.
+
+| Section | Page | Who writes it |
+|---|---|---|
+| Assignments | `assignments/theology6-1/` etc. | Nobody — synced hourly from Blackbaud |
+| Agenda | `agenda/theology6/` or `theology7/` | You, per class day |
+| Current Unit | `units/theology6/` or `theology7/` | You, per unit |
+
+Agenda and units are **per grade**, not per section: 6-1 and 6-2 share the
+Theology 6 pages, 7-6 and 7-7 share Theology 7. Assignments stay per section
+because the feed is.
+
+Copy-paste embed snippets are in `agenda/README.md` and `units/README.md`.
+
+### Finishing a unit
+
+On the current-unit page with `?edit=1`, **Finish this unit & start a new one**
+moves it to that grade's Topics page — keeping everything in it, and filling in
+today as the end date — then leaves a blank unit ready for the next one.
+
+---
+
 ## Files
 
 | Path | What it is |
@@ -135,6 +160,9 @@ and everything else (Google Drive, websites, uploaded PDFs) opens in a new tab.
 | `assets/style.css` | All styling |
 | `assets/app.js` | Page rendering + the editor |
 | `assignments/` | Auto-synced assignment pages (do not hand-edit `assignments.json`) |
+| `agenda/` | Daily agenda, one page per grade — see `agenda/README.md` |
+| `units/` | Current Unit and Topics pages — see `units/README.md` |
+| `assets/gh-edit.js` | Shared unlock-and-save bar for the agenda and unit pages |
 | `flex/` | Flex-period schedule pages |
 | `update_assignments.py` | Run hourly by GitHub Actions to refresh the feed |
 

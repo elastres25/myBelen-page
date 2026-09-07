@@ -1,0 +1,31 @@
+{
+  "updated_at": "",
+  "grades": {
+    "theology6": {
+      "label": "Theology 6",
+      "current": {
+        "title": "",
+        "subtitle": "",
+        "start": "",
+        "end": "",
+        "summary": "",
+        "objectives": [],
+        "resources": []
+      },
+      "past": []
+    },
+    "theology7": {
+      "label": "Theology 7",
+      "current": {
+        "title": "",
+        "subtitle": "",
+        "start": "",
+        "end": "",
+        "summary": "",
+        "objectives": [],
+        "resources": []
+      },
+      "past": []
+    }
+  }
+}

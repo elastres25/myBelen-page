@@ -1,0 +1,210 @@
+/* Shared styling for the daily agenda pages. Like the assignments pages,
+   these are embedded in Blackbaud, so the background stays transparent and
+   the type matches Blackbaud's own. */
+:root{
+  --bb-blue:#34495e;
+  --bb-link:#2f5f8f;
+  --bb-border:#d9dee3;
+  --bb-soft:#f7f8fa;
+  --bb-muted:#6f7c88;
+  --bb-gold:#b48a3b;
+  --bb-danger:#a23a32;
+  --bb-ok:#2c6e49;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:var(--bb-blue);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.wrap{width:100%;margin:0;padding:0}
+
+.header{
+  padding:0 0 10px 0;
+  margin:0 0 12px 0;
+  border-bottom:1px solid var(--bb-border);
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.header h1{margin:0;font-size:20px;font-weight:700;color:var(--bb-blue)}
+.header .when{font-size:13px;font-weight:700;color:var(--bb-gold)}
+
+/* A banner shown when today has no entry and we're falling back. */
+.stale{
+  background:var(--bb-soft);
+  border:1px solid var(--bb-border);
+  border-left:3px solid var(--bb-gold);
+  border-radius:3px;
+  padding:8px 11px;
+  font-size:12px;
+  color:var(--bb-muted);
+  margin:0 0 12px;
+}
+
+.block{margin:0 0 16px}
+.block:last-child{margin-bottom:0}
+.block h2{
+  margin:0 0 8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+
+/* What we're doing today */
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:step}
+ol.steps li{
+  counter-increment:step;
+  position:relative;
+  padding:7px 0 7px 30px;
+  font-size:14px;
+  line-height:1.45;
+  border-top:1px solid var(--bb-border);
+}
+ol.steps li:first-child{border-top:none}
+ol.steps li:before{
+  content:counter(step);
+  position:absolute;
+  left:0;
+  top:7px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:var(--bb-soft);
+  border:1px solid var(--bb-border);
+  color:var(--bb-muted);
+  font-size:11px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Homework / what's due */
+.homework{
+  background:var(--bb-soft);
+  border:1px solid var(--bb-border);
+  border-left:3px solid var(--bb-link);
+  border-radius:3px;
+  padding:10px 12px;
+  font-size:14px;
+  line-height:1.5;
+  white-space:pre-wrap;
+}
+.homework.none{
+  border-left-color:var(--bb-ok);
+  color:var(--bb-muted);
+  font-style:italic;
+}
+
+.empty{
+  color:var(--bb-muted);
+  font-size:14px;
+  font-style:italic;
+  padding:6px 0;
+}
+
+/* Recent classes, for anyone who was out */
+details.recent{margin-top:16px;border-top:1px solid var(--bb-border);padding-top:10px}
+details.recent summary{
+  cursor:pointer;
+  font-size:12px;
+  font-weight:700;
+  color:var(--bb-link);
+  list-style:none;
+}
+details.recent summary::-webkit-details-marker{display:none}
+details.recent summary:before{content:"▸ ";font-size:11px}
+details.recent[open] summary:before{content:"▾ "}
+details.recent .day{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid var(--bb-border);
+}
+details.recent .day:first-of-type{border-top:none}
+details.recent .day h3{
+  margin:0 0 6px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--bb-blue);
+}
+details.recent ol.steps li{font-size:13px;padding-left:26px}
+details.recent .homework{font-size:13px}
+
+.footer{
+  margin-top:14px;
+  padding-top:8px;
+  border-top:1px solid var(--bb-border);
+  font-size:11px;
+  color:var(--bb-muted);
+}
+.footer a{color:var(--bb-link)}
+
+/* ---------------- editing ---------------- */
+.editpanel{
+  border:1px dashed var(--bb-gold);
+  border-radius:4px;
+  padding:12px;
+  margin:0 0 14px;
+  background:#fffdf6;
+}
+.editpanel .row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.editpanel label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+.editpanel input[type=date],
+.editpanel input[type=text],
+.editpanel textarea{
+  font:14px Arial,Helvetica,sans-serif;
+  color:var(--bb-blue);
+  border:1px solid var(--bb-border);
+  border-radius:3px;
+  padding:7px 9px;
+  background:var(--white);
+}
+.editpanel input[type=text]{flex:1 1 220px}
+.editpanel textarea{width:100%;min-height:70px;resize:vertical;line-height:1.5}
+.steprow{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+.steprow input{flex:1}
+.minibtn{
+  font:600 12px Arial,Helvetica,sans-serif;
+  border:1px solid var(--bb-border);
+  background:var(--white);
+  color:var(--bb-blue);
+  border-radius:3px;
+  padding:6px 10px;
+  cursor:pointer;
+}
+.minibtn:hover{background:var(--bb-soft)}
+.minibtn.del{color:var(--bb-danger);border-color:#e8c6ca}
+.minibtn:disabled{opacity:.4;cursor:not-allowed}
+.posted{margin-top:12px;font-size:12px}
+.posted h4{margin:0 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--bb-muted)}
+.posted ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.posted button{
+  font:600 12px Arial,Helvetica,sans-serif;
+  border:1px solid var(--bb-border);
+  background:var(--white);
+  border-radius:12px;
+  padding:4px 10px;
+  cursor:pointer;
+  color:var(--bb-link);
+}
+.posted button.on{background:var(--bb-blue);color:var(--white);border-color:var(--bb-blue)}

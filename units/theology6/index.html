@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Theology 6 — Current Unit</title>
+<link rel="stylesheet" href="../units.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1 id="heading">Current Unit</h1>
+    <span class="dates" id="dates"></span>
+  </div>
+  <div id="editor"></div>
+  <div id="body"></div>
+</div>
+<script src="../../assets/gh-edit.js"></script>
+<script src="../units.js"></script>
+<script>
+Units.mount({
+  grade: "theology6",
+  heading: "Theology 6 — Current Unit",
+  view: "current",
+  topicsUrl: "topics/"
+});
+Units.reportHeight();
+</script>
+</body>
+</html>

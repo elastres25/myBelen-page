@@ -1,0 +1,206 @@
+/* Shared styling for the Current Unit card and the Topics page. Embedded in
+   Blackbaud, so the background stays transparent and the type matches theirs. */
+:root{
+  --bb-blue:#34495e;
+  --bb-link:#2f5f8f;
+  --bb-border:#d9dee3;
+  --bb-soft:#f7f8fa;
+  --bb-muted:#6f7c88;
+  --bb-gold:#b48a3b;
+  --bb-danger:#a23a32;
+  --bb-ok:#2c6e49;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:var(--bb-blue);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.wrap{width:100%;margin:0;padding:0}
+
+.header{
+  padding:0 0 10px 0;
+  margin:0 0 12px 0;
+  border-bottom:1px solid var(--bb-border);
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.header h1{margin:0;font-size:20px;font-weight:700;color:var(--bb-blue)}
+.header .dates{font-size:13px;font-weight:700;color:var(--bb-gold)}
+
+.unit-title{
+  margin:0 0 2px;
+  font-size:22px;
+  font-weight:700;
+  color:var(--bb-blue);
+  line-height:1.25;
+}
+.unit-sub{margin:0 0 12px;font-size:14px;color:var(--bb-muted)}
+.unit-summary{
+  margin:0 0 16px;
+  font-size:14px;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+.block{margin:0 0 16px}
+.block:last-child{margin-bottom:0}
+.block h2{
+  margin:0 0 8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+
+ul.objectives{margin:0;padding:0;list-style:none}
+ul.objectives li{
+  position:relative;
+  padding:6px 0 6px 20px;
+  font-size:14px;
+  line-height:1.45;
+}
+ul.objectives li:before{
+  content:"";
+  position:absolute;
+  left:3px;
+  top:14px;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--bb-gold);
+}
+
+ul.resources{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+ul.resources a{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 11px;
+  background:var(--bb-soft);
+  border:1px solid var(--bb-border);
+  border-radius:3px;
+  text-decoration:none;
+  color:var(--bb-link);
+  font-size:14px;
+  font-weight:700;
+}
+ul.resources a:hover{border-color:var(--bb-gold);background:#fffdf7}
+ul.resources a .go{margin-left:auto;color:var(--bb-muted);font-weight:400}
+
+.pill{
+  display:inline-block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:10px;
+  background:var(--bb-soft);
+  border:1px solid var(--bb-border);
+  color:var(--bb-muted);
+}
+.pill.now{background:#f3f7f4;border-color:#c9dfd2;color:var(--bb-ok)}
+
+.empty{color:var(--bb-muted);font-size:14px;font-style:italic;padding:6px 0}
+
+.more{
+  margin-top:14px;
+  padding-top:10px;
+  border-top:1px solid var(--bb-border);
+  font-size:13px;
+}
+.more a{color:var(--bb-link);font-weight:700;text-decoration:none}
+.more a:hover{text-decoration:underline}
+
+/* ── Topics page ── */
+.topic{
+  border:1px solid var(--bb-border);
+  border-radius:4px;
+  margin-bottom:10px;
+  background:var(--white);
+}
+.topic > summary{
+  cursor:pointer;
+  padding:12px 14px;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.topic > summary::-webkit-details-marker{display:none}
+.topic > summary:before{content:"▸";color:var(--bb-muted);font-size:12px}
+.topic[open] > summary:before{content:"▾"}
+.topic > summary .t{font-size:15px;font-weight:700}
+.topic > summary .d{font-size:12px;color:var(--bb-muted);margin-left:auto}
+.topic .inner{padding:0 14px 14px 14px;border-top:1px solid var(--bb-border);padding-top:12px}
+
+/* ---------------- editing ---------------- */
+.editpanel{
+  border:1px dashed var(--bb-gold);
+  border-radius:4px;
+  padding:12px;
+  margin:0 0 14px;
+  background:#fffdf6;
+}
+.editpanel label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+  margin:10px 0 4px;
+}
+.editpanel label:first-child{margin-top:0}
+.editpanel input[type=text],
+.editpanel input[type=date],
+.editpanel textarea{
+  font:14px Arial,Helvetica,sans-serif;
+  color:var(--bb-blue);
+  border:1px solid var(--bb-border);
+  border-radius:3px;
+  padding:7px 9px;
+  background:var(--white);
+  width:100%;
+}
+.editpanel textarea{min-height:70px;resize:vertical;line-height:1.5}
+.editpanel .row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.editpanel .row > div{flex:1 1 150px}
+.itemrow{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+.itemrow input{flex:1}
+.minibtn{
+  font:600 12px Arial,Helvetica,sans-serif;
+  border:1px solid var(--bb-border);
+  background:var(--white);
+  color:var(--bb-blue);
+  border-radius:3px;
+  padding:6px 10px;
+  cursor:pointer;
+}
+.minibtn:hover{background:var(--bb-soft)}
+.minibtn.del{color:var(--bb-danger);border-color:#e8c6ca}
+.minibtn:disabled{opacity:.4;cursor:not-allowed}
+.archivebox{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--bb-border);
+}
+.archivebox p{margin:0 0 8px;font-size:12px;color:var(--bb-muted)}
+.archivebtn{
+  font:700 13px Arial,Helvetica,sans-serif;
+  border:0;
+  border-radius:4px;
+  padding:9px 14px;
+  cursor:pointer;
+  background:var(--bb-gold);
+  color:#131313;
+}
+.archivebtn:disabled{opacity:.45;cursor:not-allowed}
