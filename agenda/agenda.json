@@ -1,9 +1,16 @@
 {
-  "updated_at": "",
+  "updated_at": "2026-09-15T01:34:16.210Z",
   "grades": {
     "theology6": {
       "label": "Theology 6",
-      "days": {}
+      "days": {
+        "2026-09-14": {
+          "agenda": [
+            "Genesis 1: Creation, Human Dignity"
+          ],
+          "homework": "HW: Reread Genesis 1\nWhat does it mean to say human beings have a final end?\nWhat does Genesis 1 teach about the goodness of creation?\nHow should belief in the image of God affect the way we treat others?"
+        }
+      }
     },
     "theology7": {
       "label": "Theology 7",
