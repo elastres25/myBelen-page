@@ -1,0 +1,59 @@
+/* Chrome for the combined bulletin board.
+
+   The three sections are rendered by the same modules that power the
+   standalone pages, and this file loads after their stylesheets — so it
+   only supplies what holds them together: the section frames, their
+   titles, and the spacing between them. Nothing here restyles the
+   modules' own output. */
+
+.wrap{width:100%;margin:0;padding:0}
+
+h1#board-title{
+  margin:0 0 14px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  color:var(--bb-muted);
+}
+h1#board-title:empty{display:none}
+
+.boardsec{
+  border:1px solid var(--bb-border);
+  border-radius:5px;
+  background:var(--white);
+  padding:14px 16px;
+  margin:0 0 14px;
+}
+.boardsec:last-child{margin-bottom:0}
+
+/* Section title row. Deliberately not ".header" — the modules style that
+   class for their own standalone pages and we don't want to collide. */
+.sechead{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:0 0 9px;
+  margin:0 0 12px;
+  border-bottom:1px solid var(--bb-border);
+}
+.sechead h2{
+  margin:0;
+  font-size:17px;
+  font-weight:700;
+  color:var(--bb-blue);
+}
+.sechead .meta{font-size:12px;color:var(--bb-muted)}
+.sechead .when,
+.sechead .dates{font-size:13px;font-weight:700;color:var(--bb-gold)}
+
+/* The assignments module draws its own top border under the tabs; inside a
+   framed section that doubles up with .sechead's. */
+.boardsec .tabs{margin-top:-4px}
+.boardsec .footer{margin-bottom:0}
+
+@media(max-width:560px){
+  .boardsec{padding:12px}
+}

@@ -14,8 +14,15 @@
   var REPO_PATH = "units/units.json";
   var DATA = "../units.json";
 
-  var cfg = null;   // { grade, heading, view: "current" | "topics", data, topicsUrl, backUrl }
+  var cfg = null;   // { grade, heading, view, data, topicsUrl, backUrl, ids, manageBar }
   var data = null;
+  var dirty = false;
+
+  /* Element ids, overridable so several modules can share one page. */
+  var ids = { heading: "heading", dates: "dates", body: "body", editor: "editor" };
+  function node(which) { return document.getElementById(ids[which]); }
+
+  function touch() { dirty = true; GHEdit.markDirty(); }
 
   /* ---------------------------------------------------------- */
   /* dates — same local-parts rule as the assignments pages      */
@@ -127,8 +134,8 @@
 
   function renderCurrent() {
     var g = gradeData();
-    var body = document.getElementById("body");
-    var dates = document.getElementById("dates");
+    var body = node("body");
+    var dates = node("dates");
     body.innerHTML = "";
 
     if (!hasContent(g.current)) {
@@ -154,10 +161,10 @@
 
   function renderTopics() {
     var g = gradeData();
-    var body = document.getElementById("body");
-    var dates = document.getElementById("dates");
+    var body = node("body");
+    var dates = node("dates");
     body.innerHTML = "";
-    dates.textContent = "";
+    if (dates) dates.textContent = "";
 
     var any = false;
 
@@ -200,7 +207,7 @@
         onDelete: function () {
           if (!confirm("Delete “" + (unit.title || "this unit") + "” from Topics?")) return;
           gradeData().past.splice(pastIndex, 1);
-          GHEdit.markDirty();
+          touch();
           renderTopics();
         }
       }));
@@ -226,7 +233,7 @@
     i.type = type || "text";
     i.value = value || "";
     if (placeholder) i.placeholder = placeholder;
-    i.addEventListener("input", function () { onInput(i.value); GHEdit.markDirty(); });
+    i.addEventListener("input", function () { onInput(i.value); touch(); });
     wrap.appendChild(i);
     return wrap;
   }
@@ -257,7 +264,7 @@
     var ta = el("textarea");
     ta.value = unit.summary || "";
     ta.placeholder = "What this unit is about, in a few sentences.";
-    ta.addEventListener("input", function () { unit.summary = ta.value; GHEdit.markDirty(); });
+    ta.addEventListener("input", function () { unit.summary = ta.value; touch(); });
     panel.appendChild(ta);
 
     // objectives
@@ -268,26 +275,26 @@
       inp.type = "text";
       inp.value = o;
       inp.placeholder = "e.g. Explain what a covenant is";
-      inp.addEventListener("input", function () { unit.objectives[i] = inp.value; GHEdit.markDirty(); });
+      inp.addEventListener("input", function () { unit.objectives[i] = inp.value; touch(); });
       r.appendChild(inp);
       var up = mini("↑", "", function () {
         var t = unit.objectives[i - 1]; unit.objectives[i - 1] = unit.objectives[i]; unit.objectives[i] = t;
-        GHEdit.markDirty(); rerender();
+        touch(); rerender();
       });
       up.disabled = i === 0;
       var dn = mini("↓", "", function () {
         var t = unit.objectives[i + 1]; unit.objectives[i + 1] = unit.objectives[i]; unit.objectives[i] = t;
-        GHEdit.markDirty(); rerender();
+        touch(); rerender();
       });
       dn.disabled = i === unit.objectives.length - 1;
       r.appendChild(up); r.appendChild(dn);
       r.appendChild(mini("✕", "del", function () {
-        unit.objectives.splice(i, 1); GHEdit.markDirty(); rerender();
+        unit.objectives.splice(i, 1); touch(); rerender();
       }));
       panel.appendChild(r);
     });
     panel.appendChild(mini("+ Add a learning goal", "", function () {
-      unit.objectives.push(""); GHEdit.markDirty(); rerender();
+      unit.objectives.push(""); touch(); rerender();
     }));
 
     // resources
@@ -296,18 +303,18 @@
       var r = el("div", "itemrow");
       var l = el("input");
       l.type = "text"; l.value = res.label || ""; l.placeholder = "What it's called";
-      l.addEventListener("input", function () { res.label = l.value; GHEdit.markDirty(); });
+      l.addEventListener("input", function () { res.label = l.value; touch(); });
       var u = el("input");
       u.type = "text"; u.value = res.url || ""; u.placeholder = "https://…";
-      u.addEventListener("input", function () { res.url = u.value; GHEdit.markDirty(); });
+      u.addEventListener("input", function () { res.url = u.value; touch(); });
       r.appendChild(l); r.appendChild(u);
       r.appendChild(mini("✕", "del", function () {
-        unit.resources.splice(i, 1); GHEdit.markDirty(); rerender();
+        unit.resources.splice(i, 1); touch(); rerender();
       }));
       panel.appendChild(r);
     });
     panel.appendChild(mini("+ Add a link", "", function () {
-      unit.resources.push({ label: "", url: "" }); GHEdit.markDirty(); rerender();
+      unit.resources.push({ label: "", url: "" }); touch(); rerender();
     }));
 
     if (opts.onDelete) {
@@ -331,7 +338,7 @@
   }
 
   function renderEditor() {
-    var host = document.getElementById("editor");
+    var host = node("editor");
     if (!host) return;
     host.innerHTML = "";
 
@@ -357,7 +364,7 @@
         if (!(g2.current.end || "").trim()) g2.current.end = todayKey();
         g2.past.unshift(g2.current);
         g2.current = blankUnit();
-        GHEdit.markDirty();
+        touch();
         GHEdit.setMsg("Unit moved to Topics. Fill in the new one, then Save.", "");
         renderEditor();
         renderCurrent();
@@ -381,7 +388,7 @@
     g.past = g.past.map(tidy).filter(hasContent);
     data.updated_at = new Date().toISOString();
     return GHEdit.putJSON(REPO_PATH, data, "Update units for " + cfg.heading)
-      .then(function () { renderEditor(); });
+      .then(function () { dirty = false; renderEditor(); });
   }
 
   /* ---------------------------------------------------------- */
@@ -411,7 +418,9 @@
     cfg = options;
     cfg.view = options.view || "current";
     if (options.data) DATA = options.data;
-    document.getElementById("heading").textContent = options.heading;
+    if (options.ids) Object.keys(options.ids).forEach(function (k) { ids[k] = options.ids[k]; });
+    var h = node("heading");
+    if (h) h.textContent = options.heading;
 
     fetch(DATA + "?t=" + Date.now(), { cache: "no-store" })
       .then(function (r) {
@@ -422,15 +431,26 @@
       .then(function (json) {
         data = json && typeof json === "object" ? json : { grades: {} };
         if (cfg.view === "topics") renderTopics(); else renderCurrent();
-        GHEdit.init({
-          hint: cfg.view === "topics"
-            ? "Open a unit to edit it, then Save."
-            : "Edit the current unit, then Save.",
-          onUnlock: renderEditor,
-          onSave: save
-        });
+        // On a page that hosts several modules the host owns the bar instead.
+        if (cfg.manageBar !== false) {
+          GHEdit.init({
+            hint: cfg.view === "topics"
+              ? "Open a unit to edit it, then Save."
+              : "Edit the current unit, then Save.",
+            onUnlock: renderEditor,
+            onSave: save
+          });
+        } else if (typeof cfg.onReady === "function") {
+          cfg.onReady();
+        }
       });
   }
 
-  global.Units = { mount: mount, reportHeight: reportHeight };
+  global.Units = {
+    mount: mount,
+    reportHeight: reportHeight,
+    renderEditor: renderEditor,
+    save: save,
+    isDirty: function () { return dirty; }
+  };
 })(window);

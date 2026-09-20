@@ -123,28 +123,40 @@ and everything else (Google Drive, websites, uploaded PDFs) opens in a new tab.
 
 ---
 
-## The three bulletin-board sections
+## The bulletin board
 
-Each Blackbaud board carries three embedded pages. All three size themselves to
-their content, and all three can sit on one board without interfering.
+Each Blackbaud board carries **one** embed — `board/<your section>/` — holding
+assignments, today's agenda and the current unit together.
 
-| Section | Page | Who writes it |
-|---|---|---|
-| Assignments | `assignments/theology6-1/` etc. | Nobody — synced hourly from Blackbaud |
-| Agenda | `agenda/theology6/` or `theology7/` | You, per class day |
-| Current Unit | `units/theology6/` or `theology7/` | You, per unit |
+| Board | Paste on | Assignments | Agenda & unit |
+|---|---|---|---|
+| `board/6-1/` | 6-1 | Theology 6 - 1 | Theology 6 |
+| `board/6-2/` | 6-2 | Theology 6 - 3 | Theology 6 |
+| `board/7-6/` | 7-6 | Theology 7 - 5 | Theology 7 |
+| `board/7-7/` | 7-7 | Theology 7 - 6 | Theology 7 |
 
-Agenda and units are **per grade**, not per section: 6-1 and 6-2 share the
-Theology 6 pages, 7-6 and 7-7 share Theology 7. Assignments stay per section
-because the feed is.
+The copy-paste snippet is in `board/README.md`. Paste it once per board and you
+should not need to touch Blackbaud again.
 
-Copy-paste embed snippets are in `agenda/README.md` and `units/README.md`.
+### Updating everything from one page
+
+```
+https://elastres25.github.io/myBelen-page/board/7-7/?edit=1
+```
+
+Unlock once and the agenda and current unit are both editable there, under a
+single **Save to site**. Only the files you actually changed get written.
+
+Assignments are never typed — they sync from Blackbaud hourly.
+
+Agenda and unit are shared per grade, so editing on the 7-7 board also updates
+7-6, and 6-1 updates 6-2. **Two things to keep current, not eight.**
 
 ### Finishing a unit
 
-On the current-unit page with `?edit=1`, **Finish this unit & start a new one**
-moves it to that grade's Topics page — keeping everything in it, and filling in
-today as the end date — then leaves a blank unit ready for the next one.
+On the board (or `units/theology6/?edit=1`), **Finish this unit & start a new
+one** moves it to that grade's Topics page — keeping its contents, and filling
+in today as the end date — then leaves a blank unit ready for the next one.
 
 ---
 
@@ -160,6 +172,7 @@ today as the end date — then leaves a blank unit ready for the next one.
 | `assets/style.css` | All styling |
 | `assets/app.js` | Page rendering + the editor |
 | `assignments/` | Auto-synced assignment pages (do not hand-edit `assignments.json`) |
+| `board/` | The combined bulletin board, one page per section — see `board/README.md` |
 | `agenda/` | Daily agenda, one page per grade — see `agenda/README.md` |
 | `units/` | Current Unit and Topics pages — see `units/README.md` |
 | `assets/gh-edit.js` | Shared unlock-and-save bar for the agenda and unit pages |

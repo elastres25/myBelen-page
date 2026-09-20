@@ -10,9 +10,17 @@
   var REPO_PATH = "agenda/agenda.json";   // path used when committing
   var DATA = "../agenda.json";            // overridden per page if needed
 
-  var cfg = null;      // { grade, heading }
+  var cfg = null;      // { grade, heading, ids, manageBar }
   var data = null;     // the whole agenda.json
   var editDate = null; // which day the editor is on
+  var dirty = false;   // has anything changed since the last save
+
+  /* Element ids, overridable so several modules can share one page. */
+  var ids = { heading: "heading", when: "when", body: "body", editor: "editor" };
+  function node(which) { return document.getElementById(ids[which]); }
+
+  /* Mark this module's data dirty and tell the shared bar. */
+  function touch() { dirty = true; GHEdit.markDirty(); }
 
   /* ---------------------------------------------------------- */
   /* dates                                                       */
@@ -112,8 +120,8 @@
   }
 
   function render() {
-    var head = document.getElementById("when");
-    var body = document.getElementById("body");
+    var head = node("when");
+    var body = node("body");
     body.innerHTML = "";
 
     var shown = entryToShow();
@@ -171,7 +179,8 @@
   }
 
   function renderEditor() {
-    var host = document.getElementById("editor");
+    var host = node("editor");
+    if (!host) return;
     host.innerHTML = "";
     var panel = el("div", "editpanel");
     var entry = currentEntry();
@@ -203,32 +212,32 @@
       inp.placeholder = "e.g. Opening prayer";
       inp.addEventListener("input", function () {
         entry.agenda[i] = inp.value;
-        GHEdit.markDirty();
+        touch();
       });
       r.appendChild(inp);
 
       var up = mini("↑", "", function () {
         var t = entry.agenda[i - 1]; entry.agenda[i - 1] = entry.agenda[i]; entry.agenda[i] = t;
-        GHEdit.markDirty(); renderEditor(); render();
+        touch(); renderEditor(); render();
       });
       up.disabled = i === 0;
       var down = mini("↓", "", function () {
         var t = entry.agenda[i + 1]; entry.agenda[i + 1] = entry.agenda[i]; entry.agenda[i] = t;
-        GHEdit.markDirty(); renderEditor(); render();
+        touch(); renderEditor(); render();
       });
       down.disabled = i === entry.agenda.length - 1;
       r.appendChild(up);
       r.appendChild(down);
       r.appendChild(mini("✕", "del", function () {
         entry.agenda.splice(i, 1);
-        GHEdit.markDirty(); renderEditor(); render();
+        touch(); renderEditor(); render();
       }));
       list.appendChild(r);
     });
     panel.appendChild(list);
     panel.appendChild(mini("+ Add a step", "", function () {
       entry.agenda.push("");
-      GHEdit.markDirty(); renderEditor();
+      touch(); renderEditor();
     }));
 
     // homework
@@ -238,7 +247,7 @@
     ta.placeholder = "Leave blank if there's none. Line breaks are kept.";
     ta.addEventListener("input", function () {
       entry.homework = ta.value;
-      GHEdit.markDirty();
+      touch();
     });
     panel.appendChild(ta);
 
@@ -248,7 +257,7 @@
     tools.appendChild(mini("Clear this day", "del", function () {
       if (!confirm("Remove the agenda for " + longDate(editDate) + "?")) return;
       delete gradeData().days[editDate];
-      GHEdit.markDirty(); renderEditor(); render();
+      touch(); renderEditor(); render();
     }));
     panel.appendChild(tools);
 
@@ -297,7 +306,7 @@
     });
     data.updated_at = new Date().toISOString();
     return GHEdit.putJSON(REPO_PATH, data, "Update agenda for " + cfg.heading)
-      .then(function () { renderEditor(); render(); });
+      .then(function () { dirty = false; renderEditor(); render(); });
   }
 
   /* ---------------------------------------------------------- */
@@ -326,8 +335,10 @@
   function mount(options) {
     cfg = options;
     if (options.data) DATA = options.data;
+    if (options.ids) Object.keys(options.ids).forEach(function (k) { ids[k] = options.ids[k]; });
     editDate = todayKey();
-    document.getElementById("heading").textContent = options.heading;
+    var h = node("heading");
+    if (h) h.textContent = options.heading;
 
     fetch(DATA + "?t=" + Date.now(), { cache: "no-store" })
       .then(function (r) {
@@ -338,13 +349,25 @@
       .then(function (json) {
         data = json && typeof json === "object" ? json : { grades: {} };
         render();
-        GHEdit.init({
-          hint: "Pick a date, write the agenda, then Save.",
-          onUnlock: renderEditor,
-          onSave: save
-        });
+        // On a page that hosts several modules the host owns the bar instead.
+        if (cfg.manageBar !== false) {
+          GHEdit.init({
+            hint: "Pick a date, write the agenda, then Save.",
+            onUnlock: renderEditor,
+            onSave: save
+          });
+        } else if (typeof cfg.onReady === "function") {
+          cfg.onReady();
+        }
       });
   }
 
-  global.Agenda = { mount: mount, reportHeight: reportHeight };
+  global.Agenda = {
+    mount: mount,
+    reportHeight: reportHeight,
+    renderEditor: renderEditor,
+    render: render,
+    save: save,
+    isDirty: function () { return dirty; }
+  };
 })(window);

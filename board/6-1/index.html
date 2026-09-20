@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Theology 6-1 — Class Board</title>
+<!-- The modules' own stylesheets, so each section looks exactly like its
+     standalone page. board.css loads last and only adds the frames. -->
+<link rel="stylesheet" href="../../assignments/assignments.css">
+<link rel="stylesheet" href="../../agenda/agenda.css">
+<link rel="stylesheet" href="../../units/units.css">
+<link rel="stylesheet" href="../board.css">
+</head>
+<body>
+<div class="wrap">
+  <h1 id="board-title"></h1>
+
+  <section class="boardsec">
+    <div class="sechead">
+      <h2>Assignments</h2>
+      <span class="meta" id="as-subtitle"></span>
+    </div>
+    <div id="as-tabs" class="tabs" role="tablist"></div>
+    <div id="as-list" class="list"></div>
+    <div id="as-footer" class="footer"></div>
+  </section>
+
+  <section class="boardsec">
+    <div class="sechead">
+      <h2>Agenda</h2>
+      <span class="when" id="ag-when"></span>
+    </div>
+    <div id="ag-editor"></div>
+    <div id="ag-body"></div>
+  </section>
+
+  <section class="boardsec">
+    <div class="sechead">
+      <h2>Current Unit</h2>
+      <span class="dates" id="un-dates"></span>
+    </div>
+    <div id="un-editor"></div>
+    <div id="un-body"></div>
+  </section>
+</div>
+
+<script src="../../assets/gh-edit.js"></script>
+<script src="../../assignments/assignments.js"></script>
+<script src="../../agenda/agenda.js"></script>
+<script src="../../units/units.js"></script>
+<script src="../board.js"></script>
+<script>
+Board.mount({
+  section:    "Theology 6 - 1",
+  grade:      "theology6",
+  gradeLabel: "Theology 6",
+  title:      "Theology 6-1"
+});
+Board.reportHeight();
+</script>
+</body>
+</html>
