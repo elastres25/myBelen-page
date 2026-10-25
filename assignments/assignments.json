@@ -1,34 +1,8 @@
 {
-  "updated_at": "2026-10-25T11:34:19.767885+00:00",
+  "updated_at": "2026-10-25T16:24:46.850346+00:00",
   "assignments": [
     {
-      "id": "e659dffc-7147-40c3-8d47-5945bcf913fc",
-      "title": "Theology 7 - 5: 8/25: HW Signed Syllabus, Bring Material (0.25)",
-      "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
-      "due_date": "2026-08-25",
-      "assigned": "2026-08-25",
-      "due": "2026-08-25",
-      "end": "2026-08-26",
-      "url": "",
-      "location": "",
-      "categories": "podium, events",
-      "course": "Theology 7 - 5"
-    },
-    {
-      "id": "a1afca4c-f2c6-4ebf-8156-e35e2859b6ab",
-      "title": "Theology 7 - 6: 8/25: HW Signed Syllabus, Bring Material (0.25)",
-      "description": "DUE TUESDAY AUGUST 25 AT START OF CLASS:  Students will return a hard-copy Syllabus signed by at least one parent/guardian. Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
-      "due_date": "2026-08-25",
-      "assigned": "2026-08-25",
-      "due": "2026-08-25",
-      "end": "2026-08-26",
-      "url": "",
-      "location": "",
-      "categories": "podium, events",
-      "course": "Theology 7 - 6"
-    },
-    {
-      "id": "ffb1cc87-ef16-45bc-a94e-798e9126fdac",
+      "id": "dcf5a980-a3e6-485a-8fc1-52c7ac410b32",
       "title": "Theology 6 - 1: 8/26: HW Signed Syllabus, Bring Materials (0.25)",
       "description": "DUE WEDNESDAY AUGUST 26 AT START OF CLASS:  Students will PRINT and RETURN&#160;a signed hard-copy of the Syllabus signed by at least one parent/guardian.  NOTE: YOU ONLY HAVE TO SIGN THE LAST PAGE OF THE SYLLABUS   Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due_date": "2026-08-26",
@@ -41,7 +15,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "42ad498a-7243-4ebf-82d6-454e94e28aa6",
+      "id": "6c4784f8-3bb9-4992-8579-a3cad4b8e569",
       "title": "Theology 6 - 3: 8/26: HW Signed Syllabus, Bring Materials (0.25)",
       "description": "DUE WEDNESDAY AUGUST 26 AT START OF CLASS:  Students will PRINT and RETURN&#160;a signed hard-copy of the Syllabus signed by at least one parent/guardian.  NOTE: YOU ONLY HAVE TO SIGN THE LAST PAGE OF THE SYLLABUS   Students will have in-class ALL required materials for the course:  Class Notebook (Buy Here) *Any color is fine 2-Pocket Plastic Folder with Prongs&#160;",
       "due_date": "2026-08-26",
@@ -54,7 +28,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "72fc6853-9d65-4587-964f-d19a61f05377",
+      "id": "4a170b18-f310-480a-a714-afc7d8f30bd9",
       "title": "Theology 6 - 1: 8/28: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due_date": "2026-08-28",
@@ -67,7 +41,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "a76b6605-4c55-4336-9bde-5cfc009915fe",
+      "id": "9ede4436-00ca-49ee-96e8-c2daaee5d1fe",
       "title": "Theology 6 - 1: Weekly CW 8.24-8.28 (0.25)",
       "description": "Classwork Grade: Week of August 24-August 28",
       "due_date": "2026-08-28",
@@ -80,7 +54,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "b636fe31-7a51-47ea-837e-d58c37a1e595",
+      "id": "f7ee39b5-c328-4a33-b0ee-243a673ea4b0",
       "title": "Theology 6 - 3: 8/28: HW Beginning of Year Survey (0.25)",
       "description": "Please fill out this survey as completely as possible. This will help me get to know you and your faith life better.&#160; Due: Monday August 31, 2026 by Class Time  Here's the survey link: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due_date": "2026-08-28",
@@ -93,7 +67,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "2435c1c4-a226-4288-a082-f19c3b093cbd",
+      "id": "aa15d888-56ac-41ef-b385-cfe1cd0453bb",
       "title": "Theology 6 - 3: Weekly CW 8.24-8.28 (0.25)",
       "description": "Classwork Grade: Week of August 24-August 28",
       "due_date": "2026-08-28",
@@ -106,7 +80,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "e1dc893a-afc0-4882-89a7-88d37e6a9c0d",
+      "id": "0dcea7e6-8dbf-4fdd-929d-6393727a3cc5",
       "title": "Theology 7 - 5: Weekly CW 8.24-8.28 (0.25)",
       "description": "Classwork Grade: Week of August 24-August 28",
       "due_date": "2026-08-28",
@@ -119,7 +93,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "c11c6e9b-75f1-4d74-b259-0746868dab34",
+      "id": "5dad337d-2f16-49f6-8509-e34bc93f54c9",
       "title": "Theology 7 - 6: Weekly CW 8.24-8.28 (0.25)",
       "description": "Classwork Grade: Week of August 24-August 28",
       "due_date": "2026-08-28",
@@ -132,7 +106,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "70520e5b-6736-430a-baaf-4760fcf5c615",
+      "id": "d6230ae4-7e5e-4d7a-b17b-5dfa661d1336",
       "title": "Theology 7 - 5: 8/31: HW Beginning of Year Survey (0.25) CLICK HERE",
       "description": "Please fill out this survey by the beginning of class on Monday.&#160; You can find it here: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due_date": "2026-08-31",
@@ -145,7 +119,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "15318734-336c-4c16-91be-608520697f97",
+      "id": "8c4c9aa4-64d3-458b-b724-463387f11226",
       "title": "Theology 7 - 6: 8/31: HW Beginning of Year Survey (0.25) CLICK HERE",
       "description": "Please fill out this survey by the beginning of class on Monday.&#160; You can find it here: https://forms.gle/kJXov3dFNNbBMUdi9",
       "due_date": "2026-08-31",
@@ -158,7 +132,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "bc16f510-af91-4a7f-9794-0f25f4345960",
+      "id": "da105f19-99a7-4c86-ad5a-3e6541cfe4fc",
       "title": "Theology 6 - 1: Weekly CW 8.31-9.4 (0.25)",
       "description": "Participation and Classwork Week 9/1, 9/3",
       "due_date": "2026-09-04",
@@ -171,7 +145,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "50f4b367-605b-4bcd-a228-027b32153d68",
+      "id": "66a66d0c-0bb9-4400-912e-6e436d9eb2cc",
       "title": "Theology 6 - 3: Weekly CW 8.31-9.4 (0.25)",
       "description": "Participation and Classwork Week 9/1, 9/3",
       "due_date": "2026-09-04",
@@ -184,7 +158,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "b43d3277-0874-49fd-bff7-63673fe0d163",
+      "id": "167d079c-fc9f-482e-a9ce-8c3e72e526c3",
       "title": "Theology 7 - 5: Reflection 1 (1)",
       "description": "You will write this reflection on paper in your class notebook. You will take a picture of it and submit it to Showbie.  This unit has been about what a good life is, what morality is actually for, and what our choices are making us. Reflection Prompt: Now look at your own life as a 7th grader. Where do you notice these things in your own life? How do you think about the good life? What areas of your life do you struggle with vice or need to grow in virtue?  Writing Instructions: Your reflection should be at least 100 words. Do these three things.  Reflect on your life using the&#160;bolded prompt above. In your response, be sure to use&#160;three of the following words (the good life &#183; morality &#183; final end &#183; union with God &#183; virtue &#183; vice &#183; sin &#183; freedom) Be honest. Think deeply. This is for you.  How I grade it &#8212; four things, 4 points each. 16 points total.     &#160; 4 3 2 1&#8211;0     Your own life Answers the prompt with something specific from your actual life. I could picture it. Real, but stays general &#8212; no example I could point to. Mostly about people in general, or about the class instead of you. Doesn't answer the prompt.   The three words Three or more, used correctly, and they fit what you're describing. Three words, but one is used loosely. Only two, or two used correctly. Fewer than two, or used wrong.   Effort Full length. Answers the prompt with a real example and explains it. Reads like you actually thought about it before you wrote. Full length, but part of it is filler or repeats itself. Clearly short of 100 words, or one idea stretched to fill space. A few lines. Written on the way to class.   Grammar Complete sentences. Capitals and periods where they belong. Spelled correctly. Easy to read the first time. A few mistakes, but nothing that slows me down. Enough mistakes that I have to reread. Missing capitals or periods. Run-on sentences. Hard to read. No punctuation, or not in sentences.     You are not graded on how good your week was, or on how holy you sound. Only I read these.",
       "due_date": "2026-09-04",
@@ -197,7 +171,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "9c0ce78e-a355-4aaa-9f06-c88e7bcbadd3",
+      "id": "766e89ed-9be1-4e20-bfd1-3438d8495cd9",
       "title": "Theology 7 - 6: Reflection 1 (1)",
       "description": "You will write this reflection on paper in your class notebook. You will take a picture of it and submit it to Showbie.  This unit has been about what a good life is, what morality is actually for, and what our choices are making us. Reflection Prompt: Now look at your own life as a 7th grader. Where do you notice these things in your own life? How do you think about the good life? What areas of your life do you struggle with vice or need to grow in virtue?  Writing Instructions: Your reflection should be at least 100 words. Do these three things.  Reflect on your life using the&#160;bolded prompt above. In your response, be sure to use&#160;three of the following words (the good life &#183; morality &#183; final end &#183; union with God &#183; virtue &#183; vice &#183; sin &#183; freedom) Be honest. Think deeply. This is for you.  How I grade it &#8212; four things, 4 points each. 16 points total.     &#160; 4 3 2 1&#8211;0     Your own life Answers the prompt with something specific from your actual life. I could picture it. Real, but stays general &#8212; no example I could point to. Mostly about people in general, or about the class instead of you. Doesn't answer the prompt.   The three words Three or more, used correctly, and they fit what you're describing. Three words, but one is used loosely. Only two, or two used correctly. Fewer than two, or used wrong.   Effort Full length. Answers the prompt with a real example and explains it. Reads like you actually thought about it before you wrote. Full length, but part of it is filler or repeats itself. Clearly short of 100 words, or one idea stretched to fill space. A few lines. Written on the way to class.   Grammar Complete sentences. Capitals and periods where they belong. Spelled correctly. Easy to read the first time. A few mistakes, but nothing that slows me down. Enough mistakes that I have to reread. Missing capitals or periods. Run-on sentences. Hard to read. No punctuation, or not in sentences.     You are not graded on how good your week was, or on how holy you sound. Only I read these.",
       "due_date": "2026-09-04",
@@ -210,7 +184,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "32affc52-58d6-4aeb-8469-e90a232bd4ad",
+      "id": "b9747ffd-9b5f-4f2b-b868-bddce4e7d267",
       "title": "Theology 7 - 5: Weekly CW 8.31-9.4.26 (0.25)",
       "description": "",
       "due_date": "2026-09-06",
@@ -223,7 +197,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "3c20e2cc-b0f3-48da-9efd-4db5c2afe1d4",
+      "id": "b223cddb-7fce-42b6-b352-83fd5bb6ea27",
       "title": "Theology 7 - 6: Weekly CW 8.31-9.4.26 (0.25)",
       "description": "",
       "due_date": "2026-09-09",
@@ -236,7 +210,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "b466b487-28d5-4a8d-a27c-2d572abcb815",
+      "id": "f302a13f-9da1-4850-82e0-e6c06f11b0e9",
       "title": "Theology 6 - 1: Quiz Unit 1 (2)",
       "description": "",
       "due_date": "2026-09-10",
@@ -249,7 +223,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "2b8d7998-c9a4-44a0-926d-abe73634bba2",
+      "id": "235932ef-798d-4781-b778-89fefef56285",
       "title": "Theology 6 - 3: Quiz Unit 1 (2)",
       "description": "",
       "due_date": "2026-09-10",
@@ -262,7 +236,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "a05d980e-452b-4cef-8e0a-2182c0de3266",
+      "id": "1a8905b1-cd6d-49a2-88df-9d7b8f11f596",
       "title": "Theology 7 - 5: Quiz Unit 1",
       "description": "",
       "due_date": "2026-09-11",
@@ -275,7 +249,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "370ea581-0f71-45f7-8653-3dba6af98d00",
+      "id": "8eba4281-3871-4c7d-b74c-2f371dc84c75",
       "title": "Theology 7 - 6: Quiz Unit 1",
       "description": "",
       "due_date": "2026-09-11",
@@ -288,7 +262,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "ae7768ff-61d3-4c33-a841-5fffe68d5051",
+      "id": "af66c7d8-fee2-4a2d-b32e-af3157fd433f",
       "title": "Theology 6 - 1: Weekly CW 9.8-9.11 (0.25)",
       "description": "",
       "due_date": "2026-09-13",
@@ -301,7 +275,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "8fe1f9e6-68a4-4f91-9cd0-d05f5a1c77c0",
+      "id": "338d2168-d96b-4810-a060-4096f24dcd0d",
       "title": "Theology 6 - 3: Weekly CW 9.8-9.11 (0.25)",
       "description": "",
       "due_date": "2026-09-13",
@@ -314,7 +288,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "61d9850f-8c6f-4928-8563-04cd91f19d4d",
+      "id": "c32027cd-163d-4157-8c21-10b67d84b8f3",
       "title": "Theology 7 - 5: Weekly CW 9.8-9.11 (0.25)",
       "description": "",
       "due_date": "2026-09-13",
@@ -327,7 +301,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "a7d54952-608a-465b-a7ba-83114ec49b82",
+      "id": "e5e0fca8-867a-4595-8f85-31ec56c82cc2",
       "title": "Theology 7 - 6: Weekly CW 9.8-9.11 (0.25)",
       "description": "",
       "due_date": "2026-09-13",
@@ -340,7 +314,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "fa1e97c5-26e4-4f76-a075-205b75c4e757",
+      "id": "6c2fc298-d04a-4804-be1f-9782b28fbce5",
       "title": "Theology 6 - 1: 9/14: HW Red Bandana Reflection (0.5)",
       "description": "Once complete, you will scan a picture of your reflection and submit it through Showbie.  Instructions: After watching \"The Man in the Red Bandana\" video and learning about the life,&#160;write the following in your Class Notebook on a fresh page titled \"Unit 1 Reflection\"  1. Write 2-3 sentences reflecting on what you feel, think, wonder, or admire after the video.&#160; 2. Write 2-3 sentences on how Welles Crowther models being a \"man for others\" 3. Write 2-3 sentence on how, following Welles's example, you can grow in becoming a \"man for others\"  https://www.youtube.com/watch?v=S77KYbkmjwc",
       "due_date": "2026-09-14",
@@ -353,7 +327,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "1908129b-74d8-4c6f-9137-a6fad3fc53af",
+      "id": "6df2bc3b-8981-476a-aac9-ae51febfb764",
       "title": "Theology 6 - 3: 9/14: HW Red Bandana Reflection (0.5)",
       "description": "Once complete, you will scan a picture of your reflection and submit it through Showbie.  Instructions: After watching \"The Man in the Red Bandana\" video and learning about the life,&#160;write the following in your Class Notebook on a fresh page titled \"Unit 1 Reflection\"  1. Write 2-3 sentences reflecting on what you feel, think, wonder, or admire after the video.&#160; 2. Write 2-3 sentences on how Welles Crowther models being a \"man for others\" 3. Write 2-3 sentence on how, following Welles's example, you can grow in becoming a \"man for others\"  https://www.youtube.com/watch?v=S77KYbkmjwc",
       "due_date": "2026-09-14",
@@ -366,7 +340,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "fc6362d5-f75a-474b-99c1-84b5a9c5609c",
+      "id": "8c6074c2-a323-404d-8515-78356a9d7d85",
       "title": "Theology 7 - 5: 9/14: HW Red Bandana Reflection (0.5)",
       "description": "Once complete, you will scan a picture of your reflection and submit it through Showbie.  Instructions: After watching \"The Man in the Red Bandana\" video and learning about the life,&#160;write the following in your Class Notebook on a fresh page titled \"Unit 1 Reflection\"  1. Write 2-3 sentences reflecting on what you feel, think, wonder, or admire after the video.&#160; 2. Write 2-3 sentences on how Welles Crowther models being a \"man for others\" 3. Write 2-3 sentence on how, following Welles's example, you can grow in becoming a \"man for others\"  https://www.youtube.com/watch?v=S77KYbkmjwc",
       "due_date": "2026-09-15",
@@ -379,7 +353,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "83a5e9d8-8417-4da9-ba78-1720307f6112",
+      "id": "d8a5901b-ee80-4199-ba20-cf2e464488dd",
       "title": "Theology 7 - 6: 9/14: HW Red Bandana Reflection (0.5)",
       "description": "Once complete, you will scan a picture of your reflection and submit it through Showbie.  Instructions: After watching \"The Man in the Red Bandana\" video and learning about the life,&#160;write the following in your Class Notebook on a fresh page titled \"Unit 1 Reflection\"  1. Write 2-3 sentences reflecting on what you feel, think, wonder, or admire after the video.&#160; 2. Write 2-3 sentences on how Welles Crowther models being a \"man for others\" 3. Write 2-3 sentence on how, following Welles's example, you can grow in becoming a \"man for others\"  https://www.youtube.com/watch?v=S77KYbkmjwc",
       "due_date": "2026-09-15",
@@ -392,7 +366,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "1a4ff789-4ea8-4db5-82ba-e25892fdaac1",
+      "id": "3b6aa8e1-10cd-4948-96a7-df34c69b2333",
       "title": "Theology 7 - 5: HW 9/17 (0.25)",
       "description": "",
       "due_date": "2026-09-17",
@@ -405,7 +379,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "954a1680-5eb3-4d78-8e45-45f59ff7f083",
+      "id": "c0f706a0-a480-4b41-b89f-33d4d29de618",
       "title": "Theology 7 - 6: HW 9/17 (0.25)",
       "description": "",
       "due_date": "2026-09-17",
@@ -418,7 +392,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "3fb965ec-5cc9-45f8-a99a-870a9c874da6",
+      "id": "d9c834c7-9a00-4f62-8d89-7adc43404bb9",
       "title": "Theology 6 - 1: HW Types of Prayer Worksheet (0.25)",
       "description": "",
       "due_date": "2026-09-18",
@@ -431,7 +405,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "27af95ea-c4f6-4e6b-bd04-f4fbfed10046",
+      "id": "d398e9fc-a344-4b5f-ad59-7edaa39912c1",
       "title": "Theology 6 - 3: HW Types of Prayer Worksheet (0.25)",
       "description": "",
       "due_date": "2026-09-18",
@@ -444,7 +418,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "0c3978ec-612f-4d39-a7ef-fd32c33f744b",
+      "id": "d47b28fa-06a6-4fd3-a61b-5c524ae524c3",
       "title": "Theology 6 - 1: Weekly CW 9.14-9.18 (0.25)",
       "description": "",
       "due_date": "2026-09-20",
@@ -457,7 +431,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "da3d09b9-3a30-439d-a56a-b0cff0017b1e",
+      "id": "56f3eff5-de92-480f-9868-5ce5fdd0dfae",
       "title": "Theology 6 - 3: Weekly CW 9.14-9.18 (0.25)",
       "description": "",
       "due_date": "2026-09-20",
@@ -470,7 +444,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "fb72d4e8-9cf8-4f5d-97fc-1b0448c42311",
+      "id": "0f302b8b-cdbb-44ea-aff1-50faa09393c2",
       "title": "Theology 7 - 5: Weekly CW 9.14-9.18 (0.25)",
       "description": "",
       "due_date": "2026-09-20",
@@ -483,7 +457,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "7f37c235-25c4-492d-8c02-eebc8ea3be1f",
+      "id": "b4f40904-926c-4cc1-88de-7e7bc3c750dd",
       "title": "Theology 7 - 6: Weekly CW 9.14-9.18 (0.25)",
       "description": "",
       "due_date": "2026-09-20",
@@ -496,7 +470,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "43498dd2-135d-4ce5-b2f2-357bae569fe2",
+      "id": "12991e8d-a0d2-48c4-b313-b5f67058c9c5",
       "title": "Theology 7 - 5: 9/21 HW (0.25)",
       "description": "",
       "due_date": "2026-09-21",
@@ -509,7 +483,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "de8e7120-72ec-48f8-9c79-e322be7119d3",
+      "id": "52ec7714-d3e8-40a1-bab2-15dba23e558b",
       "title": "Theology 7 - 6: 9/21 HW (0.25)",
       "description": "",
       "due_date": "2026-09-21",
@@ -522,7 +496,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "d5d70a4e-60af-43f7-a8db-36974db517bf",
+      "id": "7b6f6505-099e-4811-bd9a-d41e8a4932a7",
       "title": "Theology 7 - 5: 9/23 HW (0.25)",
       "description": "",
       "due_date": "2026-09-23",
@@ -535,7 +509,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "0a9a885a-12ef-409e-afce-817c3333917c",
+      "id": "e1bba362-dd28-4327-8f47-c6968584f55b",
       "title": "Theology 7 - 6: 9/23 HW (0.25)",
       "description": "",
       "due_date": "2026-09-23",
@@ -548,7 +522,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "ef658e02-76bf-4b77-a870-01a5243ffe0c",
+      "id": "82e203b9-9974-492f-b479-78fd685d62c1",
       "title": "Theology 7 - 5: 9/25 Reflection 2 (2)",
       "description": "You will write this reflection on paper in your class notebook. You will take a picture of it and submit it on MyBelen. This unit has been about how God made the world not just good, but very good, and for our sharing in it. In the beginning there was harmony &#8212; Adam and Eve at peace with God, with themselves, with each other, and with creation. The serpent's voice broke that harmony. That same voice of the serpent, which moves us away from the good and sows doubt in our hearts about who God is, works in your life. But so does God's voice, who never tires of bringing us back.&#160;       Reflection Prompt: Look at your own life.  Step 1 &#8212; Pick one of the four harmonies to write about: harmony with God &#183; harmony with yourself &#183; harmony with others (family, friends) &#183; harmony with creation (the world, your things, how you treat what's around you) Step 2 &#8212; After you pick which harmony to write about, you will go deep into that one. Think through these four questions. Use them to figure out what you want to say:  What does harmony in this relationship look like when it's good? Describe a real moment you've felt it. Where do you feel the serpent's voice trying to break it? What lie does it tell you? (For example: \"you don't need to talk to God,\" \"you're not good enough,\" \"get back at him,\" \"it doesn't matter how you treat this.\") What does it wound or cost you when you listen to that voice? How might God be trying to draw you back into harmony here? What would His voice be asking of you?        Writing Instructions: Your reflection should be at least 150 words. For full credit, your response must do these things:  Answer all four prompt questions.&#160; Write it as one connected paragraph &#8212; not a numbered list. Move through all four questions, but make it read like you're telling me one honest story about this relationship, not answering a quiz.  Use words like but, because, so, even though, lately to connect your thoughts. You can start like this: \"Lately my harmony with my brother has been broken, because the serpent's voice keeps telling me to get back at him whenever he annoys me&#8230;\"   Use at least three of these words in your response: goodness &#183; image and likeness &#183; harmony &#183; temptation &#183; sin &#183; the Fall &#183; wound &#183; freedom. Be honest. Think deeply. This is for you.     How I Grade It &#8212; Four things, 4 points each. 16 points total.     &#160; 4 3 2 1&#8211;0     Your own life Picks one harmony and goes deep &#8212; a real moment I could picture, honest about the lie and what it costs. Real, but stays general &#8212; no moment I could point to. Touches several harmonies shallowly, or stays about people in general instead of you. Doesn't answer the prompt.   The three words Three or more, used correctly, and they fit what you're describing. Three words, but one is used loosely. Only two, or two used correctly. Fewer than two, or used wrong.   Effort &amp; depth Full length. Moves through all four questions, including the hard ones (the wound, God's voice). Reads like one honest reflection, not a list. Full length, but part is filler, or one or two questions are skipped. Reads like a numbered list of disconnected answers, or clearly short of 150 words. A few lines. Written on the way to class.   Grammar</t",
       "due_date": "2026-09-25",
@@ -561,7 +535,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "b683da9f-7425-4c77-a577-87ca82c69f63",
+      "id": "a94ef33f-2c1c-42c3-96f9-21fc634662b1",
       "title": "Theology 7 - 6: 9/25 CW Genesis 5 In-Class Activity (0.5)",
       "description": "You will complete Genesis 5 Activity on Showbie.&#160;",
       "due_date": "2026-09-25",
@@ -574,7 +548,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "b7d4b700-9b10-4f84-9533-40bf37dc95d6",
+      "id": "40cbb0b4-0023-4bf6-acf5-f21d874dd6c0",
       "title": "Theology 7 - 6: 9/25 Reflection 2 (2)",
       "description": "You will write this reflection on paper in your class notebook. You will take a picture of it and submit it on MyBelen. This unit has been about how God made the world not just good, but very good, and for our sharing in it. In the beginning there was harmony &#8212; Adam and Eve at peace with God, with themselves, with each other, and with creation. The serpent's voice broke that harmony. That same voice of the serpent, which moves us away from the good and sows doubt in our hearts about who God is, works in your life. But so does God's voice, who never tires of bringing us back.&#160;       Reflection Prompt: Look at your own life.  Step 1 &#8212; Pick one of the four harmonies to write about: harmony with God &#183; harmony with yourself &#183; harmony with others (family, friends) &#183; harmony with creation (the world, your things, how you treat what's around you) Step 2 &#8212; After you pick which harmony to write about, you will go deep into that one. Think through these four questions. Use them to figure out what you want to say:  What does harmony in this relationship look like when it's good? Describe a real moment you've felt it. Where do you feel the serpent's voice trying to break it? What lie does it tell you? (For example: \"you don't need to talk to God,\" \"you're not good enough,\" \"get back at him,\" \"it doesn't matter how you treat this.\") What does it wound or cost you when you listen to that voice? How might God be trying to draw you back into harmony here? What would His voice be asking of you?        Writing Instructions: Your reflection should be at least 150 words. For full credit, your response must do these things:  Answer all four prompt questions.&#160; Write it as one connected paragraph &#8212; not a numbered list. Move through all four questions, but make it read like you're telling me one honest story about this relationship, not answering a quiz.  Use words like but, because, so, even though, lately to connect your thoughts. You can start like this: \"Lately my harmony with my brother has been broken, because the serpent's voice keeps telling me to get back at him whenever he annoys me&#8230;\"   Use at least three of these words in your response: goodness &#183; image and likeness &#183; harmony &#183; temptation &#183; sin &#183; the Fall &#183; wound &#183; freedom. Be honest. Think deeply. This is for you.     How I Grade It &#8212; Four things, 4 points each. 16 points total.     &#160; 4 3 2 1&#8211;0     Your own life Picks one harmony and goes deep &#8212; a real moment I could picture, honest about the lie and what it costs. Real, but stays general &#8212; no moment I could point to. Touches several harmonies shallowly, or stays about people in general instead of you. Doesn't answer the prompt.   The three words Three or more, used correctly, and they fit what you're describing. Three words, but one is used loosely. Only two, or two used correctly. Fewer than two, or used wrong.   Effort &amp; depth Full length. Moves through all four questions, including the hard ones (the wound, God's voice). Reads like one honest reflection, not a list. Full length, but part is filler, or one or two questions are skipped. Reads like a numbered list of disconnected answers, or clearly short of 150 words. A few lines. Written on the way to class.   Grammar</t",
       "due_date": "2026-09-25",
@@ -587,7 +561,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "e89241c6-a8e1-44bb-b0cd-09d351eea128",
+      "id": "f3f626e0-841a-432a-aeff-ca211de1db16",
       "title": "Theology 6 - 1: Weekly CW 9.21-9.25",
       "description": "",
       "due_date": "2026-09-27",
@@ -600,7 +574,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "6871f12c-0d59-470d-a8b8-08d3d942ef3d",
+      "id": "7dc79fe3-34a3-43e8-8932-b5e66b4972fd",
       "title": "Theology 6 - 3: Weekly CW 9.21-9.25",
       "description": "",
       "due_date": "2026-09-27",
@@ -613,7 +587,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "7837798e-0bc6-4c3d-8ef7-4f092d396087",
+      "id": "a9f5473b-317e-4291-8d8e-a34af7aee796",
       "title": "Theology 7 - 5: Weekly CW 9.21-9.25 (0.25)",
       "description": "",
       "due_date": "2026-09-27",
@@ -626,7 +600,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "86fe30bb-35b3-4eb2-b2e6-dc6607211823",
+      "id": "ced6b27a-f566-4c6e-9a1b-b74fdb78e5f7",
       "title": "Theology 7 - 6: Weekly CW 9.21-9.25 (0.25)",
       "description": "",
       "due_date": "2026-09-27",
@@ -639,7 +613,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "0d522a51-36e9-4159-901c-4d89d170f65c",
+      "id": "c78af9dc-d29a-478e-9181-6b7860f03cf7",
       "title": "Theology 6 - 1: CW In-Class Assignment Our Father (0.5)",
       "description": "&#160;",
       "due_date": "2026-09-28",
@@ -652,7 +626,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "dca60087-407e-4046-a919-c3365faf12f3",
+      "id": "7a6c93d6-9d0b-4b90-98ae-7b02349b427c",
       "title": "Theology 6 - 3: CW In-Class Assignment Our Father (0.5)",
       "description": "&#160;",
       "due_date": "2026-09-28",
@@ -665,7 +639,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "3673ea68-734b-4ce3-b546-0e0a97cf7ec7",
+      "id": "827efc98-e450-4e95-8c02-e0f81f92bd3f",
       "title": "Theology 7 - 5: 9/25 CW Genesis 5 In-Class Activity (0.5)",
       "description": "You will complete Genesis 5 Activity on Showbie.&#160;",
       "due_date": "2026-09-29",
@@ -678,7 +652,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "6b319425-0415-47eb-8b66-9ee60c965216",
+      "id": "11366c0b-2288-45ac-9527-349663bf5908",
       "title": "Theology 6 - 1: Test 1",
       "description": "",
       "due_date": "2026-09-30",
@@ -691,7 +665,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "544aa0af-329d-4fba-84af-b723b4bde2e5",
+      "id": "28fabb0a-e119-46ab-b0ab-ae538d57121d",
       "title": "Theology 6 - 3: Test 1",
       "description": "",
       "due_date": "2026-09-30",
@@ -704,7 +678,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "2728e605-10e3-4d36-a3f8-859a440f654d",
+      "id": "7161e220-e692-4d5e-bc4a-c71a3af6d0f8",
       "title": "Theology 7 - 5: 10/1 HW (0.25)",
       "description": "Gen 6-9",
       "due_date": "2026-10-01",
@@ -717,7 +691,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "c47d6f29-39d1-4d80-a701-5e03d6362051",
+      "id": "271e3e47-58f8-428b-a687-9bb1af1275f4",
       "title": "Theology 7 - 6: 10/1 HW (0.25)",
       "description": "Gen 6-9",
       "due_date": "2026-10-01",
@@ -730,7 +704,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "3ea4f2e4-2f4b-4586-9f2b-fda832bcbb4d",
+      "id": "269286b6-a73e-4093-9ef3-e8d9a65af068",
       "title": "Theology 6 - 1: 10/6 HW: Lectio Divina (0.5)",
       "description": "You will complete the Lectio Divina Prayer Activity on Showbie",
       "due_date": "2026-10-02",
@@ -743,7 +717,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "649b41d5-d10c-40e5-8fd8-083157442c46",
+      "id": "cb088c4a-9f33-4740-90ab-e0c4180bb461",
       "title": "Theology 6 - 3: 10/6 HW: Lectio Divina (0.5)",
       "description": "You will complete the Lectio Divina Prayer Activity on Showbie",
       "due_date": "2026-10-02",
@@ -756,7 +730,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "a350269f-8360-44b8-8de5-7726132432a5",
+      "id": "f9b59470-3fa2-4e26-bf6a-7757b38ea2a4",
       "title": "Theology 6 - 1: Weekly CW 9.28-10.2 (0.25)",
       "description": "",
       "due_date": "2026-10-04",
@@ -769,7 +743,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "e2ad808b-3170-4d50-9f5b-e3bd2b095ea3",
+      "id": "9269bb81-3b6c-45d4-acdd-63ac4a1de974",
       "title": "Theology 6 - 3: Weekly CW 9.28-10.2 (0.25)",
       "description": "",
       "due_date": "2026-10-04",
@@ -782,7 +756,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "9b032735-6bad-4c03-a4fa-b1b00b4e8f2a",
+      "id": "ef01ec84-5188-4cab-ac73-8cb3c67e66cf",
       "title": "Theology 7 - 5: Weekly CW 9.28-10.2 (0.25)",
       "description": "",
       "due_date": "2026-10-04",
@@ -795,7 +769,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "4862796e-1395-438e-85e0-19c593af4726",
+      "id": "aecf8de0-d031-4c6f-9599-092612142c4f",
       "title": "Theology 7 - 6: Weekly CW 9.28-10.2 (0.25)",
       "description": "",
       "due_date": "2026-10-04",
@@ -808,7 +782,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "dd6b75db-b7f6-4cbd-bfd7-bb695a221e1d",
+      "id": "b6ffafe8-afc4-42f9-9e83-60a71bf3416c",
       "title": "Theology 7 - 5: 10/5 HW Unit 2 Test Study Guide (0.5)",
       "description": "The Study Guide is up on Showbie. You should fill it out and complete it by class time Monday",
       "due_date": "2026-10-05",
@@ -821,7 +795,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "309d7200-d79c-4e6c-a252-6416b1f41985",
+      "id": "4ae2bd4c-1fb1-46f5-a955-fc7f1e1a3f2b",
       "title": "Theology 7 - 6: 10/5 HW Unit 2 Test Study Guide (0.5)",
       "description": "The Study Guide is up on Showbie. You should fill it out and complete it by class time Monday",
       "due_date": "2026-10-05",
@@ -834,7 +808,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "c1271040-5685-41b8-8a1a-2ba5a345091c",
+      "id": "bfa86fd6-8bca-4167-8d9d-733a0a17d609",
       "title": "Theology 6 - 1: 10/8 HW Discussion Post: Fr. Mike Schmitz Video on Prayer",
       "description": "Watch the video about prayer by Father Mike Schmitz. LINK HERE:  After watching, write a short discussion post about 75 words sharing your thoughts on the video.&#160; Some questions to help you think: What surprised you about what Father Mike said?  One idea from the video that stuck with you? A question the video made you think about? Something you agree or disagree with and why?  How this video might change the way you think about prayer?",
       "due_date": "2026-10-08",
@@ -847,7 +821,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "1cfa831a-23fd-43b3-84fb-fab943425d60",
+      "id": "db679e17-730c-4c40-a7a4-f4b48a50e67e",
       "title": "Theology 6 - 3: 10/8 HW Discussion Post: Fr. Mike Schmitz Video on Prayer",
       "description": "Watch the video about prayer by Father Mike Schmitz. LINK HERE:  After watching, write a short discussion post about 75 words sharing your thoughts on the video.&#160; Some questions to help you think: What surprised you about what Father Mike said?  One idea from the video that stuck with you? A question the video made you think about? Something you agree or disagree with and why?  How this video might change the way you think about prayer?",
       "due_date": "2026-10-08",
@@ -860,7 +834,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "363b8580-cfab-43fe-b25d-74be9b5634c0",
+      "id": "2a4d8b3b-7300-4f65-bdc0-0d69cd5572bf",
       "title": "Theology 7 - 5: Unit 2 Test",
       "description": "",
       "due_date": "2026-10-09",
@@ -873,7 +847,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "603934ef-f964-422c-a4fd-14e4aaf46ef5",
+      "id": "3524bcd7-59b0-44de-b46a-9f820b4b57ba",
       "title": "Theology 7 - 6: Unit 2 Test",
       "description": "",
       "due_date": "2026-10-09",
@@ -886,7 +860,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "864cedd5-24ea-4609-884f-2b9671effb06",
+      "id": "97121e4a-4091-4436-a125-246966ef5961",
       "title": "Theology 6 - 1: Weekly CW (0.25) 10.5-10.9&#160;",
       "description": "",
       "due_date": "2026-10-11",
@@ -899,7 +873,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "959713b0-dd0c-43f7-a9cb-b05dfb1db6cd",
+      "id": "3d2b149f-399c-40df-82ca-bfa8aa2f5b1b",
       "title": "Theology 6 - 3: Weekly CW (0.25) 10.5-10.9&#160;",
       "description": "",
       "due_date": "2026-10-11",
@@ -912,7 +886,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "e0ea741e-7409-40c9-86f3-c46b9f6cca76",
+      "id": "3e38d7d7-7296-4a15-b456-a1b82cd3f3ca",
       "title": "Theology 7 - 5: 10.5-10.9 Weekly CW (0.25)",
       "description": "",
       "due_date": "2026-10-11",
@@ -925,7 +899,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "e9f8c9b3-4cdc-4d91-88c2-37bab88162f4",
+      "id": "abc3ea8d-7421-48c3-918f-fcb34401e219",
       "title": "Theology 7 - 6: 10.5-10.9 Weekly CW (0.25)",
       "description": "",
       "due_date": "2026-10-11",
@@ -938,7 +912,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "94f46fdd-bd42-4aa1-86c6-2e43d051a973",
+      "id": "b00a92f0-21df-469a-b53b-f0039520a89b",
       "title": "Theology 6 - 1: 10/15 Rosary Packet (0.5)",
       "description": "",
       "due_date": "2026-10-15",
@@ -951,7 +925,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "cc5888a0-109a-460b-9c76-e499746a7dcf",
+      "id": "6f395af1-a92d-4b22-af24-ba739193aee8",
       "title": "Theology 6 - 3: 10/15 Rosary Packet (0.5)",
       "description": "",
       "due_date": "2026-10-15",
@@ -964,7 +938,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "ecceb709-70d1-43fd-9483-3d542340f371",
+      "id": "b53d278d-0ee5-4fe6-a841-ecc8494e41fe",
       "title": "Theology 6 - 1: 10.11-10.15 Weekly CW (0.25)",
       "description": "",
       "due_date": "2026-10-18",
@@ -977,7 +951,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "ceac9dbe-e224-43b6-b682-f43d161304ec",
+      "id": "8404f62d-aaec-413e-aa56-a6c04e898ad1",
       "title": "Theology 6 - 3: 10.11-10.15 Weekly CW (0.25)",
       "description": "",
       "due_date": "2026-10-18",
@@ -990,7 +964,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "89bf27e1-3126-43a4-a67f-fca2809f8084",
+      "id": "964ff69b-95b7-48e5-9fcb-5cc96d1a8e1a",
       "title": "Theology 7 - 5: 10/12-10/16 Weekly CW (0.25)",
       "description": "",
       "due_date": "2026-10-18",
@@ -1003,7 +977,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "02bfa5e3-b7c6-4588-9328-61b34567109d",
+      "id": "f6f2ddcd-6ce5-469f-a0e8-4eb5fd35a01a",
       "title": "Theology 7 - 6: 10/12-10/16 Weekly CW (0.25)",
       "description": "",
       "due_date": "2026-10-18",
@@ -1016,7 +990,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "512e6100-b3f8-479f-9009-c179b4cb9d2e",
+      "id": "502bd9a3-7e0e-4626-acf6-5e6fd4a469fa",
       "title": "Theology 7 - 5: 10/19 HW The Real Story Ch. 4, Ch. 5 (0.25)",
       "description": "Read and Highlight&#160;The Real Story Chapter 4 and Chapter 5 on Showbie Come ready to answer questions in Class.",
       "due_date": "2026-10-19",
@@ -1029,7 +1003,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "fa467175-8907-4368-a066-558714f21d92",
+      "id": "931baeb7-d768-407c-b8af-e3ae6292ef5c",
       "title": "Theology 7 - 6: 10/19 HW The Real Story Ch. 4, Ch. 5 (0.25)",
       "description": "Read and Highlight&#160;The Real Story Chapter 4 and Chapter 5 on Showbie Come ready to answer questions in Class.",
       "due_date": "2026-10-19",
@@ -1042,7 +1016,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "ba9375fe-90c9-4d04-9bac-d06205db85c5",
+      "id": "4dcbbf61-1410-4012-92c0-d0180a1f437e",
       "title": "Theology 6 - 1: 10/20 Prayer Project (4)",
       "description": "Due: Tuesday, October 20.  Submission&#160;ON PAPER, HANDWRITTEN (NO SHOWBIE, NOTABILITY)  This project is a culminating activity that asks you to concentrate on what you have learned about prayer and putting it into action, in your daily life.&#160;&#160; There are four options that you can choose from: Option A:&#160; Sunday Mass Option B:&#160; The Examen Journal Option C:&#160; The Mysteries of My Life Option D:&#160; Lectio and Visio Divina Instructions: 1. Choose one of the four options. 2. Print out the Packet Corresponding with that option (Links Above) 3. Begin working on Project&#160;  You will only choose&#160; Each of the projects has multiple components and cannot be completed in just one day/night.&#160; Plan accordingly and begin your project early.&#160; You have two weeks (with two weekends) to complete your project.&#160; All work will be done on your own time (not in class) and a few options also involve your family&#8217;s participation. Important Reminders:  You will print out the pages of the project and handwrite your responses (in your best handwriting). No typing is allowed.&#160; Use a pencil or a pen on the actual hard copy.&#160; Do not do it in Showbie or Notability.&#160; A suggestion would be to make 2 copies of your chosen project and make one a draft. You will turn in the hardcopy of the project on the due date.&#160; (You will not submit it to Showbie.) Complete all components of the option that you choose.&#160; Be careful that you finish all aspects of your chosen project using complete sentences, especially in the reflection portions.",
       "due_date": "2026-10-20",
@@ -1055,7 +1029,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "970bc23d-8e51-463b-9247-0814d9612a36",
+      "id": "3d132c55-6c64-41a4-a22f-2693cb1013af",
       "title": "Theology 6 - 1: 10/20 Quiz Unit 2 (2)",
       "description": "",
       "due_date": "2026-10-20",
@@ -1068,7 +1042,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "87749fc9-d6c2-4645-8e0c-86e7e6298c84",
+      "id": "03475838-8542-4e6e-a829-b996a30a04ce",
       "title": "Theology 6 - 3: 10/20 Prayer Project (4)",
       "description": "Due: Tuesday, October 20.  Submission&#160;ON PAPER, HANDWRITTEN (NO SHOWBIE, NOTABILITY)  This project is a culminating activity that asks you to concentrate on what you have learned about prayer and putting it into action, in your daily life.&#160;&#160; There are four options that you can choose from: Option A:&#160; Sunday Mass Option B:&#160; The Examen Journal Option C:&#160; The Mysteries of My Life Option D:&#160; Lectio and Visio Divina Instructions: 1. Choose one of the four options. 2. Print out the Packet Corresponding with that option (Links Above) 3. Begin working on Project&#160;  You will only choose&#160; Each of the projects has multiple components and cannot be completed in just one day/night.&#160; Plan accordingly and begin your project early.&#160; You have two weeks (with two weekends) to complete your project.&#160; All work will be done on your own time (not in class) and a few options also involve your family&#8217;s participation. Important Reminders:  You will print out the pages of the project and handwrite your responses (in your best handwriting). No typing is allowed.&#160; Use a pencil or a pen on the actual hard copy.&#160; Do not do it in Showbie or Notability.&#160; A suggestion would be to make 2 copies of your chosen project and make one a draft. You will turn in the hardcopy of the project on the due date.&#160; (You will not submit it to Showbie.) Complete all components of the option that you choose.&#160; Be careful that you finish all aspects of your chosen project using complete sentences, especially in the reflection portions.",
       "due_date": "2026-10-20",
@@ -1081,7 +1055,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "944605d6-0c89-41d9-8d94-f44866f1dffb",
+      "id": "7aefddd0-e8b9-44d3-b570-fb5fbc1801c7",
       "title": "Theology 6 - 3: 10/20 Quiz Unit 2 (2)",
       "description": "",
       "due_date": "2026-10-20",
@@ -1094,7 +1068,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "f76258ae-53f8-4a1a-bfde-f222f2b0eedc",
+      "id": "b7e41084-cefd-46d8-bdc0-393e75f4d15b",
       "title": "Theology 7 - 5: 10/21 HW Check&#160;",
       "description": "Gen 15-21",
       "due_date": "2026-10-21",
@@ -1107,7 +1081,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "f9a790ac-e692-4c15-a55a-178ade74a186",
+      "id": "07add9c4-5233-46e4-af1c-7b2fc99ea6e6",
       "title": "Theology 7 - 6: 10/21 HW Check&#160;",
       "description": "Gen 15-21",
       "due_date": "2026-10-21",
@@ -1120,7 +1094,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "6af88cf7-2849-4179-a360-2cb9c2cbbdf5",
+      "id": "a8ee6928-b23c-4697-beea-fc8caeb20eda",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-10-25",
@@ -1133,7 +1107,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "fe319418-fdb3-46eb-900d-3fe30af8032b",
+      "id": "62b33570-6fb6-498d-9361-4f358ca6e1da",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-10-25",
@@ -1146,7 +1120,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "606c322f-f3b7-4159-bc2e-908161ef015b",
+      "id": "d67a2548-0a12-4b48-8203-9347db19dec4",
       "title": "Theology 7 - 5: Weekly CW",
       "description": "",
       "due_date": "2026-10-25",
@@ -1159,7 +1133,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "00a87792-b863-46ca-a3f9-6df79bf146af",
+      "id": "2c9c9d88-544c-4d72-9b9f-28be19e8a96f",
       "title": "Theology 7 - 6: Weekly CW",
       "description": "",
       "due_date": "2026-10-25",
@@ -1172,7 +1146,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "6c76fcbb-5686-4adf-8a03-d0ea466cea3d",
+      "id": "733936dc-44b6-4d0f-b9ea-7796ac3c1b34",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-11-01",
@@ -1185,7 +1159,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "9eb4e065-7b16-4c65-be37-bc6d0d4df7ec",
+      "id": "438f0ef6-d888-4151-b5c0-14c7bd533010",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-11-01",
@@ -1198,7 +1172,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "5074b519-b52b-4ecf-819a-c1b7954f4c53",
+      "id": "5a4b7d9e-97dc-4106-b780-edf567c5dc44",
       "title": "Theology 7 - 5: Weekly CW",
       "description": "",
       "due_date": "2026-11-01",
@@ -1211,7 +1185,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "ea8b0b25-f62a-47c3-960e-37c74ca5bb19",
+      "id": "5caf3a8f-4b4f-4840-af97-594cea617b7a",
       "title": "Theology 7 - 6: Weekly CW",
       "description": "",
       "due_date": "2026-11-01",
@@ -1224,7 +1198,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "9e7af283-b2d0-463c-8316-b2999d10d10b",
+      "id": "6f89da3f-f2b0-43d5-8b20-26cdae60c162",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-11-08",
@@ -1237,7 +1211,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "161c39aa-1899-4bae-bfd3-0b0f79d2be9e",
+      "id": "1f604632-5aed-4412-b6ce-779abccc154e",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-11-08",
@@ -1250,7 +1224,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "b2679987-7a73-427b-845f-18ff8ed2a647",
+      "id": "4d334ab7-ad91-44ea-a906-b9df7edd6b5c",
       "title": "Theology 7 - 5: Weekly CW",
       "description": "",
       "due_date": "2026-11-08",
@@ -1263,7 +1237,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "f1c7c567-e1d8-42c4-b439-b02e96ff4d30",
+      "id": "b923932e-8bc1-4a50-84dd-a82c88e74ce1",
       "title": "Theology 7 - 6: Weekly CW",
       "description": "",
       "due_date": "2026-11-08",
@@ -1276,7 +1250,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "d6e6937f-4d2f-43e7-bfb4-88d004334e1d",
+      "id": "3bdc07cc-ea57-4189-895a-20beacb3b9f1",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-11-15",
@@ -1289,7 +1263,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "653962d6-3e55-4d08-9ecb-92fbebfad591",
+      "id": "54fc4deb-d989-4f1c-a29e-3fc8ad31d27c",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-11-15",
@@ -1302,7 +1276,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "eb116682-1499-4225-8bee-098039f8540c",
+      "id": "fc5dbe1d-463b-406d-8af5-442310ead357",
       "title": "Theology 7 - 5: Weekly CW",
       "description": "",
       "due_date": "2026-11-15",
@@ -1315,7 +1289,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "e3da0ae4-3316-4218-8dc6-0261674cfb0c",
+      "id": "9e21bcb4-f5b1-40e7-8762-f0ef666a207b",
       "title": "Theology 7 - 6: Weekly CW",
       "description": "",
       "due_date": "2026-11-15",
@@ -1328,7 +1302,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "b7b3b7f7-5381-480e-996a-ff5154b36d8a",
+      "id": "b879be02-2607-42a4-ab63-be6c5bc4970a",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-11-22",
@@ -1341,7 +1315,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "65d08933-d4cb-4075-88db-8d22cca2c0f5",
+      "id": "6446d39c-3e59-4ea0-a2ad-212373724009",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-11-22",
@@ -1354,7 +1328,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "3f6cafcf-3a24-45ef-a296-0fdeab9b4fd0",
+      "id": "8f64aa01-2bf0-4882-806a-936fdab33ac0",
       "title": "Theology 7 - 5: Weekly CW",
       "description": "",
       "due_date": "2026-11-22",
@@ -1367,7 +1341,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "bbc00632-b54e-4a7c-8d58-0fdaf6f3cd47",
+      "id": "e8c34178-d9a5-4019-a169-85defab118b8",
       "title": "Theology 7 - 6: Weekly CW",
       "description": "",
       "due_date": "2026-11-22",
@@ -1380,7 +1354,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "83005123-cd22-4302-95ff-817bfa330691",
+      "id": "ce364e07-018c-4d54-9915-e0b1c25cb84b",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-11-29",
@@ -1393,7 +1367,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "3faf3ceb-9ea3-473a-b5f2-27fda250faf5",
+      "id": "cf5777d6-7953-4505-8660-e1dd79496a30",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-11-29",
@@ -1406,7 +1380,7 @@
       "course": "Theology 6 - 3"
     },
     {
-      "id": "f711f27f-785a-4826-983e-ddd30238fae8",
+      "id": "fcbd6790-7861-47d6-8fab-3c040a3cd230",
       "title": "Theology 7 - 5: Weekly CW",
       "description": "",
       "due_date": "2026-11-29",
@@ -1419,7 +1393,7 @@
       "course": "Theology 7 - 5"
     },
     {
-      "id": "fa973a28-458b-4e89-a491-7ebb6517bea0",
+      "id": "ff9e5411-6ef6-40ef-a62d-ee10512b3678",
       "title": "Theology 7 - 6: Weekly CW",
       "description": "",
       "due_date": "2026-11-29",
@@ -1432,7 +1406,7 @@
       "course": "Theology 7 - 6"
     },
     {
-      "id": "80291493-283a-4d02-b111-2f614907f68e",
+      "id": "1430dfea-6a2d-4bf0-8935-076bad7f7e68",
       "title": "Theology 6 - 1: Weekly CW",
       "description": "",
       "due_date": "2026-12-06",
@@ -1445,7 +1419,7 @@
       "course": "Theology 6 - 1"
     },
     {
-      "id": "9b51e798-32bc-403f-a070-49105b13ea83",
+      "id": "f60ae07d-6935-4416-aff7-283c04d751ab",
       "title": "Theology 6 - 3: Weekly CW",
       "description": "",
       "due_date": "2026-12-06",
