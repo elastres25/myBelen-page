@@ -126,9 +126,20 @@
       ? '<div class="label">Assigned</div><div class="value">' + esc(fmt(assigned, { weekday: 'short', month: 'short', day: 'numeric' })) + '</div>'
       : '';
 
-    var link = item.url
-      ? '<div class="actions"><a href="' + esc(item.url) + '" target="_blank" rel="noopener">Open assignment in Blackbaud &rarr;</a></div>'
-      : '';
+    // The iCal feed carries no Blackbaud assignment links, so any url on an
+    // item is something attached to it (a video, a doc) — don't label it as
+    // the assignment. courseUrl, when set, goes to that class's assignment
+    // centre: the nearest thing to a deep link the feed makes possible.
+    var actions = [];
+    if (item.url) {
+      actions.push(anchor(item.url, isBlackbaudUrl(item.url)
+        ? 'Open assignment in Blackbaud &rarr;'
+        : 'Open attached link &rarr;'));
+    }
+    if (opts.courseUrl) {
+      actions.push(anchor(opts.courseUrl, 'Open in Blackbaud &rarr;', 'primary'));
+    }
+    var link = actions.length ? '<div class="actions">' + actions.join('') + '</div>' : '';
 
     return '' +
       '<details class="assignment' + (past ? ' is-past' : '') + '">' +
@@ -165,6 +176,22 @@
     { key: 'past',     label: 'Past due' },
     { key: 'all',      label: 'All' }
   ];
+
+  function isBlackbaudUrl(url) {
+    try {
+      return /(^|\.)(myschoolapp|blackbaud)\.com$/i.test(new URL(url, location.href).hostname);
+    } catch (e) { return false; }
+  }
+
+  /* Blackbaud refuses to be displayed inside another page, so its links
+     replace the whole window; everything else opens in a new tab beside it. */
+  function anchor(url, label, cls) {
+    var top = isBlackbaudUrl(url);
+    return '<a href="' + esc(url) + '"' +
+      (cls ? ' class="' + cls + '"' : '') +
+      ' target="' + (top ? '_top' : '_blank') + '"' +
+      (top ? '' : ' rel="noopener"') + '>' + label + '</a>';
+  }
 
   function mount(config) {
     var opts = config || {};
@@ -210,7 +237,9 @@
         ? items.slice(0, limit)
         : items;
 
-      var html = capped.map(function (x) { return itemHTML(x, { showCourse: showCourse }); }).join('');
+      var html = capped.map(function (x) {
+        return itemHTML(x, { showCourse: showCourse, courseUrl: opts.courseUrl });
+      }).join('');
 
       if (capped.length < items.length) {
         html += '<div class="more"><button type="button" id="show-all">' +

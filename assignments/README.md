@@ -96,6 +96,44 @@ board.
 | `?limit=3` | shorter list, for a narrow column |
 | `?course=Theology%206%20-%201` | filter the all-classes page to one section |
 
+## Opening an assignment in Blackbaud
+
+Expanding an assignment shows an **Open in Blackbaud** button that takes the
+student to that class's assignment centre.
+
+It goes to the **class**, not the individual assignment, and that is a limit of
+the feed rather than a choice: the iCal export carries no Blackbaud link or
+assignment id for any item, so there is nothing to build a per-assignment URL
+from. The student lands in the right class and finds the row there.
+
+The link lives on each page's `courseUrl`:
+
+```js
+Assignments.mount({
+  section: 'Theology 6 - 1',
+  courseUrl: 'https://belenjesuit.myschoolapp.com/lms-assignment/assignment-center/course/98937428/0?svcid=edu'
+});
+```
+
+| Board | Blackbaud course id |
+| --- | --- |
+| 6-1 | 98937428 |
+| 6-2 | 98937441 |
+| 7-6 | 98937457 |
+| 7-7 | 98937448 |
+
+Get a new one by opening that class's assignment centre in Blackbaud and copying
+the address bar. Leave `courseUrl` out and no button appears.
+
+Because Blackbaud refuses to be displayed inside another page, this link
+**replaces the whole window** rather than loading inside the embed.
+
+### Links you attach yourself
+
+If an assignment in the feed carries its own url — a video, a document — it shows
+as a separate **Open attached link** button and opens in a new tab. Those are
+whatever you put in the Blackbaud assignment, not Blackbaud links.
+
 ## Adding a section
 
 Copy an existing folder, then change the `section:` line near the bottom of its

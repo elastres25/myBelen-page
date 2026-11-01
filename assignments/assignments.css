@@ -199,3 +199,16 @@ details[open] .chev{transform:rotate(90deg)}
   .label{margin-top:4px}
   .tab{padding:10px 8px;font-size:12px}
 }
+
+/* The "Open in Blackbaud" action inside an expanded assignment. */
+.actions a.primary{
+  display:inline-block;
+  margin-top:2px;
+  padding:7px 13px;
+  border-radius:4px;
+  background:var(--bb-link);
+  color:var(--white);
+  font-weight:700;
+  text-decoration:none;
+}
+.actions a.primary:hover{background:var(--bb-blue)}

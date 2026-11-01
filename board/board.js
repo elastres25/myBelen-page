@@ -31,6 +31,7 @@
       section: options.section,
       showCourse: false,
       limit: options.limit || 6,
+      courseUrl: options.courseUrl,
       listId: "as-list",
       tabsId: "as-tabs",
       subtitleId: "as-subtitle",
