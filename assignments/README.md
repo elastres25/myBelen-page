@@ -130,9 +130,38 @@ Because Blackbaud refuses to be displayed inside another page, this link
 
 ### Links you attach yourself
 
-If an assignment in the feed carries its own url — a video, a document — it shows
-as a separate **Open attached link** button and opens in a new tab. Those are
-whatever you put in the Blackbaud assignment, not Blackbaud links.
+The sync takes an event's `URL` property, and failing that the first link it
+finds in the description. So whatever you put in a Blackbaud assignment comes
+through on its own button.
+
+Where that link points decides how it behaves:
+
+| You paste | Button says | Opens |
+| --- | --- | --- |
+| a video, a Drive file, a website | **Open attached link** | a new tab |
+| a Blackbaud assignment URL | **Open assignment in Blackbaud** | the whole window |
+
+That second row is how to get a **true per-assignment link** without changing
+anything: paste that assignment's Blackbaud address into its own description,
+and the next hourly sync picks it up. Worth doing for a big project or an
+assignment students keep asking about; not worth doing for every weekly CW.
+
+Only the first link in a description is used, so an assignment with a video
+already attached can't also carry a Blackbaud link this way.
+
+### Why not pull links from Blackbaud automatically
+
+The iCal feed has no assignment links and no assignment ids — the words
+"blackbaud" and "myschoolapp" appear nowhere in any of the 107 items, and the
+`id` on each is the calendar's own UID, not anything Blackbaud's URLs use.
+
+Getting them would mean switching this sync to Blackbaud's SKY API, which needs
+an application approved by a Blackbaud administrator at the school, and whose
+refresh tokens rotate on every use — so the hourly job would have to write a new
+token back into a GitHub secret, and one failed run stops the sync until it is
+re-authorized by hand. That was weighed and turned down: the iCal feed has run
+untouched since August, and the gain is landing on one assignment instead of its
+class list.
 
 ## Adding a section
 
